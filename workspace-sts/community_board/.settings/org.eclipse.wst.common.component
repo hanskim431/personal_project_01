@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
         
-    <wb-module deploy-name="community-0.0.1-SNAPSHOT">
+    <wb-module deploy-name="community_board-0.0.1-SNAPSHOT">
                 
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
                 
@@ -8,7 +8,7 @@
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
                 
-        <property name="java-output-path" value="/community/build/classes"/>
+        <property name="java-output-path" value="/community_board/build/classes"/>
         <property name="context-root" value="community_board"/>
             
     </wb-module>
