@@ -1,4 +1,4 @@
-package com.jafa.vo.member;
+package com.jafa.domain.member;
 
 import java.time.LocalDateTime;
 

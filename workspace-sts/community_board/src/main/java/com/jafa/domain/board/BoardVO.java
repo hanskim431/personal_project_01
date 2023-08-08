@@ -1,4 +1,4 @@
-package com.jafa.vo.board;
+package com.jafa.domain.board;
 
 import java.time.LocalDateTime;
 
