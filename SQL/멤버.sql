@@ -109,7 +109,7 @@ CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
     FILETYPE CHAR(1), -- 파일 형식
     FILENAME VARCHAR2(100), -- 파일 이름
     REGDATE DATE, -- 등록일
-    STATUS NUMBER -- 상태
+    STATUS VARCHAR2(10) -- 상태
 );
 
 

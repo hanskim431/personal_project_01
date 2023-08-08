@@ -1,4 +1,4 @@
-package com.jafa.domain.member;
+package com.jafa.domain.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthVO {
-	private String memberId;
-	private String auth;
-	private String enable;
+public class BoardLikeDTO {
+		    private Long bno;
+		    private String memberId;
 }

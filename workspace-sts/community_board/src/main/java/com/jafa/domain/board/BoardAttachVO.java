@@ -1,4 +1,4 @@
-package com.jafa.domain.member;
+package com.jafa.domain.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +11,12 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberAttachVO {
+public class BoardAttachVO {
 	private String uuid;
-	private Long memberId; 
-	private String uploadPath;
-	private String fileType; 
-	private String fileName; 
-	private String regDate; 
+	private Long bno; 
+	private String uploadpath; 
+	private String filetype; 
+	private String filename; 
+	private String regdate; 
 	private String status;
 }

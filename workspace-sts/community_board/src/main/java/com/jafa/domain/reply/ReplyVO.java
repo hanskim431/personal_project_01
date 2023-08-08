@@ -1,4 +1,4 @@
-package com.jafa.domain.member;
+package com.jafa.domain.reply;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthVO {
+public class ReplyVO {
+	private Long rno;
 	private String memberId;
-	private String auth;
-	private String enable;
 }

@@ -18,10 +18,10 @@ public class BoardVO {
 		    private String title;
 		    private String content;
 		    private String writer;
-		    private String boardtype;
-		    private LocalDateTime regdate;
-		    private LocalDateTime updatedate;
+		    private String boardType;
+		    private LocalDateTime regDate;
+		    private LocalDateTime updateDate;
 		    private String status;
-		    private Long replycnt;
-		    private Long likehit;
+		    private Long replyCnt;
+		    private Long likeHit;
 }
