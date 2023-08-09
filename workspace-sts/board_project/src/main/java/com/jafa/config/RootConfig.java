@@ -5,16 +5,19 @@ import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource(value = "classpath:database/db.properties")
+@MapperScan("com.jafa.mapper")
 public class RootConfig {
 	
 	@Value("${db.driver}")
@@ -43,6 +46,8 @@ public class RootConfig {
 	public SqlSessionFactory sessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource());
+		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+				.getResources("classpath:mappers/**/*Mapper.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
 
