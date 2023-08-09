@@ -17,7 +17,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource(value = "classpath:database/db.properties")
-@MapperScan("com.jafa.mapper")
+@MapperScan("com.jafa.repository")
 public class RootConfig {
 	
 	@Value("${db.driver}")
