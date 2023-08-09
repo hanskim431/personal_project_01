@@ -44,11 +44,11 @@ public class RootConfig {
 	
 	@Bean
 	public SqlSessionFactory sessionFactory() throws Exception {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-				.getResources("classpath:mappers/**/*Mapper.xml"));
-		return sqlSessionFactoryBean.getObject();
+	SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+	sqlSessionFactoryBean.setDataSource(dataSource());
+	sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+			.getResources("classpath:mappers/**/*Mapper.xml"));
+	return sqlSessionFactoryBean.getObject();
 	}
 
 }

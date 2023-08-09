@@ -28,7 +28,7 @@ public class BoardRepositoryTest extends AppTest{
 	public void testRead() {
 		log.info("출력");
 		BoardVO vo = boardRepository.read(1L);
-		log.info(vo);
+		log.info("vo"+vo);
 		log.info("출력 완료");
 	}
 	

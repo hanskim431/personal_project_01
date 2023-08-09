@@ -119,7 +119,6 @@ CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
     STATUS VARCHAR2(10) -- 상태
 );
 
-
 ------------------------------------------------------------------------------------
 --                                  임시 데이터 삽입
 ------------------------------------------------------------------------------------
@@ -205,6 +204,7 @@ SELECT * FROM TBL_MEMBER_IMAGE; -- 계정 이미지
 -- 게시글
 SELECT * FROM TBL_BOARD; -- 게시글
 SELECT * FROM TBL_BOARD_LIKE; -- 게시글 좋아요
+
 -- 댓글
 SELECT * FROM TBL_REPLY; -- 댓글
 SELECT * FROM TBL_REPLY_LIKE; -- 댓글 좋아요

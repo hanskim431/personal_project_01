@@ -27,6 +27,6 @@ public class BoardVO {
 		    private LocalDateTime regDate;
 		    private LocalDateTime updateDate;
 		    private String status;
-		    private Long replyCnt;
-		    private Long likeHit;
+		    private int replyCnt;
+		    private int likeHit;
 }
