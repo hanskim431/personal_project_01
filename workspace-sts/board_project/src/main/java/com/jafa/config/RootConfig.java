@@ -11,10 +11,13 @@ import org.springframework.context.annotation.PropertySource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+
 @Configuration
 @PropertySource(value = "classpath:database/db.properties")
 public class RootConfig {
-
+	
 	@Value("${db.driver}")
 	private String driverClassName;
 	
