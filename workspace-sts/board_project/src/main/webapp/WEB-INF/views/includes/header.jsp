@@ -12,10 +12,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<div class="container">
-	<div>
-	<a href="">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="${ctxPath}">
 		<img src="${ctxPath}/resources/images/logo.bmp" class="logo" alt="logo">
-	</a>
-	</div>
-</div>
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">홈</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
