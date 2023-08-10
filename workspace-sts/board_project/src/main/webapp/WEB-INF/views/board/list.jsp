@@ -21,7 +21,9 @@
 						<tbody>
 							<c:forEach var="board" items="${list}">
 								<tr>
-									<td>이미지</td>
+									<td>
+										<img src="${ctxPath}/resources/images/profile.bmp" class="profile" alt="profile">
+									</td>
 									<td>${board.title}</td>
 									<td>추천수</td>
 									<td>${board.writer}</td>
