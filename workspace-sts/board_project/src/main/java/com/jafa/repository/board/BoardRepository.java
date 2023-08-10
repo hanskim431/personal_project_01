@@ -16,10 +16,10 @@ public interface BoardRepository {
 	BoardVO read(Long bno);
 	
 	// U
-	
+	void update(BoardVO vo);
 	
 	// D
-	
+	void delete(Long bno);
 	
 	
 }

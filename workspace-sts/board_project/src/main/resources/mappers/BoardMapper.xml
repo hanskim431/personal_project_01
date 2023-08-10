@@ -18,7 +18,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	 
 	<select id="read" resultType="com.jafa.domain.board.BoardVO">
-		SELECT * FROM TBL_BOARD where bno = #{bno}
+		SELECT * FROM TBL_BOARD where BNO = #{bno}
 	</select>
-	
+  
+  <!-- UPDATE -->
+	<update id="update">
+		UPDATE TBL_BOARD SET  
+		TITLE=#{title}, CONTENT=#{content}, STATUS=#{status}
+		WHERE BNO = #{bno}
+	</update>  
+  <!-- DELETE -->
+  	<delete id="delete">
+  		DELETE TBL_BOARD WHERE BNO = #{bno}
+  	</delete>
+  
 </mapper>

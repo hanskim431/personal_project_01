@@ -23,7 +23,7 @@ public class BoardRepositoryTest extends AppTest{
 		log.info("리스트 출력 완료");
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testRead() {
 		log.info("출력");
@@ -47,4 +47,24 @@ public class BoardRepositoryTest extends AppTest{
 		log.info("데이터 삽입 완료");
 	}
 
+//	@Ignore
+	@Test
+	public void testUpdate() {
+		BoardVO vo = BoardVO.builder()
+				.bno(1L)
+				.title("수정 제목")	
+				.content("수정 내용")
+				.writer("admin")
+				.boardType("BOARD3")
+				.status("HIDDEN")
+				.build();
+		boardRepository.update(vo);
+	}
+	
+	@Ignore
+	@Test
+	public void testDelete() {
+		boardRepository.delete(10L);
+	}
+	
 }
