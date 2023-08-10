@@ -8,16 +8,28 @@
 			<div class="card">
 				<div class="card-header"></div><!-- card-header end -->
 				<div class="card-body">
-					<div>
+					<div class="">
 						<label>
 							<img src="${ctxPath}/resources/images/profile.bmp" class=profile alt="profile">
+							
 							${board.writer}
-							${board.regDate}
+							
+							<tf:formatDateTime value="${board.regDate}" pattern="yyyy-MM-dd HH:mm"/>
+							
+							<span class="dropdown">
+							  <button class="btn btn-primary" type="button" data-toggle="dropdown">
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">신고</a></li>
+							    <li><a href="#">수정</a></li>
+							    <li><a href="#">삭제</a></li>
+							  </ul>
+							</span>
 						</label>
 					</div>
 					<div>
 						<div>
-							<textarea rows="10" cols="50">${board.content}</textarea>
+							<textarea rows="10" cols="50" readonly="readonly">${board.content}</textarea>
 						</div>
 						<div>
 							<label>
@@ -27,7 +39,6 @@
 					</div>
 					<div>
 						<label>
-							${board.content}
 						</label>
 					</div>
 				</div><!-- card-body end -->
