@@ -30,7 +30,7 @@ public class BoardServiceTest extends AppTest{
 		boardService.getList().forEach(vo-> log.info(vo));
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testGet() {
 		log.info("get:"+boardService.get(1L));

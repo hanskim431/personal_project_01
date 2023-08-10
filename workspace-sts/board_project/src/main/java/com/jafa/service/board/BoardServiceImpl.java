@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean register(BoardVO vo) {
-		log.info("### register: "+ vo);
+//		log.info("### register: "+ vo);
 		boardRepository.insert(vo);
 		return true;
 
@@ -41,14 +41,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean modify(BoardVO vo) {
-		log.info("### modify: " + vo);
+//		log.info("### modify: " + vo);
 		boardRepository.update(vo);
 		return true;
 	}
 
 	@Override
 	public boolean remove(Long bno) {
-		log.info("### delete: "+ bno);
+//		log.info("### delete: "+ bno);
 		boardRepository.delete(bno);
 		return true;
 	}
