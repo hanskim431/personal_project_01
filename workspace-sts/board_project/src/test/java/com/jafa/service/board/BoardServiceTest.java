@@ -40,14 +40,14 @@ public class BoardServiceTest extends AppTest{
 	@Test
 	public void testRegister() {
 		BoardVO vo = BoardVO.builder()
-				.title("¼­ºñ½º ÀÛ¼º Á¦¸ñ")
-				.content("¼­ºñ½º ÀÛ¼º ³»¿ë")
+				.title("ì„œë¹„ìŠ¤ ìž‘ì„± ì œëª©")
+				.content("ì„œë¹„ìŠ¤ ìž‘ì„± ë‚´ìš©")
 				.writer("admin")
 				.boardType("BOARD3")
 				.status("VISIBLE")
 				.build();
 		boardService.register(vo);
-		log.info(vo.getBno()+"¹ø °Ô½Ã±Û ÀÛ¼º");
+		log.info(vo.getBno()+"ë²ˆ ê²Œì‹œê¸€ ìž‘ì„±");
 	}
 	
 	@Ignore
@@ -55,14 +55,14 @@ public class BoardServiceTest extends AppTest{
 	public void testModify() {
 		BoardVO vo = BoardVO.builder()
 				.bno(2L)
-				.title("¼­ºñ½º ¼öÁ¤ Á¦¸ñ")
-				.content("¼­ºñ½º ¼öÁ¤ ³»¿ë")
+				.title("ì„œë¹„ìŠ¤ ìˆ˜ì • ì œëª©")
+				.content("ì„œë¹„ìŠ¤ ìˆ˜ì • ë‚´ìš©")
 				.writer("admin")
 				.boardType("board3")
 				.status("VISIBLE")
 				.build();
 		boardService.modify(vo);
-		log.info(vo.getBno()+"¹ø °Ô½Ã±Û ¼öÁ¤");
+		log.info(vo.getBno()+"ë²ˆ ê²Œì‹œê¸€ ìˆ˜ì •");
 	}
 	
 	@Ignore
@@ -70,7 +70,7 @@ public class BoardServiceTest extends AppTest{
 	public void testDelete() {
 		Long bno = 11L;
 		boardService.remove(bno);
-		log.info(bno+"¹ø °Ô½Ã±Û ¼öÁ¤");
+		log.info(bno+"ë²ˆ ê²Œì‹œê¸€ ìˆ˜ì •");
 	}
 
 	

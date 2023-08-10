@@ -18,33 +18,31 @@ public class BoardRepositoryTest extends AppTest{
 	@Ignore
 	@Test
 	public void testGetList() {
-		log.info("¸®½ºÆ® Ãâ·Â");
+		log.info("ë¦¬ìŠ¤íŠ¸ ì¶œë ¥");
 		boardRepository.getList().forEach(board->log.info(board));
-		log.info("¸®½ºÆ® Ãâ·Â ¿Ï·á");
 	}
 	
 	@Ignore
 	@Test
 	public void testRead() {
-		log.info("Ãâ·Â");
+		log.info("ì¶œë ¥");
 		BoardVO vo = boardRepository.read(1L);
 		log.info("vo"+vo);
-		log.info("Ãâ·Â ¿Ï·á");
 	}
 	
 	@Ignore
 	@Test
 	public void testInsert() {
-		log.info("µ¥ÀÌÅÍ »ğÀÔ");
+		log.info("ë°ì´í„° ì‚½ì…");
 		BoardVO vo = BoardVO.builder()
-				.title("»ğÀÔ Á¦¸ñ")
-				.content("»ğÀÔ ³»¿ë")
+				.title("ì‚½ì… ì œëª©")
+				.content("ì‚½ì… ë‚´ìš©")
 				.writer("admin")
 				.boardType("BOARD1")
 				.status("VISIBLE")
 				.build();
 		boardRepository.insert(vo);
-		log.info("µ¥ÀÌÅÍ »ğÀÔ ¿Ï·á");
+		log.info("ë°ì´í„° ì‚½ì… ì™„ë£Œ");
 	}
 
 //	@Ignore
@@ -52,8 +50,8 @@ public class BoardRepositoryTest extends AppTest{
 	public void testUpdate() {
 		BoardVO vo = BoardVO.builder()
 				.bno(1L)
-				.title("¼öÁ¤ Á¦¸ñ")	
-				.content("¼öÁ¤ ³»¿ë")
+				.title("ìˆ˜ì • ì œëª©")	
+				.content("ìˆ˜ì • ë‚´ìš©")
 				.writer("admin")
 				.boardType("BOARD3")
 				.status("HIDDEN")
