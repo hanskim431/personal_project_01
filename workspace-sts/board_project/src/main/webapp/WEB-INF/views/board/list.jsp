@@ -25,7 +25,9 @@
 									<td>${board.title}</td>
 									<td>추천수</td>
 									<td>${board.writer}</td>
-									<td>${board.regDate}</td>
+									<td>
+										<tf:formatDateTime value="${board.regDate}" pattern="yyyy-MM-dd HH:mm"/>
+									</td>
 									<td>
 										<button class="btn"></button>
 									</td>
