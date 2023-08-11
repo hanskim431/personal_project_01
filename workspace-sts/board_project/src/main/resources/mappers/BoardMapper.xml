@@ -19,8 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT /*INDEX_DESC(tbl_board pk_board)*/ 
 		ROWNUM as RN, BNO, TITLE, CONTENT, WRITER, 
 		REGDATE, UPDATEDATE, BOARDTYPE, STATUS
-		FROM TBL_BOARD WHERE ROWNUM <= #{maxRow})
-		WHERE RN > #{minRow}
+		FROM TBL_BOARD WHERE ROWNUM <= #{maxRow}
+		ORDER BY BNO DESC)
+		WHERE RN > #{minRow} 
 		]]>
 	</select>
 	 

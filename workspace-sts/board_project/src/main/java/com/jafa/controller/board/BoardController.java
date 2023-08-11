@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.common.Criteria;
+import com.jafa.domain.common.Pagination;
 import com.jafa.service.board.BoardService;
 
 import lombok.extern.log4j.Log4j;
@@ -26,11 +27,12 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(Model model, Criteria criteria) {
 		model.addAttribute("list", boardService.getList(criteria));
+		model.addAttribute("p", new Pagination(criteria, boardService.totalCount()));
 		return "/board/list";
 	}
 	
 	@GetMapping("/get")
-	public String get(Model model, @RequestParam("bno") Long bno) {
+	public String get(Model model, @RequestParam("bno") Long bno, Criteria criteria) {
 		model.addAttribute("board", boardService.get(bno));
 		return "/board/get";
 	}
