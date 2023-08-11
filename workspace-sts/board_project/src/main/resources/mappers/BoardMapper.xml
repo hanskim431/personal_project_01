@@ -14,11 +14,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- READ -->
   
 	<select id="getList" resultType="com.jafa.domain.board.BoardVO">
-		SELECT * FROM TBL_BOARD ORDER BY BNO DESC
+		<![CDATA[
+		SELECT * FROM 
+		(SELECT /*INDEX_DESC(tbl_board pk_board)*/ 
+		ROWNUM as RN, BNO, TITLE, CONTENT, WRITER, 
+		REGDATE, UPDATEDATE, BOARDTYPE, STATUS
+		FROM TBL_BOARD WHERE ROWNUM <= #{maxRow})
+		WHERE RN > #{minRow}
+		]]>
 	</select>
 	 
 	<select id="read" resultType="com.jafa.domain.board.BoardVO">
-		SELECT * FROM TBL_BOARD where BNO = #{bno}
+		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(BNO) FROM TBL_BOARD
 	</select>
   
   <!-- UPDATE -->

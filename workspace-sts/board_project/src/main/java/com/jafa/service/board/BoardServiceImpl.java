@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jafa.domain.board.BoardVO;
+import com.jafa.domain.common.Criteria;
 import com.jafa.repository.board.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,9 +22,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardRepository boardRepository;
 	
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria criteria) {
 		List<BoardVO> list = new ArrayList<>();
-		return boardRepository.getList();
+		return boardRepository.getList(criteria);
 	}
 
 	@Override
@@ -51,6 +52,11 @@ public class BoardServiceImpl implements BoardService {
 //		log.info("### delete: "+ bno);
 		boardRepository.delete(bno);
 		return true;
+	}
+
+	@Override
+	public int totalCount() {
+		return boardRepository.getTotalCount();
 	}
 
 }

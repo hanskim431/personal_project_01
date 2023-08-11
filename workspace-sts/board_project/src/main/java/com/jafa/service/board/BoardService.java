@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.jafa.domain.board.BoardVO;
+import com.jafa.domain.common.Criteria;
 
 import lombok.RequiredArgsConstructor;
 
 public interface BoardService {
 	
 	//LIST
-	List<BoardVO> getList();
+	List<BoardVO> getList(Criteria criteria);
 	
 	//C
 	boolean register(BoardVO vo);
@@ -24,5 +25,8 @@ public interface BoardService {
 	
 	//D
 	boolean remove(Long bno);
+	
+	// TOTAL BOARD COUNT
+	int totalCount();
 	
 }

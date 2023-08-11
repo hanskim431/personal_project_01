@@ -9,8 +9,19 @@
 				<div class="card-header"></div><!-- card-header end -->
 				<div class="card-body">
 					<div class="form-group">
-						<label>제목</label>
-						<input type="text" class="form-control" name="title" value="${board.title}">
+						<label>
+							<div class="dropdown">
+								제목
+							    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
+							    <span class="caret"></span></button>
+							    <ul class="dropdown-menu">
+							      <li><a href="#" class="report">신고</a></li>
+							      <li><a href="" class="modify">수정</a></li>
+							      <li><a href="" class="remove">삭제</a></li>
+							    </ul>
+							</div>
+						</label>
+						<input type="text" class="form-control" name="title" value="${board.title}" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label>작성자</label>
@@ -18,19 +29,9 @@
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea class="form-control" rows="" cols="">${board.content}</textarea>
+						<textarea class="form-control" rows="10" cols="" name=content readonly="true">${board.content}</textarea>
 					</div>
 					
-					<div class="dropdown">
-					  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-					  <span class="caret"></span></button>
-					  
-					  <ul class="dropdown-menu">
-					    <li><a href="#" class="report">신고</a></li>
-					    <li><a href="#" class="modify">수정</a></li>
-					    <li><a href="#" class="delete">삭제</a></li>
-					  </ul>
-					</div>
 					
 					<form>
 						<input type="hidden" name="bno" value="${board.bno}">

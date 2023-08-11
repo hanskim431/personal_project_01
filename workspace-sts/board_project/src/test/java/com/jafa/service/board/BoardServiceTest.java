@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jafa.AppTest;
 import com.jafa.domain.board.BoardVO;
+import com.jafa.domain.common.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -27,7 +28,8 @@ public class BoardServiceTest extends AppTest{
 	@Ignore
 	@Test
 	public void testGetList() {
-		boardService.getList().forEach(vo-> log.info(vo));
+		Criteria criteria = new Criteria();
+		boardService.getList(criteria).forEach(vo-> log.info(vo));
 	}
 	
 	@Ignore
@@ -65,12 +67,12 @@ public class BoardServiceTest extends AppTest{
 		log.info(vo.getBno()+"번 게시글 수정");
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testDelete() {
-		Long bno = 11L;
+		Long bno = 4L;
 		boardService.remove(bno);
-		log.info(bno+"번 게시글 수정");
+		log.info(bno+"번 게시글 삭제");
 	}
 
 	
