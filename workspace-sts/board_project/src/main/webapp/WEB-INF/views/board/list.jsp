@@ -65,6 +65,15 @@
 						</c:if>
 					</ul>
 
+					<div class="float-right d-flex">
+						<select class="amount form-control mx-2">
+							<option value="10" ${criteria.amount==10 ? 'selected':''}>10개씩 보기</option>
+							<option value="25" ${criteria.amount==25 ? 'selected':''}>25개씩 보기</option>
+							<option value="50" ${criteria.amount==50 ? 'selected':''}>50개씩 보기</option>
+							<option value="100" ${criteria.amount==100 ? 'selected':''}>100개씩 보기</option>
+						</select>
+						<button id="regBtn" class="btn btn-xs btn-primary">Register</button>
+					</div>
 				</div>
 				<!-- card-body end -->
 			</div>
@@ -94,6 +103,13 @@
 				.attr('action','${ctxPath}/board/get')
 				.submit();
 	});
+	
+	// 게시물 수 변경 
+	$('.amount').change(function(){
+		let amount = $(this).val();
+		listForm.find('input[name="amount"]').val(amount)
+		listForm.submit();		
+	})
 </script>
 
 <%@ include file="../includes/footer.jsp"%>

@@ -55,17 +55,22 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO vo, RedirectAttributes rttr) {
+	public String modify(BoardVO vo, RedirectAttributes rttr, Criteria criteria) {
 		boardService.modify(vo);
 		rttr.addFlashAttribute("result",vo.getBno());
-		return "redirect:/board/list";
+		rttr.addAttribute("pageNum",criteria.getPageNum());
+		rttr.addAttribute("amount",criteria.getAmount());
+//		return "redirect:/board/list";
+		return "redirect:/board/get?bno="+vo.getBno();
 	}
 	
 	@PostMapping("/remove")
-	public String remove(Long bno, RedirectAttributes rttr) {
+	public String remove(Long bno, RedirectAttributes rttr, Criteria criteria) {
 		if(boardService.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
+		rttr.addAttribute("pageNum",criteria.getPageNum());
+		rttr.addAttribute("amount",criteria.getAmount());
 		return "redirect:/board/list";
 	}
 }
