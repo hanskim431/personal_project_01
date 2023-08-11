@@ -27,7 +27,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
 		filter.setEncoding("utf-8");
 		filter.setForceEncoding(true);
-		return new Filter[] {};
+		return new Filter[] {filter};
 	}
 
 	

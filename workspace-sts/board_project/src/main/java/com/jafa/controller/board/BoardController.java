@@ -37,8 +37,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register")
-	public void register() {
-	}
+	public void register() {}
 	
 	@PostMapping("/register")
 	public String register(BoardVO vo, RedirectAttributes rttr) {		
@@ -49,7 +48,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/modify")
-	public void modify(Long bno) {
+	public void modify(Model model, @RequestParam("bno") Long bno, RedirectAttributes rttr) {
+		model.addAttribute("board", boardService.get(bno));
+		
 	}
 	
 	@PostMapping("/modify")

@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- READ -->
   
 	<select id="getList" resultType="com.jafa.domain.board.BoardVO">
-		SELECT * FROM TBL_BOARD 
+		SELECT * FROM TBL_BOARD ORDER BY BNO DESC
 	</select>
 	 
 	<select id="read" resultType="com.jafa.domain.board.BoardVO">
@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		TITLE=#{title}, CONTENT=#{content}, STATUS=#{status}
 		WHERE BNO = #{bno}
 	</update>  
+	
   <!-- DELETE -->
   	<delete id="delete">
   		DELETE TBL_BOARD WHERE BNO = #{bno}

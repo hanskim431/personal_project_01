@@ -8,44 +8,60 @@
 			<div class="card">
 				<div class="card-header"></div><!-- card-header end -->
 				<div class="card-body">
-					<div class="">
-						<label>
-							<img src="${ctxPath}/resources/images/profile.bmp" class=profile alt="profile">
-							
-							${board.writer}
-							
-							<tf:formatDateTime value="${board.regDate}" pattern="yyyy-MM-dd HH:mm"/>
-							
-							<span class="dropdown">
-							  <button class="btn btn-primary" type="button" data-toggle="dropdown">
-							  <span class="caret"></span></button>
-							  <ul class="dropdown-menu">
-							    <li><a href="#">신고</a></li>
-							    <li><a href="#">수정</a></li>
-							    <li><a href="#">삭제</a></li>
-							  </ul>
-							</span>
-						</label>
+					<div class="form-group">
+						<label>제목</label>
+						<input type="text" class="form-control" name="title" value="${board.title}">
 					</div>
-					<div>
-						<div>
-							<textarea rows="10" cols="50" readonly="readonly">${board.content}</textarea>
-						</div>
-						<div>
-							<label>
-								👍 						
-							</label>
-						</div>
+					<div class="form-group">
+						<label>작성자</label>
+						<input type="text" class="form-control" name="writer" value="${board.writer}" readonly="readonly">
 					</div>
-					<div>
-						<label>
-						</label>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea class="form-control" rows="" cols="">${board.content}</textarea>
 					</div>
+					
+					<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+					  <span class="caret"></span></button>
+					  
+					  <ul class="dropdown-menu">
+					    <li><a href="#" class="report">신고</a></li>
+					    <li><a href="#" class="modify">수정</a></li>
+					    <li><a href="#" class="delete">삭제</a></li>
+					  </ul>
+					</div>
+					
+					<form>
+						<input type="hidden" name="bno" value="${board.bno}">
+					</form>
+
 				</div><!-- card-body end -->
 			</div><!-- card end -->
 		</div><!-- col-12 end -->
 	</div><!-- row end -->
 </div><!-- container end -->
 
+<script>
+$(function(){
+	let getForm = $('form');
+
+	$('.modify').click(function(e){
+		e.preventDefault();
+		getForm.attr('action','${ctxPath}/board/modify')
+				.attr('method','get')
+				.submit();
+	})
+
+	$('.remove').click(function(e){
+		e.preventDefault();
+		getForm.attr('action','${ctxPath}/board/remove')
+				.attr('method','post')
+				.submit();
+	})
+
+})
+
+</script>
 
 <%@ include file="../includes/footer.jsp" %>
