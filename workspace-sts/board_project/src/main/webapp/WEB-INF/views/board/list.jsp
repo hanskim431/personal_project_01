@@ -21,37 +21,46 @@
 							<option value="50" ${criteria.amount==50 ? 'selected':''}>50개씩 보기</option>
 							<option value="100" ${criteria.amount==100 ? 'selected':''}>100개씩 보기</option>
 						</select>
-						<button id="regBtn" class="btn btn-s btn-primary">register</button>
+						<button id="regBtn" class="btn btn-s btn-primary ">register</button>
 					</div>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>#번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>수정일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${list}" var="board">
+						<c:if test="${!empty list}">
+							<thead>
 								<tr>
-									<td>${board.bno}</td>
-									<td><a class="move" href="${board.bno}">${board.title }</a>
-									</td>
-									<td>${board.writer }</td>
-									<td><tf:formatDateTime value="${board.regDate }"
-											pattern="yyyy-MM-dd HH:mm" /></td>
-									<td><tf:formatDateTime value="${board.updateDate }"
-											pattern="yyyy-MM-dd HH:mm" /></td>
-									<td><button type="button" class="btn btn-primary active">보이기</button>
-										<button type="button" class="btn btn-primary disabled">숨기기</button></td>
-									<td><button type="button" class="btn btn-primary active">삭제</button></td>
+									<th>#번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일</th>
+									<th>수정일</th>
 								</tr>
-							</c:forEach>
-						</tbody>
+							</thead>
+							<tbody>
+								<c:forEach items="${list}" var="board">
+									<tr>
+										<td>${board.bno}</td>
+										<td><a class="move" href="${board.bno}">${board.title }</a>
+										</td>
+										<td>${board.writer }</td>
+										<td><tf:formatDateTime value="${board.regDate }"
+												pattern="yyyy-MM-dd HH:mm" /></td>
+										<td><tf:formatDateTime value="${board.updateDate }"
+												pattern="yyyy-MM-dd HH:mm" /></td>
+										<td><button type="button" class="btn btn-primary active">보이기</button>
+											<button type="button" class="btn btn-primary disabled">숨기기</button></td>
+										<td><button type="button" class="btn btn-primary active">삭제</button></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							</c:if>
+							<c:if test="${empty list}">
+								<tbody>
+									<tr>
+										<td colspan="5">게시물이 존재하지 않습니다.</td>
+									</tr>
+								</tbody>
+							</c:if>
 					</table>
 
 					<form id="listForm" action="${ctxPath}/board/list" method="get">
@@ -76,7 +85,27 @@
 								href="${p.endPage+1}">다음페이지</a></li>
 						</c:if>
 					</ul>
-
+					
+					<form class="text-center my-3" id="searchForm" action="${ctxPath}/board/list">
+						<div class="d-inline-block">
+							<select name="type" class="form-control">
+								<option value="TCW">제목+내용+작성자</option>
+								<option value="T">제목</option>
+								<option value="C">내용</option>
+								<option value="W">작성자</option>
+								<option value="TC">제목+내용</option>
+								<option value="TW">제목+작성자</option>
+							</select>
+						</div>
+						<div class="d-inline-block col-4">
+							<input type="text" name="keyword" class="form-control">
+						</div>
+						<div class="d-inline-block">
+							<button class="btn btn-primary">검색</button>
+						</div>
+						<input type="hidden" name="pageNum" value="${p.criteria.pageNum}">
+						<input type="hidden" name="amount" value="${p.criteria.amount}">
+					</form>
 					
 				</div>
 				<!-- card-body end -->
@@ -114,6 +143,12 @@
 		listForm.find('input[name="amount"]').val(amount)
 		listForm.submit();		
 	})
+	
+	// 글쓰기 페이지로 이동
+	$('#regBtn').click(function(){
+		listForm.attr('action','${ctxPath}/board/register')
+				.submit();
+	});
 </script>
 
 <%@ include file="../includes/footer.jsp"%>

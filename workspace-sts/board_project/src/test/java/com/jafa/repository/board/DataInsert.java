@@ -17,14 +17,15 @@ public class DataInsert extends AppTest{
 	public void test() {
 		
 		String status;
+		String writer;
 		
 		for(int i=1;i<=408;i++) {
 			BoardVO vo = BoardVO.builder()
 					.title("제목 : 페이징 처리 " + i)
 					.content("내용 : 페이징 처리 " + i)
-					.writer("admin")
+					.writer(writer = i % 2 == 0 ? "admin1" : "admin2")
 					.boardType("BOARD3")
-					.status(status = i % 2 == 0 ? "HIDDEN" : "VISIBLE")
+					.status(status = i % 4 == 0 ? "HIDDEN" : "VISIBLE")
 					.build();
 			repository.insert(vo);			
 		}

@@ -11,8 +11,10 @@
 					<form action="${ctxPath}/board/register" method="post">
 					  <div class="form-group">
 					    <label>작성자
-					 		<button type="fileAttach" class="btn btn-default">file</button>
-					 		<button type="submit" class="btn btn-default">Submit</button>
+						    <span class="float-right d-flex">
+						 		<button type="fileAttach" class="btn btn-primary">file</button>
+						 		<button type="submit" class="btn btn-primary">Submit</button>
+						    </span>
 					    </label>
 					    <input type="text" class="form-control" name="writer">
 					  </div>

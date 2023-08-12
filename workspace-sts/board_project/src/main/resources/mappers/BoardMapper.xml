@@ -22,10 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							TITLE LIKE '%' || #{keyword} || '%'
 						</when>
 						<when test="type=='C'.toString()">
-							TITLE LIKE '%' || #{keyword} || '%'
+							CONTENT LIKE '%' || #{keyword} || '%'
 						</when>
 						<when test="type=='W'.toString()">
-							TITLE LIKE '%' || #{keyword} || '%'
+							WRITER LIKE '%' || #{keyword} || '%'
 						</when>
 					</choose>
 				</trim>
@@ -43,8 +43,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 		<include refid="criteria" />			
 		<![CDATA[ 
-			ROWNUM <= #{maxRow} 
-			) WHERE RN > #{minRow} 
+			ROWNUM <= #{maxRow} ORDER BY BNO DESC )
+			WHERE RN > #{minRow} 
 		]]>
 	</select>
 	 

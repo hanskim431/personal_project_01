@@ -128,7 +128,11 @@ CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
 
 INSERT INTO TBL_MEMBER 
     (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
-    VALUES ('admin','1111','관리자','admin@test.com',SYSDATE);
+    VALUES ('admin1','1111','관리자1','admin1@test.com',SYSDATE);
+    
+INSERT INTO TBL_MEMBER 
+    (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
+    VALUES ('admin2','1111','관리자2','admin2@test.com',SYSDATE);
 
 INSERT INTO TBL_MEMBER_DEL
     (MEMBERID,MEMBERNAME,EMAIL,REGDATE,DELDATE)
@@ -139,57 +143,57 @@ INSERT INTO TBL_MEMBER_DEL
 -----------------------------------
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목1','게시판 내용1','admin','BOARD1','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목1','게시판 내용1','admin1','BOARD1','VISIBLE');
     
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목2','게시판 내용2','admin','BOARD1','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목2','게시판 내용2','admin1','BOARD1','VISIBLE');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목3','게시판 내용3','admin','BOARD1','HIDDEN');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목3','게시판 내용3','admin1','BOARD1','HIDDEN');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목4','게시판 내용4','admin','BOARD1','DELETED');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목4','게시판 내용4','admin1','BOARD1','DELETED');
     
 -----------------------------------
 --            게시판 2
 -----------------------------------
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목1','게시판 내용1','admin','BOARD2','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목1','게시판 내용1','admin2','BOARD2','VISIBLE');
     
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목2','게시판 내용2','admin','BOARD2','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목2','게시판 내용2','admin2','BOARD2','VISIBLE');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목3','게시판 내용3','admin','BOARD2','HIDDEN');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목3','게시판 내용3','admin2','BOARD2','HIDDEN');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목4','게시판 내용4','admin','BOARD2','DELETED');
+    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목4','게시판 내용4','admin2','BOARD2','DELETED');
     
 -----------------------------------
 --            게시판 1 게시글1 댓글
 -----------------------------------
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글1','admin','VISIBLE');
+    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글1','admin1','VISIBLE');
     
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글2','admin','VISIBLE');  
+    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글2','admin1','VISIBLE');  
     
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글2','admin','HIDDEN');  
+    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글3','admin1','HIDDEN');  
     
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글2','admin','DELETE');
+    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글4','admin1','DELETE');
     
 ------------------------------------------------------------------------------------
 --                                 커밋과 데이터 확인

@@ -16,18 +16,18 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="${ctxPath}">
-		<img src="${ctxPath}/resources/images/logo.bmp" class="logo" alt="logo">
-      </a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">홈</a></li>
-      <li><a href="${ctxPath}/board/list">LIST</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+<nav class="navbar navbar-expand-sm bg-light justify-content-between">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="${ctxPath == '' ? '/': ctxPath}">
+				<img src="${ctxPath}/resources/images/logo.bmp" class="logo" alt="logo">
+			</a>
+        </li>
+        <li class="nav-item my-auto">
+            <a class="nav-link" href="${ctxPath}/board/list">자유게시판</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+        </li>
     </ul>
-  </div>
 </nav>
