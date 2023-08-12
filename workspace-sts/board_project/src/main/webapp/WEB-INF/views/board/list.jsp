@@ -74,6 +74,7 @@
 						</select>
 						<button id="regBtn" class="btn btn-xs btn-primary">Register</button>
 					</div>
+					
 				</div>
 				<!-- card-body end -->
 			</div>
