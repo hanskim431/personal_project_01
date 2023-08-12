@@ -12,16 +12,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>  
   	
   <!-- READ -->
-  
+ 	
+ 	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="types" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							TITLE LIKE '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='C'.toString()">
+							TITLE LIKE '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='W'.toString()">
+							TITLE LIKE '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+ 	</sql>
+
 	<select id="getList" resultType="com.jafa.domain.board.BoardVO">
 		<![CDATA[
 		SELECT * FROM 
 		(SELECT /*INDEX_DESC(tbl_board pk_board)*/ 
 		ROWNUM as RN, BNO, TITLE, CONTENT, WRITER, 
 		REGDATE, UPDATEDATE, BOARDTYPE, STATUS
-		FROM TBL_BOARD WHERE ROWNUM <= #{maxRow}
-		ORDER BY BNO DESC)
-		WHERE RN > #{minRow} 
+		FROM TBL_BOARD WHERE
+		]]>
+		<include refid="criteria" />			
+		<![CDATA[ 
+			ROWNUM <= #{maxRow} 
+			) WHERE RN > #{minRow} 
 		]]>
 	</select>
 	 
@@ -30,7 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(BNO) FROM TBL_BOARD
+		SELECT COUNT(BNO) FROM TBL_BOARD WHERE
+		<include refid="criteria" />
+		BNO > 0			
 	</select>
   
   <!-- UPDATE -->

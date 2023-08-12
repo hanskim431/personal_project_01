@@ -27,7 +27,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(Model model, Criteria criteria) {
 		model.addAttribute("list", boardService.getList(criteria));
-		model.addAttribute("p", new Pagination(criteria, boardService.totalCount()));
+		model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria)));
 		return "/board/list";
 	}
 	

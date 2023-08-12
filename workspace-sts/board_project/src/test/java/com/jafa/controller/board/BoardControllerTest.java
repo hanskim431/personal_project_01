@@ -1,7 +1,5 @@
 package com.jafa.controller.board;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -93,5 +91,4 @@ public class BoardControllerTest extends AppTest{
 				.getViewName();
 		log.info(resultPage);
 	}
-
 }

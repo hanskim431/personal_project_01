@@ -1,5 +1,7 @@
 package com.jafa.repository.board;
 
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +53,20 @@ public class BoardRepositoryTest extends AppTest{
 		log.info("vo"+vo);
 	}
 	
+	@Ignore
+	@Test
+	public void testGetTotalCount(Criteria criteria) {
+		log.info(boardRepository.getTotalCount(criteria));
+	}
+
 //	@Ignore
 	@Test
-	public void testGetTotalCount() {
-		log.info(boardRepository.getTotalCount());
+	public void testSearch() {
+		Criteria criteria = new Criteria(); 
+			criteria.setType("T");
+			criteria.setKeyword("200");
+		List<BoardVO> list = boardRepository.getList(criteria);
+		log.info(list);
 	}
 
 	//U
@@ -79,5 +91,6 @@ public class BoardRepositoryTest extends AppTest{
 	public void testDelete() {
 		boardRepository.delete(10L);
 	}
+	
 	
 }

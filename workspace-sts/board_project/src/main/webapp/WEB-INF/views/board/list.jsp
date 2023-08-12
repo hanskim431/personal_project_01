@@ -5,14 +5,25 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<h1 class="page-header">Tables</h1>
+			<h1 class="page-header"></h1>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header"></div>
+				<div class="card-header">
+					<h3 class="float-left">게시판</h3>
+					<div class="float-right d-flex">
+						<select class="amount form-control mx-2">
+							<option value="10" ${criteria.amount==10 ? 'selected':''}>10개씩 보기</option>
+							<option value="25" ${criteria.amount==25 ? 'selected':''}>25개씩 보기</option>
+							<option value="50" ${criteria.amount==50 ? 'selected':''}>50개씩 보기</option>
+							<option value="100" ${criteria.amount==100 ? 'selected':''}>100개씩 보기</option>
+						</select>
+						<button id="regBtn" class="btn btn-s btn-primary">register</button>
+					</div>
+				</div>
 				<div class="card-body">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
@@ -35,8 +46,9 @@
 											pattern="yyyy-MM-dd HH:mm" /></td>
 									<td><tf:formatDateTime value="${board.updateDate }"
 											pattern="yyyy-MM-dd HH:mm" /></td>
-									<td><a href="">숨기기</a></td>
-									<td><a href="">삭제</a></td>
+									<td><button type="button" class="btn btn-primary active">보이기</button>
+										<button type="button" class="btn btn-primary disabled">숨기기</button></td>
+									<td><button type="button" class="btn btn-primary active">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -65,15 +77,6 @@
 						</c:if>
 					</ul>
 
-					<div class="float-right d-flex">
-						<select class="amount form-control mx-2">
-							<option value="10" ${criteria.amount==10 ? 'selected':''}>10개씩 보기</option>
-							<option value="25" ${criteria.amount==25 ? 'selected':''}>25개씩 보기</option>
-							<option value="50" ${criteria.amount==50 ? 'selected':''}>50개씩 보기</option>
-							<option value="100" ${criteria.amount==100 ? 'selected':''}>100개씩 보기</option>
-						</select>
-						<button id="regBtn" class="btn btn-xs btn-primary">Register</button>
-					</div>
 					
 				</div>
 				<!-- card-body end -->

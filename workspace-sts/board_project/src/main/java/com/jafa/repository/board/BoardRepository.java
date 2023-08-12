@@ -24,7 +24,7 @@ public interface BoardRepository {
 	void delete(Long bno);
 	
 	// 전체 게시물 수
-	int getTotalCount();
+	int getTotalCount(Criteria criteria);
 	
 	
 }

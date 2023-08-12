@@ -27,6 +27,7 @@ public interface BoardService {
 	boolean remove(Long bno);
 	
 	// TOTAL BOARD COUNT
-	int totalCount();
+
+	int totalCount(Criteria criteria);
 	
 }
