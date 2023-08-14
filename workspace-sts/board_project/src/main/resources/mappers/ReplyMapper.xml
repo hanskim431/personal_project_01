@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- READ -->
 
 	<select id="getList" resultType="com.jafa.domain.reply.ReplyVO">
-		SELECT * FROM TBL_REPLY WHERE BNO=#{bno}
+		SELECT * FROM TBL_REPLY WHERE BNO=#{bno} ORDER BY RNO DESC
 	</select>
 	 
 	<select id="read" resultType="com.jafa.domain.reply.ReplyVO">

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jafa.AppTest;
+import com.jafa.domain.common.Criteria;
 import com.jafa.domain.reply.ReplyVO;
 
 import lombok.extern.log4j.Log4j;
@@ -15,10 +16,11 @@ public class ReplyRepositoryTest extends AppTest{
 	@Autowired
 	private ReplyRepository replyRepository;
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testGetList() {
-		log.info(replyRepository.getList(1L));
+		Criteria criteria = new Criteria();
+		replyRepository.getList(criteria, 1L).forEach(vo-> log.info(vo));
 	}
 	
 	@Ignore
@@ -56,7 +58,7 @@ public class ReplyRepositoryTest extends AppTest{
 		replyRepository.delete(2L);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testgetTotalCount() {
 		log.info(replyRepository.getTotalCount(1L));
