@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E230504F-CAAF-297F-E58F-6CA5B67B0BAB" schemaObject="B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E" name="TBL_MEMBER">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>KIMHYEONSU</sourceObjSchema>
+<sourceObjName>TBL_MEMBER</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MEMBERID" id="3011C83C-42F0-2849-6227-01AE8F3897DD">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>MEMBERID</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MEMBERPWD" id="F0953C5C-4181-7A80-F074-A46EC36A8B3F">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>MEMBERPWD</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MEMBERNAME" id="90804BDD-668B-7CC6-E169-526F91490BE2">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>MEMBERNAME</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="F31299C3-3181-EF08-9D24-8BDA7B6A55CB">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>EMAIL</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REGDATE" id="5BB6D7FC-582F-E7FC-1604-E0A0C400986F">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>REGDATE</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADDRESS" id="2AF63239-C722-DBDB-A001-DAAD0A53524A">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>ADDRESS</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A40EEAB4-82EC-299F-DDFD-14F763485A41" schemaObject="B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E" name="TBL_MEMBER_PK">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>KIMHYEONSU</sourceObjSchema>
+<sourceObjName>SYS_C009873</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3011C83C-42F0-2849-6227-01AE8F3897DD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="53E65CC0-85A0-0FC7-5ECA-BE10F5957A17" schemaObject="B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E" name="TBL_MEMBER_EMAIL_UN">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>KIMHYEONSU</sourceObjSchema>
+<sourceObjName>SYS_C009874</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F31299C3-3181-EF08-9D24-8BDA7B6A55CB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="TBL_MEMBER_DEL" directorySegmentName="seg_0" id="512D2389-5080-C626-3838-BC358E2E0713">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>D7A2B927-79F2-5865-AFEB-33575B0EE57C</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="EMAIL" id="504CA2C7-09FD-F414-AAD0-6A7BC89F7E16">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REGDATE" id="5987075B-383C-99A7-CD98-332825749E92">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<defaultValue>SYSDATE</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="MEMBERNAME" id="78D0388A-2B65-7754-338E-3CC7ADCA9081">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBERID" id="AD965B17-AE9A-158D-0807-F7902E5FA37A">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ADDRESS" id="C03CE30F-46BB-667F-0AC8-98A47D0C761D">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DELDATE" id="D3B2E190-E094-D260-03BA-36A4F91B6E50">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<defaultValue>SYSDATE</defaultValue>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TBL_MEMBER_DEL_PK" id="9878F613-807D-5D61-DF3F-90E1068D66E2">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<segment>0E17026B-E77A-6395-2288-471E291B6DD9</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<indexSegment>0E17026B-E77A-6395-2288-471E291B6DD9</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="TBL_MEMBER_DEL_EMAIL_UN" id="9CB0616E-B0F2-5156-E8CE-DD46BBA8FD02">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<segment>0E17026B-E77A-6395-2288-471E291B6DD9</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<indexSegment>0E17026B-E77A-6395-2288-471E291B6DD9</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="TBL_REPLY_LIKE" directorySegmentName="seg_0" id="4EA75069-4CA0-8B45-1B32-0FDD72881CC4">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>D7A2B927-79F2-5865-AFEB-33575B0EE57C</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="BNO" id="552ADE66-AF05-9669-99CC-C3012FE58F0D">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBERID" id="9BC7D697-D8FA-ADF4-E942-9F37D3C4D253">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C009889" id="3F25E64B-A958-21F5-C4F6-6B0B07829A82">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C009890" id="EFB3AB7D-45D1-1ABA-09F1-C993BEF36F1E">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TBL_REPLY_LIKE_PK" id="F08BC738-46B9-A0B9-ACE7-C237EE84C886">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<segment>0E17026B-E77A-6395-2288-471E291B6DD9</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<indexSegment>0E17026B-E77A-6395-2288-471E291B6DD9</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="CA2A7468-9454-BF83-11F0-9791D7DE84DF" containerWithKeyObject="47D2D765-59A5-AD28-9275-BB66383A4183" localFKIndex="04672772-FAFC-6CE1-AA9C-A93E5F4C8E13" name="SYS_C009892">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>KIMHYEONSU</sourceObjSchema>
+<sourceObjName>SYS_C009892</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<referredTableLongName>KIMHYEONSU.TBL_BOARD</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>65AB72C8-1EDF-4778-75B4-8AF0ED850EDA</referredTableID>
+<keyObject>45D326FD-BFBB-4C8E-66D7-DCD13D558487</keyObject>
+<referredKeyID>45D326FD-BFBB-4C8E-66D7-DCD13D558487</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>BNO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

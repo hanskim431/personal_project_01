@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AB6CE770-A32F-D565-F406-0A1165D015EC" schemaObject="B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E" name="TBL_BOARD_LIKE">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>KIMHYEONSU</sourceObjSchema>
+<sourceObjName>TBL_BOARD_LIKE</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BNO" id="846D3A6E-5109-08BB-2975-4858E33EDD0E">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_BOARD_LIKE</sourceObjSchema>
+<sourceObjName>BNO</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="47032597-F102-C230-36AC-1A2D655DC945" referredColumn="9F0E4979-12CB-154E-4478-17740860D74D"/>
+</associations>
+</Column>
+<Column name="MEMBERID" id="19C437E5-8178-16E0-D69F-0F01C9219A58">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>TBL_BOARD_LIKE</sourceObjSchema>
+<sourceObjName>MEMBERID</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="748A8692-61F3-182D-71EF-2D7C0B57D99D" referredColumn="3011C83C-42F0-2849-6227-01AE8F3897DD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B5006585-1D07-670B-AE32-C310B1C87E33" schemaObject="B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E" name="TBL_BOARD_LIKE_PK">
+<sourceConnName>project_01</sourceConnName>
+<sourceObjSchema>KIMHYEONSU</sourceObjSchema>
+<sourceObjName>SYS_C009882</sourceObjName>
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="846D3A6E-5109-08BB-2975-4858E33EDD0E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="111DA5B1-04C4-88E6-5E13-4CA36EDD1736" name="SYS_C009883">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="846D3A6E-5109-08BB-2975-4858E33EDD0E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4B1CD0C-1657-00DA-9B97-93BE96402EE1" name="SYS_C009884">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="19C437E5-8178-16E0-D69F-0F01C9219A58"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

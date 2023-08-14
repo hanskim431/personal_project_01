@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="TBL_REPLY" directorySegmentName="seg_0" id="272CCFCC-8EF6-D79B-05C3-CE665267DB2D">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>D7A2B927-79F2-5865-AFEB-33575B0EE57C</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="BNO" id="7BDBAAE2-DD44-B9AD-0B2C-1ECFCEE5F815">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UPDATEDATE" id="7CA0A915-C0F0-2A74-827C-3B3734226F36">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<defaultValue>SYSDATE</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="STATUS" id="831F1B3B-1ECC-4288-F412-DECC07D35847">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LIKEHIT" id="86B7C9BC-3553-851D-4AE7-18AD88A4B56B">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REGDATE" id="8CDF9D81-81F3-26D4-C3DC-46C97C1026D5">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<defaultValue>SYSDATE</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="REPLYER" id="CE798A90-6D80-89A3-B078-CA66986F371F">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RNO" id="F174E27C-38C0-8077-28A1-737602193F3D">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REPLY" id="F624D6AD-A1F0-C214-857A-FFD1DC05725C">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C009887" id="4E67AA43-AF07-D9C7-4367-B31F996C448C">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C009886" id="E322C3F6-EA07-E179-7C79-DA3F7E625894">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TBL_REPLY_PK" id="2B462A03-B190-504B-343B-A3F7DF8CCAD5">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:48 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<schemaObject>B6ED1852-EACF-5B43-4290-FCDFE2A4FB4E</schemaObject>
+<segment>0E17026B-E77A-6395-2288-471E291B6DD9</segment>
+<tableSpace>43979A9F-6715-2C09-CBD8-6E5EDEC75BAD</tableSpace>
+<indexSegment>0E17026B-E77A-6395-2288-471E291B6DD9</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

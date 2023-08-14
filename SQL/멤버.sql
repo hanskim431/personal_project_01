@@ -1,220 +1,222 @@
 ------------------------------------------------------------------------------------
---                                  Æ÷Æ®¹øÈ£ º¯°æ
+--                                  í¬íŠ¸ë²ˆí˜¸ ë³€ê²½
 ------------------------------------------------------------------------------------
-----Æ÷Æ® ¹øÈ£ È®ÀÎ
+----í¬íŠ¸ ë²ˆí˜¸ í™•ì¸
 --SELECT DBMS_XDB.GETHTTPPORT() FROM DUAL;
----- º» ÇÁ·ÎÁ§Æ®´Â ±âº» Æ÷Æ®¹øÈ£ 8080À¸·Î ÁøÇàÇÑ´Ù.
+---- ë³¸ í”„ë¡œì íŠ¸ëŠ” ê¸°ë³¸ í¬íŠ¸ë²ˆí˜¸ 8080ìœ¼ë¡œ ì§„í–‰í•œë‹¤.
 --EXEC DBMS_XDB.SETHTTPPORT(8080);
 ------------------------------------------------------------------------------------
---                                  Å×ÀÌºí »èÁ¦
+--                                  í…Œì´ë¸” ì‚­ì œ
 ------------------------------------------------------------------------------------
-DROP TABLE TBL_MEMBER_AUTH; -- °èÁ¤ ±ÇÇÑ
-DROP TABLE TBL_MEMBER_IMAGE; -- °èÁ¤ ÀÌ¹ÌÁö
-DROP TABLE TBL_MEMBER_DEL; -- »èÁ¦ °èÁ¤
-DROP TABLE TBL_ATTACH; -- Ã·ºÎÆÄÀÏ
-DROP TABLE TBL_BOARD_LIKE; -- °Ô½Ã±Û ÁÁ¾Æ¿ä
-DROP TABLE TBL_REPLY_LIKE; -- ´ñ±Û ÁÁ¾Æ¿ä
-DROP TABLE TBL_REPLY; --  ´ñ±Û
-DROP TABLE TBL_BOARD; -- °Ô½Ã±Û
-DROP TABLE TBL_MEMBER; -- °èÁ¤
-
-------------------------------------------------------------------------------------
---                                  Å×ÀÌºí »ý¼º
-------------------------------------------------------------------------------------
-
------------------------------------
---            °èÁ¤                      
------------------------------------
-CREATE TABLE TBL_MEMBER( -- °èÁ¤
-    MEMBERID VARCHAR2(100) PRIMARY KEY, -- ¾ÆÀÌµð
-    MEMBERPWD VARCHAR2(200), -- ºñ¹Ð¹øÈ£
-    MEMBERNAME VARCHAR2(100), -- ÀÌ¸§
-    EMAIL VARCHAR2(200) UNIQUE, -- ÀÌ¸ÞÀÏ
-    REGDATE DATE default SYSDATE, -- °¡ÀÔÀÏ
-    ADDRESS VARCHAR2(200) -- ÁÖ¼Ò
-);
-
-CREATE TABLE TBL_MEMBER_DEL( -- »èÁ¦ °èÁ¤
-    MEMBERID VARCHAR2(100) PRIMARY KEY, -- ¾ÆÀÌµð
-    MEMBERNAME VARCHAR2(100), -- ÀÌ¸§
-    EMAIL VARCHAR2(200) UNIQUE, -- ÀÌ¸ÞÀÏ
-    REGDATE DATE default SYSDATE, -- °¡ÀÔÀÏ
-    DELDATE DATE default SYSDATE, -- »èÁ¦ÀÏ
-    ADDRESS VARCHAR2(200) -- ÁÖ¼Ò
-);
-
-CREATE TABLE TBL_MEMBER_AUTH( -- °èÁ¤ ±ÇÇÑ
-    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- ¾ÆÀÌµð
-    AUTH VARCHAR2(10) , -- ±ÇÇÑ
-    ENABLE VARCHAR2(10)  -- °èÁ¤»óÅÂ
-);
-
-
-CREATE TABLE TBL_MEMBER_IMAGE( -- ¸â¹ö ÀÌ¹ÌÁö Å×ÀÌºí
-    UUID VARCHAR2(100) PRIMARY KEY , -- ÆÄÀÏ ¾ÆÀÌµð
-    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- ¾ÆÀÌµð
-    UPLOADPATH VARCHAR2(200), -- ÆÄÀÏ °æ·Î
-    FILETYPE CHAR(1), -- ÆÄÀÏ Çü½Ä
-    FILENAME VARCHAR2(100), -- ÆÄÀÏ ÀÌ¸§
-    REGDATE DATE default SYSDATE, -- µî·ÏÀÏ
-    STATUS NUMBER -- »óÅÂ
-);
-
------------------------------------
---            °Ô½Ã±Û                      
------------------------------------
-CREATE TABLE TBL_BOARD( -- °Ô½Ã±Û
-    BNO NUMBER(10) PRIMARY KEY, -- ±Û ¹øÈ£    
-    TITLE VARCHAR2(200), -- ±Û Á¦¸ñ
-    CONTENT VARCHAR2(2000), -- ±Û ³»¿ë
-    WRITER VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- ÀÛ¼ºÀÚ
-    BOARDTYPE VARCHAR2(100), -- Ä«Å×°í¸®
-    REGDATE DATE default SYSDATE, -- ÀÛ¼ºÀÏ
-    UPDATEDATE DATE default SYSDATE, -- ¼öÁ¤ÀÏ
-    STATUS VARCHAR2(100), -- »óÅÂ
-    REPLYCNT NUMBER, -- ´ñ±Û ¼ö
-    LIKEHIT NUMBER -- ÁÁ¾Æ¿ä ¼ö
-);
-
-DROP SEQUENCE SEQ_BOARD; -- °Ô½Ã±Û ¹øÈ£ ½ÃÄö½º
-CREATE SEQUENCE SEQ_BOARD; -- °Ô½Ã±Û ¹øÈ£ ½ÃÄö½º
-
-CREATE TABLE TBL_BOARD_LIKE( -- °Ô½Ã±Û ÁÁ¾Æ¿ä Å×ÀÌºí
-    BNO NUMBER(10) PRIMARY KEY REFERENCES TBL_BOARD(BNO), -- ±Û ¹øÈ£
-    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID) -- ¾ÆÀÌµð
-);
-
------------------------------------
---            ´ñ±Û
------------------------------------
-CREATE TABLE TBL_REPLY( -- ´ñ±Û Å×ÀÌºí
-    RNO NUMBER(10) PRIMARY KEY, -- ´ñ±Û ¹øÈ£
-    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO), -- ±Û ¹øÈ£
-    REPLY VARCHAR2(1000), -- ´ñ±Û ³»¿ë
-    REPLYER VARCHAR2(50) REFERENCES TBL_MEMBER(MEMBERID), -- ÀÛ¼ºÀÚ
-    REGDATE DATE default SYSDATE, -- ÀÛ¼ºÀÏ
-    UPDATEDATE DATE default SYSDATE, -- ¼öÁ¤ÀÏ
-    STATUS VARCHAR2(100), -- ´ñ±Û »óÅÂ
-    LIKEHIT NUMBER -- ÁÁ¾Æ¿ä ¼ö
-);
-
-DROP SEQUENCE SEQ_REPLY; -- °Ô½Ã±Û ¹øÈ£ ½ÃÄö½º
-CREATE SEQUENCE SEQ_REPLY; -- °Ô½Ã±Û ¹øÈ£ ½ÃÄö½º
-
-CREATE TABLE TBL_REPLY_LIKE( -- °Ô½Ã±Û ÁÁ¾Æ¿ä Å×ÀÌºí
-    BNO NUMBER(10) PRIMARY KEY REFERENCES TBL_REPLY(RNO), -- ±Û ¹øÈ£
-    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID) -- ¾ÆÀÌµð
-);
-
------------------------------------
---            Ã·ºÎÆÄÀÏ
------------------------------------
-CREATE TABLE TBL_ATTACH( -- Ã·ºÎÆÄÀÏ Å×ÀÌºí
-    UUID VARCHAR2(100) PRIMARY KEY, -- ÆÄÀÏ ¾ÆÀÌµð
-    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO), -- ±Û ¹øÈ£
-    UPLOADPATH VARCHAR2(200), -- ÆÄÀÏ °æ·Î
-    FILETYPE CHAR(1), -- ÆÄÀÏ Çü½Ä
-    FILENAME VARCHAR2(100), -- ÆÄÀÏ ÀÌ¸§
-    REGDATE DATE, -- µî·ÏÀÏ
-    STATUS VARCHAR2(10) -- »óÅÂ
-);
+DROP TABLE TBL_MEMBER_AUTH; -- ê³„ì • ê¶Œí•œ
+DROP TABLE TBL_MEMBER_IMAGE; -- ê³„ì • ì´ë¯¸ì§€
+DROP TABLE TBL_MEMBER_DEL; -- ì‚­ì œ ê³„ì •
+DROP TABLE TBL_ATTACH; -- ì²¨ë¶€íŒŒì¼
+DROP TABLE TBL_BOARD_LIKE; -- ê²Œì‹œê¸€ ì¢‹ì•„ìš”
+DROP TABLE TBL_REPLY_LIKE; -- ëŒ“ê¸€ ì¢‹ì•„ìš”
+DROP TABLE TBL_REPLY; --  ëŒ“ê¸€
+DROP TABLE TBL_BOARD; -- ê²Œì‹œê¸€
+DROP TABLE TBL_MEMBER; -- ê³„ì •
 
 ------------------------------------------------------------------------------------
---                                  ÀÓ½Ã µ¥ÀÌÅÍ »ðÀÔ
+--                                  í…Œì´ë¸” ìƒì„±
+------------------------------------------------------------------------------------
+
+-----------------------------------
+--            ê³„ì •                      
+-----------------------------------
+CREATE TABLE TBL_MEMBER( -- ê³„ì •
+    MEMBERID VARCHAR2(100) PRIMARY KEY, -- ì•„ì´ë””
+    MEMBERPWD VARCHAR2(200), -- ë¹„ë°€ë²ˆí˜¸
+    MEMBERNAME VARCHAR2(100), -- ì´ë¦„
+    EMAIL VARCHAR2(200) UNIQUE, -- ì´ë©”ì¼
+    REGDATE DATE default SYSDATE, -- ê°€ìž…ì¼
+    ADDRESS VARCHAR2(200) -- ì£¼ì†Œ
+);
+
+CREATE TABLE TBL_MEMBER_DEL( -- ì‚­ì œ ê³„ì •
+    MEMBERID VARCHAR2(100) PRIMARY KEY, -- ì•„ì´ë””
+    MEMBERNAME VARCHAR2(100), -- ì´ë¦„
+    EMAIL VARCHAR2(200) UNIQUE, -- ì´ë©”ì¼
+    REGDATE DATE default SYSDATE, -- ê°€ìž…ì¼
+    DELDATE DATE default SYSDATE, -- ì‚­ì œì¼
+    ADDRESS VARCHAR2(200) -- ì£¼ì†Œ
+);
+
+CREATE TABLE TBL_MEMBER_AUTH( -- ê³„ì • ê¶Œí•œ
+    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- ì•„ì´ë””
+    AUTH VARCHAR2(10) , -- ê¶Œí•œ
+    ENABLE VARCHAR2(10)  -- ê³„ì •ìƒíƒœ
+);
+
+
+CREATE TABLE TBL_MEMBER_IMAGE( -- ë©¤ë²„ ì´ë¯¸ì§€ í…Œì´ë¸”
+    UUID VARCHAR2(100) PRIMARY KEY , -- íŒŒì¼ ì•„ì´ë””
+    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- ì•„ì´ë””
+    UPLOADPATH VARCHAR2(200), -- íŒŒì¼ ê²½ë¡œ
+    FILETYPE CHAR(1), -- íŒŒì¼ í˜•ì‹
+    FILENAME VARCHAR2(100), -- íŒŒì¼ ì´ë¦„
+    REGDATE DATE default SYSDATE, -- ë“±ë¡ì¼
+    STATUS NUMBER -- ìƒíƒœ
+);
+
+-----------------------------------
+--            ê²Œì‹œê¸€                      
+-----------------------------------
+CREATE TABLE TBL_BOARD( -- ê²Œì‹œê¸€
+    BNO NUMBER(10) PRIMARY KEY, -- ê¸€ ë²ˆí˜¸    
+    TITLE VARCHAR2(200), -- ê¸€ ì œëª©
+    CONTENT VARCHAR2(2000), -- ê¸€ ë‚´ìš©
+    WRITER VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- ìž‘ì„±ìž
+    BOARDTYPE VARCHAR2(100), -- ì¹´í…Œê³ ë¦¬
+    REGDATE DATE default SYSDATE, -- ìž‘ì„±ì¼
+    UPDATEDATE DATE default SYSDATE, -- ìˆ˜ì •ì¼
+    STATUS VARCHAR2(100), -- ìƒíƒœ
+    REPLYCNT NUMBER, -- ëŒ“ê¸€ ìˆ˜
+    LIKEHIT NUMBER -- ì¢‹ì•„ìš” ìˆ˜
+);
+
+DROP SEQUENCE SEQ_BOARD; -- ê²Œì‹œê¸€ ë²ˆí˜¸ ì‹œí€€ìŠ¤
+CREATE SEQUENCE SEQ_BOARD; -- ê²Œì‹œê¸€ ë²ˆí˜¸ ì‹œí€€ìŠ¤
+
+CREATE TABLE TBL_BOARD_LIKE( -- ê²Œì‹œê¸€ ì¢‹ì•„ìš” í…Œì´ë¸”
+    BNO NUMBER(10) PRIMARY KEY REFERENCES TBL_BOARD(BNO), -- ê¸€ ë²ˆí˜¸
+    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID) -- ì•„ì´ë””
+);
+
+-----------------------------------
+--            ëŒ“ê¸€
+-----------------------------------
+CREATE TABLE TBL_REPLY( -- ëŒ“ê¸€ í…Œì´ë¸”
+    RNO NUMBER(10) PRIMARY KEY, -- ëŒ“ê¸€ ë²ˆí˜¸
+    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO), -- ê¸€ ë²ˆí˜¸
+    REPLY VARCHAR2(1000), -- ëŒ“ê¸€ ë‚´ìš©
+    REPLYER VARCHAR2(50) REFERENCES TBL_MEMBER(MEMBERID), -- ìž‘ì„±ìž
+    REGDATE DATE default SYSDATE, -- ìž‘ì„±ì¼
+    UPDATEDATE DATE default SYSDATE, -- ìˆ˜ì •ì¼
+    STATUS VARCHAR2(100), -- ëŒ“ê¸€ ìƒíƒœ
+    LIKEHIT NUMBER -- ì¢‹ì•„ìš” ìˆ˜
+);
+
+DROP SEQUENCE SEQ_REPLY; -- ê²Œì‹œê¸€ ë²ˆí˜¸ ì‹œí€€ìŠ¤
+CREATE SEQUENCE SEQ_REPLY; -- ê²Œì‹œê¸€ ë²ˆí˜¸ ì‹œí€€ìŠ¤
+
+CREATE TABLE TBL_REPLY_LIKE( -- ê²Œì‹œê¸€ ì¢‹ì•„ìš” í…Œì´ë¸”
+    BNO NUMBER(10) PRIMARY KEY REFERENCES TBL_REPLY(RNO), -- ê¸€ ë²ˆí˜¸
+    MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID) -- ì•„ì´ë””
+);
+
+-----------------------------------
+--            ì²¨ë¶€íŒŒì¼
+-----------------------------------
+CREATE TABLE TBL_ATTACH( -- ì²¨ë¶€íŒŒì¼ í…Œì´ë¸”
+    UUID VARCHAR2(100) PRIMARY KEY, -- íŒŒì¼ ì•„ì´ë””
+    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO), -- ê¸€ ë²ˆí˜¸
+    UPLOADPATH VARCHAR2(200), -- íŒŒì¼ ê²½ë¡œ
+    FILETYPE CHAR(1), -- íŒŒì¼ í˜•ì‹
+    FILENAME VARCHAR2(100), -- íŒŒì¼ ì´ë¦„
+    REGDATE DATE, -- ë“±ë¡ì¼
+    STATUS VARCHAR2(10) -- ìƒíƒœ
+);
+
+------------------------------------------------------------------------------------
+--                                  ìž„ì‹œ ë°ì´í„° ì‚½ìž…
 ------------------------------------------------------------------------------------
 -----------------------------------
---            °èÁ¤
+--            ê³„ì •
 -----------------------------------
 
 INSERT INTO TBL_MEMBER 
     (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
-    VALUES ('admin1','1111','°ü¸®ÀÚ1','admin1@test.com',SYSDATE);
+    VALUES ('admin1','1111','ê´€ë¦¬ìž1','admin1@test.com',SYSDATE);
     
 INSERT INTO TBL_MEMBER 
     (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
-    VALUES ('admin2','1111','°ü¸®ÀÚ2','admin2@test.com',SYSDATE);
+    VALUES ('admin2','1111','ê´€ë¦¬ìž2','admin2@test.com',SYSDATE);
 
 INSERT INTO TBL_MEMBER_DEL
     (MEMBERID,MEMBERNAME,EMAIL,REGDATE,DELDATE)
-    VALUES ('sampledel','»èÁ¦°èÁ¤','sampledel@test.com',SYSDATE,SYSDATE);
+    VALUES ('sampledel','ì‚­ì œê³„ì •','sampledel@test.com',SYSDATE,SYSDATE);
 
 -----------------------------------
---            °Ô½ÃÆÇ 1
+--            ê²Œì‹œíŒ 1
 -----------------------------------
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ1 Á¦¸ñ1','°Ô½ÃÆÇ ³»¿ë1','admin1','BOARD1','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ1 ì œëª©1','ê²Œì‹œíŒ ë‚´ìš©1','admin1','BOARD1','VISIBLE');
     
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ1 Á¦¸ñ2','°Ô½ÃÆÇ ³»¿ë2','admin1','BOARD1','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ1 ì œëª©2','ê²Œì‹œíŒ ë‚´ìš©2','admin1','BOARD1','VISIBLE');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ1 Á¦¸ñ3','°Ô½ÃÆÇ ³»¿ë3','admin1','BOARD1','HIDDEN');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ1 ì œëª©3','ê²Œì‹œíŒ ë‚´ìš©3','admin1','BOARD1','HIDDEN');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ1 Á¦¸ñ4','°Ô½ÃÆÇ ³»¿ë4','admin1','BOARD1','DELETED');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ1 ì œëª©4','ê²Œì‹œíŒ ë‚´ìš©4','admin1','BOARD1','DELETED');
     
 -----------------------------------
---            °Ô½ÃÆÇ 2
+--            ê²Œì‹œíŒ 2
 -----------------------------------
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ2 Á¦¸ñ1','°Ô½ÃÆÇ ³»¿ë1','admin2','BOARD2','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ2 ì œëª©1','ê²Œì‹œíŒ ë‚´ìš©1','admin2','BOARD2','VISIBLE');
     
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ2 Á¦¸ñ2','°Ô½ÃÆÇ ³»¿ë2','admin2','BOARD2','VISIBLE');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ2 ì œëª©2','ê²Œì‹œíŒ ë‚´ìš©2','admin2','BOARD2','VISIBLE');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ2 Á¦¸ñ3','°Ô½ÃÆÇ ³»¿ë3','admin2','BOARD2','HIDDEN');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ2 ì œëª©3','ê²Œì‹œíŒ ë‚´ìš©3','admin2','BOARD2','HIDDEN');
 
 INSERT INTO TBL_BOARD
     (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'°Ô½ÃÆÇ2 Á¦¸ñ4','°Ô½ÃÆÇ ³»¿ë4','admin2','BOARD2','DELETED');
+    VALUES(SEQ_BOARD.NEXTVAL,'ê²Œì‹œíŒ2 ì œëª©4','ê²Œì‹œíŒ ë‚´ìš©4','admin2','BOARD2','DELETED');
     
 -----------------------------------
---            °Ô½ÃÆÇ 1 °Ô½Ã±Û1 ´ñ±Û
+--            ê²Œì‹œíŒ 1 ê²Œì‹œê¸€1 ëŒ“ê¸€
 -----------------------------------
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'°Ô½Ã±Û1 ´ñ±Û1','admin1','VISIBLE');
+    VALUES(SEQ_REPLY.NEXTVAL,1,'ê²Œì‹œê¸€1 ëŒ“ê¸€1','admin1','VISIBLE');
     
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'°Ô½Ã±Û1 ´ñ±Û2','admin1','VISIBLE');  
+    VALUES(SEQ_REPLY.NEXTVAL,1,'ê²Œì‹œê¸€1 ëŒ“ê¸€2','admin1','VISIBLE');  
     
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'°Ô½Ã±Û1 ´ñ±Û3','admin1','HIDDEN');  
+    VALUES(SEQ_REPLY.NEXTVAL,1,'ê²Œì‹œê¸€1 ëŒ“ê¸€3','admin1','HIDDEN');  
     
 INSERT INTO TBL_REPLY
     (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'°Ô½Ã±Û1 ´ñ±Û4','admin1','DELETE');
+    VALUES(SEQ_REPLY.NEXTVAL,1,'ê²Œì‹œê¸€1 ëŒ“ê¸€4','admin1','DELETE');
+    
     
 ------------------------------------------------------------------------------------
---                                 Ä¿¹Ô°ú µ¥ÀÌÅÍ È®ÀÎ
+--                                 ì»¤ë°‹ê³¼ ë°ì´í„° í™•ì¸
 ------------------------------------------------------------------------------------
 
 COMMIT;
 
--- °èÁ¤
-SELECT * FROM TBL_MEMBER; -- °èÁ¤
-SELECT * FROM TBL_MEMBER_DEL; -- »èÁ¦ °èÁ¤
-SELECT * FROM TBL_MEMBER_AUTH; -- °èÁ¤ ±ÇÇÑ
-SELECT * FROM TBL_MEMBER_IMAGE; -- °èÁ¤ ÀÌ¹ÌÁö
+-- ê³„ì •
+SELECT * FROM TBL_MEMBER; -- ê³„ì •
+SELECT * FROM TBL_MEMBER_DEL; -- ì‚­ì œ ê³„ì •
+SELECT * FROM TBL_MEMBER_AUTH; -- ê³„ì • ê¶Œí•œ
+SELECT * FROM TBL_MEMBER_IMAGE; -- ê³„ì • ì´ë¯¸ì§€
 
--- °Ô½Ã±Û
-SELECT * FROM TBL_BOARD; -- °Ô½Ã±Û
-SELECT * FROM TBL_BOARD_LIKE; -- °Ô½Ã±Û ÁÁ¾Æ¿ä
-SELECT * FROM TBL_BOARD WHERE STATUS = 'VISIBLE'; -- °Ô½Ã±Û
+-- ê²Œì‹œê¸€
+SELECT * FROM TBL_BOARD; -- ê²Œì‹œê¸€
+SELECT * FROM TBL_BOARD_LIKE; -- ê²Œì‹œê¸€ ì¢‹ì•„ìš”
+SELECT * FROM TBL_BOARD WHERE STATUS = 'VISIBLE'; -- ê²Œì‹œê¸€
 
--- ´ñ±Û
-SELECT * FROM TBL_REPLY; -- ´ñ±Û
-SELECT * FROM TBL_REPLY_LIKE; -- ´ñ±Û ÁÁ¾Æ¿ä
+-- ëŒ“ê¸€
+SELECT * FROM TBL_REPLY; -- ëŒ“ê¸€
+SELECT * FROM TBL_REPLY WHERE STATUS = 'VISIBLE'; -- ëŒ“ê¸€
+SELECT * FROM TBL_REPLY_LIKE; -- ëŒ“ê¸€ ì¢‹ì•„ìš”
 
--- Ã·ºÎ ÆÄÀÏ
-SELECT * FROM TBL_ATTACH; -- Ã·ºÎÆÄÀÏ
+-- ì²¨ë¶€ íŒŒì¼
+SELECT * FROM TBL_ATTACH; -- ì²¨ë¶€íŒŒì¼

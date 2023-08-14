@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="data dictionary" id="9E6312F5-2B8A-92FA-1FF8-15E4D09AAA1E" version="3.5">
+<createdBy>s</createdBy>
+<createdTime>2023-08-14 01:46:19 UTC</createdTime>
+<ownerDesignName>data dictionary</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>9E6312F5-2B8A-92FA-1FF8-15E4D09AAA1E</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="C1FEC989-DD55-F06E-3D44-F6FDD328A10C">
+<designStoragePath>D:\</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>
