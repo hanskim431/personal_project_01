@@ -49,6 +49,8 @@
 
 <%@ include file="../includes/footer.jsp" %>
 
+<script src="${ctxPath}/resources/js/replyService.js"></script>
+
 <script>
 $(function(){
 	// 목록 or 수정 페이지로

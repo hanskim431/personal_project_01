@@ -93,7 +93,7 @@ public class ReplyControllerTest extends AppTest{
 	}
 	
 	//D
-//	@Ignore
+	@Ignore
 	@Test
 	public void testDelete() throws Exception {
 		mockMvc.perform(delete("/replies/2"));
