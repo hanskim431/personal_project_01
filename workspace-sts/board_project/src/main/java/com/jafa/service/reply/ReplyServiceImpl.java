@@ -26,8 +26,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void register(ReplyVO vo) {
+	public int register(ReplyVO vo) {
 		replyRepository.insert(vo);
+		return 1;
 	}
 
 	@Override
@@ -36,13 +37,15 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void modify(ReplyVO vo) {
+	public int modify(ReplyVO vo) {
 		replyRepository.update(vo);
+		return 1;
 	}
 
 	@Override
-	public void remove(Long rno) {
+	public int remove(Long rno) {
 		replyRepository.delete(rno);
+		return 1;
 	}
 
 }

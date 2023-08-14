@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 //@AllArgsConstructor
+
 public class Criteria {
 
 	private int pageNum;
@@ -19,7 +20,11 @@ public class Criteria {
 	public Criteria() {
 		this(1, 10);
 	}
-	
+	/**
+	 * DB 결과 필터링 기준
+	 * @param {int} pageNum 페이지 번호
+	 * @param {int} amount 출력 개수
+	 */
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;

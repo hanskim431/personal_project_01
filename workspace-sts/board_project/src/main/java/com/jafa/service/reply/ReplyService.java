@@ -7,19 +7,24 @@ import com.jafa.domain.reply.ReplyVO;
 
 public interface ReplyService {
 
-	//LIST
+	/**
+	 * 댓글의 리스트를 출력하는 서비스 함수
+	 * @param {int , int} criteria 
+	 * @param bno
+	 * @return
+	 */
 	List<ReplyVO> getList(Criteria criteria, Long bno);
 	
 	//C
-	void register(ReplyVO vo);
+	int register(ReplyVO vo);
 	
 	//R
 	ReplyVO get(Long rno);
 	
 	//U
-	void modify(ReplyVO vo);
+	int modify(ReplyVO vo);
 	
 	//D
-	void remove(Long rno);
+	int remove(Long rno);
 	
 }

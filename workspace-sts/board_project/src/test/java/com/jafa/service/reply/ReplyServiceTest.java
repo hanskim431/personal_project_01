@@ -41,7 +41,11 @@ public class ReplyServiceTest extends AppTest{
 	@Ignore
 	@Test
 	public void testRegister() {
-		ReplyVO vo = ReplyVO.builder().bno(1L).reply("댓글").replyer("admin2").build();
+		ReplyVO vo = ReplyVO.builder()
+				.bno(1L)
+				.reply("댓글")
+				.replyer("admin2")
+				.build();
 		replyService.register(vo);
 	}
 	
