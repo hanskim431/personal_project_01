@@ -62,12 +62,6 @@
 								</tbody>
 							</c:if>
 					</table>
-
-					<form id="listForm" action="${ctxPath}/board/list" method="get">
-						<input type="hidden" name="pageNum" value="${p.criteria.pageNum}">
-						<input type="hidden" name="amount" value="${p.criteria.amount}">
-					</form>
-
 					<ul class="pagination justify-content-center">
 						<c:if test="${p.prev }">
 							<li class="page-item"><a class="page-link"
@@ -98,14 +92,20 @@
 							</select>
 						</div>
 						<div class="d-inline-block col-4">
-							<input type="text" name="keyword" class="form-control">
+							<input type="text" name="keyword" value="${p.criteria.keyword}" class="form-control">
 						</div>
 						<div class="d-inline-block">
 							<button class="btn btn-primary">검색</button>
 						</div>
+					</form>
+
+					<form id="listForm" action="${ctxPath}/board/list" method="get">
 						<input type="hidden" name="pageNum" value="${p.criteria.pageNum}">
 						<input type="hidden" name="amount" value="${p.criteria.amount}">
+						<input type="hidden" name="type" value="${param.type }">
+						<input type="hidden" name="keyword" value="${param.keyword }">
 					</form>
+					
 					
 				</div>
 				<!-- card-body end -->
@@ -148,6 +148,17 @@
 	$('#regBtn').click(function(){
 		listForm.attr('action','${ctxPath}/board/register')
 				.submit();
+	});
+	
+	// 검색 이벤트 처리 
+	let searchForm = $('#searchForm');
+	$('#searchForm button').click(function(e){
+		e.preventDefault();
+		if(!searchForm.find('[name="keyword"]').val()){
+			alert('키워드를 입력하세요');
+			return; 
+		}
+		searchForm.submit();
 	});
 </script>
 

@@ -35,7 +35,8 @@
 						<input class="form-control" name="writer" value="${board.writer }" readonly="readonly"/>
 					</div>
 					<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
-					<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>						
+					<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
+					
 				</div>
 			</div>
 		</div>
@@ -56,6 +57,8 @@ $(function(){
 		let operration = $(this).data('oper');
 		form.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
 			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
+			.append($('<input/>',{type : 'hidden', name : 'type', value : '${param.type}'}))
+			.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${param.keyword}'}))
 			.attr('method','get')
 		if(operration=='list'){
 			form.find('#bno').remove();
