@@ -27,7 +27,7 @@ public class ReplyController {
 	private ReplyService replyService;
 	
 	//LIST
-	@GetMapping("/{bno}/{pageNum}")
+	@GetMapping("/pages/{bno}/{pageNum}")
 	private ResponseEntity<List<ReplyVO>> getList(
 			@PathVariable int pageNum, @PathVariable Long bno) {
 		Criteria criteria = new Criteria(pageNum, 10);

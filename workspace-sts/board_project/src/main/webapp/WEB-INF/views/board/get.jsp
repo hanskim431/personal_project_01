@@ -42,6 +42,9 @@
 		</div>
 	</div>
 </div>
+<!-- <button class="btn btn-danger addBtn">댓글 추가 테스트</button>		 -->
+<!-- <button class="btn btn-danger updateBtn">댓글 수정 테스트</button>		 -->
+<!-- <button class="btn btn-danger deleteBtn">댓글 삭제 테스트</button>		 -->
 
 <form>
 	<input type="hidden" name="bno"  value="${board.bno}">
@@ -50,6 +53,60 @@
 <%@ include file="../includes/footer.jsp" %>
 
 <script src="${ctxPath}/resources/js/replyService.js"></script>
+<script>
+$(function(){
+	
+	$('.addBtn').click(function(){
+		var replyVO = {
+			bno : '1', 
+			reply: 'ajax : 댓글 추가 테스트 ', 
+			replyer : 'admin1'
+		};
+		var callback = function(result){
+			alert("실행 결과 : " + result)
+		};
+		var error = function(er){
+			alert("실행 결과 : " + er)
+		}; 
+		replyService.add(replyVO,callback,error);
+	});
+	
+	let param = {bno : 1, pageNum : 1}
+	replyService.getList(param, function(list){
+		console.log(list);
+	});
+	
+	replyService.get(1,function(data){
+		console.log(data);
+	}); 
+	
+	$('.updateBtn').click(function(){
+		var replyVO = {
+			rno : '2', 
+			reply: 'ajax : 댓글 수정 테스트 ', 
+			status : 'HIDDEN' 
+		};
+		var callback = function(result){
+			alert("실행 결과 : " + result)
+		};
+		var error = function(er){
+			alert("실행 결과 : " + er)
+		}; 
+		replyService.update(replyVO,callback,error);
+	});
+	
+	$('.deleteBtn').click(function(){
+		var callback = function(result) {
+			alert("실행 결과 : " + result)
+		};
+		var error = function(er){
+			alert("실행 결과 : " + er)
+		};
+		replyService.remove(3,callback,error);
+	})
+	
+})
+</script>
 
 <script>
 $(function(){
@@ -65,13 +122,15 @@ $(function(){
 		if(operration=='list'){
 			form.find('#bno').remove();
 			form.attr('action','${ctxPath}/board/list')
+			form.submit();
 		} else if(operration=='modify'){
 			form.attr('action','${ctxPath}/board/modify')
+			form.submit();
 		} else if(operration=='remove'){
 			form.attr('action','${ctxPath}/board/remove')
 				.attr('method','post')
+			form.submit();
 		}
-		form.submit();
 	});
 });
 </script>

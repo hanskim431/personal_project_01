@@ -27,7 +27,7 @@ public class BoardControllerTest extends AppTest{
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testGetList() throws Exception {
 		ModelMap modelMap = mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))

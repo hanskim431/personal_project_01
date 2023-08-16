@@ -38,16 +38,6 @@ public class ReplyControllerTest extends AppTest{
 		objectMapper = Jackson2ObjectMapperBuilder.json().build(); 
 	}
 	
-	//LIST
-	@Ignore
-	@Test
-	public void testGetList() throws Exception {
-		ModelMap modelMap = mockMvc.perform(MockMvcRequestBuilders.get("/replies/1/1"))
-		.andReturn()
-		.getModelAndView()
-		.getModelMap();
-		log.info(modelMap);
-	}
 	
 	//C
 	@Ignore
@@ -64,17 +54,6 @@ public class ReplyControllerTest extends AppTest{
 				.content(content)
 				.contentType(MediaType.APPLICATION_JSON)
 		).andReturn();
-	}
-	
-	//R
-	@Ignore
-	@Test
-	public void testGet() throws Exception {
-		ModelMap modelMap = mockMvc.perform(MockMvcRequestBuilders.get("/replies/1"))
-				.andReturn()
-				.getModelAndView()
-				.getModelMap();
-		log.info(modelMap);
 	}
 	
 	//U
