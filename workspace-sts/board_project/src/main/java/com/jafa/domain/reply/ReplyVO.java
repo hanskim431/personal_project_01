@@ -2,6 +2,8 @@ package com.jafa.domain.reply;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,8 +22,13 @@ public class ReplyVO {
 	private Long bno;
 	private String reply;
 	private String replyer;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm")
 	private LocalDateTime regdate;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm")
 	private LocalDateTime updatedate;
+	
 	private String status;
 	private Long likehit;
 	

@@ -5,8 +5,10 @@
 	<div class="row">
 		<div class="col-12">
 			<h1 class="page-header">
-				<button data-oper="list" class="btn btn-info list">목록으로</button>		
-				${board.title}
+				<div class="getBtns">
+					<button data-oper="list" class="btn btn-info list">목록으로</button>		
+					${board.title}
+				</div>
 			</h1>
 		</div>
 	</div>
@@ -34,14 +36,64 @@
 						<label>작성자</label>
 						<input class="form-control" name="writer" value="${board.writer }" readonly="readonly"/>
 					</div>
-					<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
-					<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
+					<div class="getBtns">
+						<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
+						<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
+						<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글</button>		
+					</div>
 					
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div class="container reply collapse">
+	<h3 class="mt-5">댓글</h3>
+	<div class="row">
+		<div class="col-12">
+			<ul class="list-group chat">
+				<li class="list-group-item" data-rno="댓글번호">
+					<div class="d-flex justify-content-between">
+						<div class="d-flex">
+							<div class="user_image mr-3" style="width: 75px">
+								<img class="rounded-circle" alt="userImg" 
+								src="${ctxPath}/resources/images/profile.bmp" style="max-width:70%">
+							</div>
+							<div class="comment_wrap">
+								<div class="comment_info">
+									<span class="userName badge badge-pill badge-info mr-2">홍길동</span>
+									<span class="badge badge-dark">작성시간</span>
+								</div>
+								<div class="comment_content py-2">댓글 내용입니다.</div>
+							</div>
+						</div><!-- d-flex-end -->
+						<div class=reply_modify"">
+							<button type="button" class="btn btn-light dropdown-toggle" 
+							data-toggle="dropdown">변경</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="modify">수정</a>
+								<a class="dropdown-item" href="delete">삭제</a>
+							</div>
+						</div><!-- reply_modify-end -->
+					</div><!-- d-flex justify-content-between-end -->
+				</li>
+			</ul>
+		</div><!-- col-12-end -->
+	</div><!-- row-end -->
+
+	<div class="replyWriterForm my-3">
+		<textarea rows="6" placeholder="댓글을 작성해 주세요." maxlength="400" 
+		class="replyContent form-control"></textarea>
+		<div class="text-right">
+			<div class="submit p-2">
+				<span class="btn btn-outline-info col-2 replyer">admin1</span>
+				<button class="btn btn-outline-primary col-3">등록</button>
+			</div>
+		</div><!-- text-right-end --
+	</div><!-- replyWriterForm-end -->
+</div><!-- container-end -->
+
 <!-- <button class="btn btn-danger addBtn">댓글 추가 테스트</button>		 -->
 <!-- <button class="btn btn-danger updateBtn">댓글 수정 테스트</button>		 -->
 <!-- <button class="btn btn-danger deleteBtn">댓글 삭제 테스트</button>		 -->
@@ -53,6 +105,7 @@
 <%@ include file="../includes/footer.jsp" %>
 
 <script src="${ctxPath}/resources/js/replyService.js"></script>
+<script src="${ctxPath}/resources/js/reply.js"></script>
 <script>
 $(function(){
 	
@@ -112,7 +165,7 @@ $(function(){
 $(function(){
 	// 목록 or 수정 페이지로
 	let form = $('form')
-	$('button').click(function(){
+	$('.getBtns button').click(function(){
 		let operration = $(this).data('oper');
 		form.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
 			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
