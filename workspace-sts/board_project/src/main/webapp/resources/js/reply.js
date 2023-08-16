@@ -2,6 +2,7 @@ $(function(){
 	let bno = $('[name="bno"]').val()
 	let replyContainer = $('.chat');
 	
+	// 댓글 조회
 	let showList = function(pageNum){
 		let param = {bno:bno, pageNum : pageNum||1};
 		replyService.getList(param,function(list){
@@ -26,8 +27,8 @@ $(function(){
 							<button type="button" class="btn btn-light dropdown-toggle" 
 							data-toggle="dropdown">변경</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="modify">수정</a>
-								<a class="dropdown-item" href="delete">삭제</a>
+								<button class="btn dropdown-item modify" href="">수정</button>
+								<button class="btn dropdown-item delete" href="">삭제</button>
 							</div>
 						</div><!-- reply_modify-end -->
 					</div><!-- d-flex justify-content-between-end -->
@@ -38,6 +39,7 @@ $(function(){
 	}
 	showList(1);
 	
+	// 댓글 등록 처리
 	$('.submit button').click(function(){
 		let reply = {
 			bno : bno,
@@ -53,7 +55,14 @@ $(function(){
 			}
 			$('.replyContent').val('');
 			showList(1);
-		})
+		});
 		
-	})
+	});
+	
+	// 댓글 등록 처리
+	$('.dropdown-item .modify').click(function(){
+		e.preventDefault();// a태그  기본동작 금지
+		console.log('test');
+	});
+	
 })

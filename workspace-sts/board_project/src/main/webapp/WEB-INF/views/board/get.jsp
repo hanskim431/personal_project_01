@@ -49,7 +49,10 @@
 </div>
 
 <div class="container reply collapse">
-	<h3 class="mt-5">댓글</h3>
+	<label>
+		<h3>댓글</h3>
+		<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">닫기</button>		
+	</label>
 	<div class="row">
 		<div class="col-12">
 			<ul class="list-group chat">
@@ -68,12 +71,12 @@
 								<div class="comment_content py-2">댓글 내용입니다.</div>
 							</div>
 						</div><!-- d-flex-end -->
-						<div class=reply_modify"">
+						<div class="reply_modify">
 							<button type="button" class="btn btn-light dropdown-toggle" 
 							data-toggle="dropdown">변경</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="modify">수정</a>
-								<a class="dropdown-item" href="delete">삭제</a>
+								<button class="btn dropdown-item modify" href="">수정</button>
+								<button class="btn dropdown-item delete" href="">삭제</button>
 							</div>
 						</div><!-- reply_modify-end -->
 					</div><!-- d-flex justify-content-between-end -->
@@ -109,30 +112,6 @@
 <script>
 $(function(){
 	
-	$('.addBtn').click(function(){
-		var replyVO = {
-			bno : '1', 
-			reply: 'ajax : 댓글 추가 테스트 ', 
-			replyer : 'admin1'
-		};
-		var callback = function(result){
-			alert("실행 결과 : " + result)
-		};
-		var error = function(er){
-			alert("실행 결과 : " + er)
-		}; 
-		replyService.add(replyVO,callback,error);
-	});
-	
-	let param = {bno : 1, pageNum : 1}
-	replyService.getList(param, function(list){
-		console.log(list);
-	});
-	
-	replyService.get(1,function(data){
-		console.log(data);
-	}); 
-	
 	$('.updateBtn').click(function(){
 		var replyVO = {
 			rno : '2', 
@@ -155,7 +134,7 @@ $(function(){
 		var error = function(er){
 			alert("실행 결과 : " + er)
 		};
-		replyService.remove(3,callback,error);
+		replyService.remove(2,callback,error);
 	})
 	
 })
@@ -186,4 +165,14 @@ $(function(){
 		}
 	});
 });
+
+$(function(){
+    $('.back-to-top-css').click(function() {
+        // 댓글 영역으로 스크롤 이동
+        $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
+    });
+});
+
+
+
 </script>
