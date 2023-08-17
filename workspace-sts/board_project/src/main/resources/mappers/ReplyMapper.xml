@@ -29,8 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- UPDATE -->
 	<update id="update">
 		UPDATE TBL_REPLY SET
-   		REPLY= #{reply},
-   		STATUS= #{status}
+   		REPLY= #{reply}
     	where rno = #{rno}
 	</update>  
 	

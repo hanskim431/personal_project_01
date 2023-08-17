@@ -57,12 +57,11 @@ public class ReplyControllerTest extends AppTest{
 	}
 	
 	//U
-	@Ignore
+//	@Ignore
 	@Test
 	public void testModify() throws Exception {
 		ReplyVO vo = ReplyVO.builder()
-				.reply("웹 계층 : 댓글 수정")
-				.status("HIDDEN")
+				.reply("웹 계층 : 댓글 수정1")
 				.build();
 		String content = objectMapper.writeValueAsString(vo);
 		mockMvc.perform(put("/replies/2")

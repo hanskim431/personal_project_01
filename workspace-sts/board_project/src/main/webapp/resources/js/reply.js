@@ -105,8 +105,7 @@ $(function(){
 			updateBtn.click(function(){
 				let replyVO = {
 					rno : rno,
-					reply : replyUpdateForm.find('.replyContent').val(),
-			   		status : 'visible'
+					reply : replyUpdateForm.find('.replyContent').val()
 				}
 				
 				// 수정 처리 메소드 호출

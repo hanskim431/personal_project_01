@@ -55,11 +55,12 @@ public class BoardRepositoryTest extends AppTest{
 	
 	@Ignore
 	@Test
-	public void testGetTotalCount(Criteria criteria) {
+	public void testGetTotalCount() {
+		Criteria criteria = new Criteria();
 		log.info(boardRepository.getTotalCount(criteria));
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void testSearch() {
 		Criteria criteria = new Criteria(); 
@@ -70,16 +71,15 @@ public class BoardRepositoryTest extends AppTest{
 	}
 
 	//U
-	@Ignore
+//	@Ignore
 	@Test
 	public void testUpdate() {
 		BoardVO vo = BoardVO.builder()
 				.bno(1L)
-				.title("수정 제목")	
+				.title("수정 제목1")	
 				.content("수정 내용")
 				.writer("admin")
 				.boardType("BOARD3")
-				.status("HIDDEN")
 				.build();
 		boardRepository.update(vo);
 	}

@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- UPDATE -->
 	<update id="update">
 		UPDATE TBL_BOARD SET  
-		TITLE=#{title}, CONTENT=#{content}, STATUS=#{status}
+		TITLE=#{title}, CONTENT=#{content}
 		WHERE BNO = #{bno}
 	</update>  
 	

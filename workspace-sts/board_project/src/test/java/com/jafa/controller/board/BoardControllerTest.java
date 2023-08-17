@@ -64,16 +64,15 @@ public class BoardControllerTest extends AppTest{
 		log.info(resultPage);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testModify() throws Exception {
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders
-				.post("/board/modify?bno=3")
+				.post("/board/modify?bno=2")
 				.param("title", "MVC 수정 제목")
 				.param("content", "MVC 수정 내용")
 				.param("writer", "admin")
 				.param("boardType", "BOARD3")
-				.param("status", "VISIBLE")
 				)
 				.andReturn()
 				.getModelAndView()

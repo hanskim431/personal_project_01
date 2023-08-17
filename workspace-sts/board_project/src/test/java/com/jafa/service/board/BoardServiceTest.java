@@ -52,22 +52,21 @@ public class BoardServiceTest extends AppTest{
 		log.info(vo.getBno()+"번 게시글 작성");
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testModify() {
 		BoardVO vo = BoardVO.builder()
-				.bno(2L)
-				.title("서비스 수정 제목")
+				.bno(1L)
+				.title("서비스 수정 제목1")
 				.content("서비스 수정 내용")
 				.writer("admin")
 				.boardType("board3")
-				.status("VISIBLE")
 				.build();
 		boardService.modify(vo);
 		log.info(vo.getBno()+"번 게시글 수정");
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testDelete() {
 		Long bno = 4L;

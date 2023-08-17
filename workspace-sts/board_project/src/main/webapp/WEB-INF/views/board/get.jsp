@@ -109,36 +109,6 @@
 
 <script src="${ctxPath}/resources/js/replyService.js"></script>
 <script src="${ctxPath}/resources/js/reply.js"></script>
-<script>
-$(function(){
-	
-	$('.updateBtn').click(function(){
-		var replyVO = {
-			rno : '2', 
-			reply: 'ajax : 댓글 수정 테스트 ', 
-			status : 'HIDDEN' 
-		};
-		var callback = function(result){
-			alert("실행 결과 : " + result)
-		};
-		var error = function(er){
-			alert("실행 결과 : " + er)
-		}; 
-		replyService.update(replyVO,callback,error);
-	});
-	
-	$('.deleteBtn').click(function(){
-		var callback = function(result) {
-			alert("실행 결과 : " + result)
-		};
-		var error = function(er){
-			alert("실행 결과 : " + er)
-		};
-		replyService.remove(2,callback,error);
-	})
-	
-})
-</script>
 
 <script>
 $(function(){
