@@ -51,6 +51,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 
+	<select id="getListAll" resultType="com.jafa.domain.board.BoardVO">
+		<![CDATA[
+		SELECT * FROM 
+		(SELECT /*INDEX_DESC(tbl_board pk_board)*/ 
+		ROWNUM as RN, BNO, 
+		TITLE, CONTENT, WRITER, 
+		REGDATE, UPDATEDATE, 
+		BOARDTYPE, STATUS, REPLYCNT
+		FROM TBL_BOARD WHERE
+		]]>
+		<include refid="criteria" />			
+		<![CDATA[ 
+			ROWNUM <= #{maxRow} ORDER BY BNO DESC )
+			WHERE RN > #{minRow} 
+		]]>
+	</select>
+
 	<select id="read" resultType="com.jafa.domain.board.BoardVO">
 		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
 	</select>
