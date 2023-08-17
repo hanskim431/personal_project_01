@@ -11,13 +11,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource(value = "classpath:database/db.properties")
-@MapperScan("com.jafa.repository")
+@MapperScan("com.jafa.repository") // mapper를 스프링 빈으로 등록
+@EnableTransactionManagement // 트랜잭션 설정 
 public class RootConfig {
 	
 	@Value("${db.driver}")
@@ -49,6 +52,12 @@ public class RootConfig {
 	sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
 			.getResources("classpath:mappers/**/*Mapper.xml"));
 	return sqlSessionFactoryBean.getObject();
+	}
+	
+	// 트랜잭션 매니저 빈 등록
+	@Bean
+	public DataSourceTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
 	}
 
 }

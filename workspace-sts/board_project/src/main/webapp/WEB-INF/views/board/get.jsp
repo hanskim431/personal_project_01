@@ -39,7 +39,7 @@
 					<div class="getBtns">
 						<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
 						<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
-						<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글</button>		
+						<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글  ${board.replyCnt==0?'':board.replyCnt}</button>		
 					</div>
 					
 				</div>

@@ -26,13 +26,12 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardVO> list = new ArrayList<>();
 		return boardRepository.getList(criteria);
 	}
-
+	
 	@Override
 	public boolean register(BoardVO vo) {
 //		log.info("### register: "+ vo);
 		boardRepository.insert(vo);
 		return true;
-
 	}
 
 	@Override

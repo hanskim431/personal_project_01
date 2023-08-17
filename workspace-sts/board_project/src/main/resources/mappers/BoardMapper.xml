@@ -4,16 +4,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jafa.repository.board.BoardRepository">
-  
-  <!-- CREATE -->
+
+	<!-- CREATE -->
 	<insert id="insert">
-		INSERT INTO TBL_BOARD (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-	    VALUES(SEQ_BOARD.NEXTVAL,#{title},#{content},#{writer},#{boardType},#{status})
-	</insert>  
-  	
-  <!-- READ -->
- 	
- 	<sql id="criteria">
+		INSERT INTO TBL_BOARD
+		(BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+		VALUES(SEQ_BOARD.NEXTVAL,#{title},#{content},#{writer},#{boardType},#{status})
+	</insert>
+
+	<!-- READ -->
+
+	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 			<foreach collection="types" item="type">
 				<trim prefix="OR">
@@ -31,14 +32,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</trim>
 			</foreach>
 		</trim>
- 	</sql>
+	</sql>
 
 	<select id="getList" resultType="com.jafa.domain.board.BoardVO">
 		<![CDATA[
 		SELECT * FROM 
 		(SELECT /*INDEX_DESC(tbl_board pk_board)*/ 
-		ROWNUM as RN, BNO, TITLE, CONTENT, WRITER, 
-		REGDATE, UPDATEDATE, BOARDTYPE, STATUS
+		ROWNUM as RN, BNO, 
+		TITLE, CONTENT, WRITER, 
+		REGDATE, UPDATEDATE, 
+		BOARDTYPE, STATUS, REPLYCNT
 		FROM TBL_BOARD WHERE
 		]]>
 		<include refid="criteria" />			
@@ -47,27 +50,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE RN > #{minRow} 
 		]]>
 	</select>
-	 
+
 	<select id="read" resultType="com.jafa.domain.board.BoardVO">
 		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
 	</select>
-	
+
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(BNO) FROM TBL_BOARD WHERE
 		<include refid="criteria" />
-		BNO > 0			
+		BNO > 0
 	</select>
-  
-  <!-- UPDATE -->
+
+	<!-- UPDATE -->
 	<update id="update">
-		UPDATE TBL_BOARD SET  
+		UPDATE TBL_BOARD SET
 		TITLE=#{title}, CONTENT=#{content}
 		WHERE BNO = #{bno}
-	</update>  
-	
-  <!-- DELETE -->
-  	<delete id="delete">
-  		DELETE TBL_BOARD WHERE BNO = #{bno}
-  	</delete>
-  
+	</update>
+
+	<!-- DELETE -->
+	<delete id="delete">
+		DELETE TBL_BOARD WHERE BNO = #{bno}
+	</delete>
+
+	<!-- REPLY COUNT -->
+	<update id="updateReplyCnt">
+		UPDATE TBL_BOARD SET REPLYCNT = REPLYCNT + #{amount} WHERE BNO = #{bno}
+	</update>
+
 </mapper>

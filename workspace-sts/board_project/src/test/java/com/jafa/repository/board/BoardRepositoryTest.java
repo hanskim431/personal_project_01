@@ -39,13 +39,13 @@ public class BoardRepositoryTest extends AppTest{
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
-		criteria.setPageNum(4);
+		criteria.setPageNum(1);
 		criteria.setAmount(2);		
 		log.info("리스트 출력");
 		boardRepository.getList(criteria).forEach(board->log.info(board));
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testRead() {
 		log.info("출력");
@@ -71,7 +71,7 @@ public class BoardRepositoryTest extends AppTest{
 	}
 
 	//U
-//	@Ignore
+	@Ignore
 	@Test
 	public void testUpdate() {
 		BoardVO vo = BoardVO.builder()

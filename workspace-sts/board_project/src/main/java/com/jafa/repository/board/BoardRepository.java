@@ -2,6 +2,8 @@ package com.jafa.repository.board;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.common.Criteria;
 
@@ -26,5 +28,8 @@ public interface BoardRepository {
 	// 전체 게시물 수
 	int getTotalCount(Criteria criteria);
 	
-	
+	// 댓글 수 셈
+	void updateReplyCnt(
+			@Param("bno") Long bno, 
+			@Param("amount") int amount);
 }

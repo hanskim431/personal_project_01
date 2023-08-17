@@ -20,13 +20,17 @@ import lombok.ToString;
 @NoArgsConstructor
 public class BoardVO {
 		    private Long bno;
+		    
 		    private String title;
 		    private String content;
 		    private String writer;
-		    private String boardType;
+		    
 		    private LocalDateTime regDate;
 		    private LocalDateTime updateDate;
+		    
+		    private String boardType;
 		    private String status;
+		    
 		    private int replyCnt;
 		    private int likeHit;
 }

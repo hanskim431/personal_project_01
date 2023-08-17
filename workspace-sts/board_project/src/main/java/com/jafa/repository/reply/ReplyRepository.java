@@ -15,7 +15,7 @@ public interface ReplyRepository {
 			@Param("bno")  Long bno);
 	
 	//C
-	void insert(ReplyVO vo);
+	int insert(ReplyVO vo);
 	
 	
 	//R
@@ -27,7 +27,7 @@ public interface ReplyRepository {
 	
 	
 	//D
-	void delete(Long rno);
+	int delete(Long rno);
 	
 	//getTotalCount
 	int getTotalCount(Long bno);
