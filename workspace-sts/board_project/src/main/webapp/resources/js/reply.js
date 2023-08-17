@@ -80,7 +80,42 @@ $(function(){
 		}
 		
 		if(operation=='modify'){
+			let replyUpdateForm = $('.replyWriterForm').clone();
+			replyUpdateForm.attr('class','replyUpdateForm');
+			let updateBtn = replyUpdateForm.find('.submit button').html('수정');
 			
+			let listTag = $(this).closest('li');
+			let replyUpdateFormLength = listTag.find('.replyUpdateForm').length;
+			if(replyUpdateFormLength>0){
+				listTag.find('.replyUpdateForm').remove();
+				$(this).html('수정');
+				$(this).next().show();
+				return;
+			}
+			
+			replyService.get(rno,function(data){
+				replyUpdateForm.find('.replyContent').val(data.reply);
+				replyUpdateForm.find('.replyer').html(data.replyer);
+			})
+			
+			$(this).closest('li').append(replyUpdateForm);
+			$(this).html('취소');
+			$(this).next().hide();
+			
+			updateBtn.click(function(){
+				let replyVO = {
+					rno : rno,
+					reply : replyUpdateForm.find('.replyContent').val(),
+			   		status : 'visible'
+				}
+				
+				// 수정 처리 메소드 호출
+				replyService.update(replyVO, function(result){
+					alert(result);
+					showList(1);
+				})
+			})
+			return;
 		}
     });
 })
