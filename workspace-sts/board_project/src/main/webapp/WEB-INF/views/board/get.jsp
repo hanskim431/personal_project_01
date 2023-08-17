@@ -75,8 +75,8 @@
 							<button type="button" class="btn btn-light dropdown-toggle" 
 							data-toggle="dropdown">변경</button>
 							<div class="dropdown-menu">
-								<button class="btn dropdown-item modify" href="">수정</button>
-								<button class="btn dropdown-item delete" href="">삭제</button>
+						      <a class="dropdown-item" href="modify">수정</a>
+						      <a class="dropdown-item" href="delete">삭제</a>
 							</div>
 						</div><!-- reply_modify-end -->
 					</div><!-- d-flex justify-content-between-end -->

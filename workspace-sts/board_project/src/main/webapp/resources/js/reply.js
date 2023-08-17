@@ -23,12 +23,12 @@ $(function(){
 								<div class="comment_content py-2">${elem.reply}</div>
 							</div>
 						</div><!-- d-flex-end -->
-						<div class=reply_modify"">
+						<div class="reply_modify">
 							<button type="button" class="btn btn-light dropdown-toggle" 
 							data-toggle="dropdown">변경</button>
 							<div class="dropdown-menu">
-								<button class="btn dropdown-item modify" href="">수정</button>
-								<button class="btn dropdown-item delete" href="">삭제</button>
+						      <a class="dropdown-item" href="modify">수정</a>
+						      <a class="dropdown-item" href="delete">삭제</a>
 							</div>
 						</div><!-- reply_modify-end -->
 					</div><!-- d-flex justify-content-between-end -->
@@ -60,9 +60,27 @@ $(function(){
 	});
 	
 	// 댓글 등록 처리
-	$('.dropdown-item .modify').click(function(){
-		e.preventDefault();// a태그  기본동작 금지
-		console.log('test');
-	});
-	
+	$('.chat').on('click', '.reply_modify a', function(e){
+	    console.log('수정 삭제 버튼 클릭');
+		e.preventDefault();
+		
+		let rno = $(this).closest('li').data('rno');
+		let operation = $(this).attr('href')
+		
+		if(operation=='delete'){
+			replyService.remove(rno,function(result){
+				if(result=='success'){
+					alert('댓글을 삭제하였습니다.');
+					showList(1);
+				} else {
+					alert('댓글 삭제 실패');
+				}
+			});
+			return;
+		}
+		
+		if(operation=='modify'){
+			
+		}
+    });
 })
