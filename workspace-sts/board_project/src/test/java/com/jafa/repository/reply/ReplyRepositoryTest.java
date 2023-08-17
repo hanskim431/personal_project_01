@@ -16,7 +16,7 @@ public class ReplyRepositoryTest extends AppTest{
 	@Autowired
 	private ReplyRepository replyRepository;
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
@@ -58,7 +58,7 @@ public class ReplyRepositoryTest extends AppTest{
 		replyRepository.delete(2L);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testgetTotalCount() {
 		log.info(replyRepository.getTotalCount(1L));

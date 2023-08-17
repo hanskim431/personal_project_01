@@ -49,10 +49,19 @@
 </div>
 
 <div class="container reply collapse">
-	<label>
-		<h3>댓글</h3>
-		<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">닫기</button>		
-	</label>
+	
+	
+	<div class="replyWriterForm my-3">
+		<div class="text-right">
+			<div class="submit p-2">
+				<span class="btn btn-outline-info col-2 replyer">admin1</span>
+				<button class="btn btn-outline-primary col-3">등록</button>
+			</div>
+		</div><!-- text-right-end -->
+		<textarea rows="2" placeholder="댓글을 작성해 주세요." maxlength="400" 
+		class="replyContent form-control"></textarea>
+	</div><!-- replyWriterForm-end -->
+	
 	<div class="row">
 		<div class="col-12">
 			<ul class="list-group chat">
@@ -82,19 +91,16 @@
 					</div><!-- d-flex justify-content-between-end -->
 				</li>
 			</ul>
+			<div class="card">
+				<div class="row mt-2">
+					<div class="col-12 pagination_wrap d-flex justify-content-center"></div>
+				</div>
+				<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글 닫기</button>	
+			</div>
 		</div><!-- col-12-end -->
 	</div><!-- row-end -->
+	
 
-	<div class="replyWriterForm my-3">
-		<textarea rows="6" placeholder="댓글을 작성해 주세요." maxlength="400" 
-		class="replyContent form-control"></textarea>
-		<div class="text-right">
-			<div class="submit p-2">
-				<span class="btn btn-outline-info col-2 replyer">admin1</span>
-				<button class="btn btn-outline-primary col-3">등록</button>
-			</div>
-		</div><!-- text-right-end --
-	</div><!-- replyWriterForm-end -->
 </div><!-- container-end -->
 
 <!-- <button class="btn btn-danger addBtn">댓글 추가 테스트</button>		 -->

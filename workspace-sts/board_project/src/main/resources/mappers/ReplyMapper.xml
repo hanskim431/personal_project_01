@@ -13,9 +13,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>  
   	
   <!-- READ -->
+    
+   
 
 	<select id="getList" resultType="com.jafa.domain.reply.ReplyVO">
-		SELECT * FROM TBL_REPLY WHERE BNO=#{bno} ORDER BY RNO DESC
+	<![CDATA[
+		SELECT * FROM
+		(SELECT ROWNUM AS RN,RNO,BNO,REPLY,REPLYER,
+		REGDATE,UPDATEDATE,STATUS,LIKEHIT
+		FROM TBL_REPLY WHERE BNO=#{bno} 
+		AND ROWNUM <= #{criteria.maxRow})
+		WHERE RN > #{criteria.minRow}
+	]]>
+		
+		
 	</select>
 	 
 	<select id="read" resultType="com.jafa.domain.reply.ReplyVO">

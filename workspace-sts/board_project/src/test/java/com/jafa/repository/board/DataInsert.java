@@ -9,7 +9,7 @@ import com.jafa.domain.board.BoardVO;
 public class DataInsert extends AppTest{
 	
 	@Autowired
-	BoardRepository repository; 
+	BoardRepository boardRepository; 
 	
 	
 	// 408개 데이터 삽입 총 412개의 게시물
@@ -27,7 +27,7 @@ public class DataInsert extends AppTest{
 					.boardType("BOARD3")
 					.status(status = i % 4 == 0 ? "HIDDEN" : "VISIBLE")
 					.build();
-			repository.insert(vo);			
+			boardRepository.insert(vo);			
 		}
 	}
 }

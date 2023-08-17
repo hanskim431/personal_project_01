@@ -3,6 +3,7 @@ package com.jafa.service.reply;
 import java.util.List;
 
 import com.jafa.domain.common.Criteria;
+import com.jafa.domain.reply.ReplyPageDTO;
 import com.jafa.domain.reply.ReplyVO;
 
 public interface ReplyService {
@@ -13,7 +14,7 @@ public interface ReplyService {
 	 * @param bno
 	 * @return
 	 */
-	List<ReplyVO> getList(Criteria criteria, Long bno);
+	ReplyPageDTO getList(Criteria criteria, Long bno);
 	
 	//C
 	int register(ReplyVO vo);
@@ -26,5 +27,7 @@ public interface ReplyService {
 	
 	//D
 	int remove(Long rno);
+	
+	
 	
 }

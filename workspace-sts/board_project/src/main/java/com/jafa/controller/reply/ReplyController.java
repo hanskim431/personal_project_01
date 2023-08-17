@@ -1,13 +1,10 @@
 package com.jafa.controller.reply;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jafa.domain.common.Criteria;
+import com.jafa.domain.reply.ReplyPageDTO;
 import com.jafa.domain.reply.ReplyVO;
 import com.jafa.service.reply.ReplyService;
 
@@ -27,10 +25,10 @@ public class ReplyController {
 	private ReplyService replyService;
 	
 	//LIST
-	@GetMapping("/pages/{bno}/{pageNum}")
-	private ResponseEntity<List<ReplyVO>> getList(
-			@PathVariable int pageNum, @PathVariable Long bno) {
-		Criteria criteria = new Criteria(pageNum, 10);
+	@GetMapping("/pages/{bno}/{page}")
+	private ResponseEntity<ReplyPageDTO> getList(
+			@PathVariable int page, @PathVariable Long bno) {
+		Criteria criteria = new Criteria(page, 10);
 		return new ResponseEntity<>(replyService.getList(criteria, bno),HttpStatus.OK);
 	}
 	

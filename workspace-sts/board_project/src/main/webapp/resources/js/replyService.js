@@ -6,13 +6,13 @@ var replyService = {
 		console.log('getList');
 		
 		let bno = param.bno;
-		let pageNum = param.pageNum
+		let page= param.page|| 1;
 		
 		$.ajax({
 			type : 'get',
-			url : `${ctxPath}/replies/pages/${bno}/${pageNum}`,
-			success : function(result){
-				if(callback) callback(result);
+			url : `${ctxPath}/replies/pages/${bno}/${page}`,
+			success : function(replyPageDTO){
+				if(callback) callback(replyPageDTO.replyCount, replyPageDTO.list);
 			},
 			error : function(xhr,status,er){
 				if(error) error(er);

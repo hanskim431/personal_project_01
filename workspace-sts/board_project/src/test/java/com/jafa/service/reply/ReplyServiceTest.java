@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jafa.AppTest;
 import com.jafa.domain.common.Criteria;
+import com.jafa.domain.reply.ReplyPageDTO;
 import com.jafa.domain.reply.ReplyVO;
 
 import lombok.extern.log4j.Log4j;
@@ -25,11 +26,12 @@ public class ReplyServiceTest extends AppTest{
 		assertNotNull(replyService);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
-		replyService.getList(criteria,1L).forEach(vo-> log.info(vo));
+		log.info(replyService.getList(new Criteria(20,10), 1L));
+		
 	}
 	
 	@Ignore
@@ -56,7 +58,7 @@ public class ReplyServiceTest extends AppTest{
 		replyService.modify(vo);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testDelete() {
 		replyService.remove(4L);

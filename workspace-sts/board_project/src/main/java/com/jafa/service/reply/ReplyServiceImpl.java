@@ -1,11 +1,10 @@
 package com.jafa.service.reply;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jafa.domain.common.Criteria;
+import com.jafa.domain.reply.ReplyPageDTO;
 import com.jafa.domain.reply.ReplyVO;
 import com.jafa.repository.reply.ReplyRepository;
 
@@ -21,8 +20,10 @@ public class ReplyServiceImpl implements ReplyService {
 	private ReplyRepository replyRepository;
 	
 	@Override
-	public List<ReplyVO> getList(Criteria criteria, Long bno) {
-		return replyRepository.getList(criteria, bno);
+	public ReplyPageDTO getList(Criteria criteria, Long bno) {
+		return new ReplyPageDTO(
+				replyRepository.getTotalCount(bno),
+				replyRepository.getList(criteria, bno));
 	}
 
 	@Override

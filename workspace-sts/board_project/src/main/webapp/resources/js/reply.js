@@ -1,11 +1,85 @@
 $(function(){
 	let bno = $('[name="bno"]').val()
 	let replyContainer = $('.chat');
+	let pageNum = 1; // 기본 페이지 번호  
+	let paginationWrap = $('.pagination_wrap');
+	
+	
+	// 페이지네이션
+	// showList 함수에서 호출
+	let showReplyPage = function(replyCount){
+		let endNum = Math.ceil(pageNum/10.0)*10; // 끝페이지
+		let startNum = endNum - 9; // 첫페이지
+		let tempEndNum = Math.ceil(replyCount/10.0); // 댓글수
+			
+			let prev = startNum !=1; 
+			let next = endNum < tempEndNum;
+			if(endNum>tempEndNum) endNum = tempEndNum;
+	
+		let pagination = '<ul class="pagination">';
+		
+		if(prev){ // 이전 버튼 
+			pagination += `<li class="page-item">
+					<a class="page-link" href="${startNum-1}">이전</a></li>`
+		} else { // 이전 버튼 비활성화
+			pagination += `<li class="page-item disabled">
+					<a class="page-link" href="${startNum-1}">이전</a></li>`
+		}
+		
+		for(let pageLink=startNum; pageLink<= endNum ; pageLink++){ // 페이지 버튼
+			let active = (pageNum==pageLink) ? 'active':''; // 현재페이지버튼 활성화
+			pagination += `<li class="page-item ${active}">
+					<a class="page-link" href="${pageLink}">${pageLink}</a></li>`
+		}
+		
+		if(next){ // 다음 버튼 
+			pagination += `<li class="page-item">
+					<a class="page-link" href="${endNum+1}">다음</a></li>`
+		} else { // 다음 버튼 비활성화
+			pagination += `<li class="page-item disabled">
+					<a class="page-link" href="${endNum+1}">다음</a></li>`
+		
+		}
+		
+		pagination += '</ul>'
+		paginationWrap.html(pagination);
+	}
+	
+	// 페이지 이동 이벤트 
+	paginationWrap.on('click','li a', function(e){
+		e.preventDefault();
+		let targetPageNum = $(this).attr('href');
+		pageNum = targetPageNum;
+		showList(pageNum);
+	})
+	
 	
 	// 댓글 조회
-	let showList = function(pageNum){
-		let param = {bno:bno, pageNum : pageNum||1};
-		replyService.getList(param,function(list){
+	let showList = function(page){
+		let param = {bno:bno, page: page||1};
+		replyService.getList(param,function(replyCount,list){
+			console.log(replyCount);
+			// 글 작성 후 마지막 페이지 호출
+			if(page==-1){ // 글 작성후 마지막 페이지 호출
+				pageNum = Math.ceil(replyCount/10.0);
+				showList(pageNum);
+				return;
+			}
+			
+			if(page==-2){ // 글 삭제  
+				pageNum = replyCount%10==0 ? pageNum-1 : pageNum;
+				showList(pageNum);
+				return; 
+			}
+			
+			
+			// 댓글이 존재하지 않을 경우 
+			if(replyCount==0){
+				replyContainer.html('등록된 댓글이 없습니다.');
+				return;
+			}
+			
+		
 			let replyList = '';
 			$.each(list,function(idx,elem){
 				replyList += `<li class="list-group-item" data-rno="${elem.rno}">
@@ -35,6 +109,7 @@ $(function(){
 				</li>`;
 			});
 			replyContainer.html(replyList);
+			showReplyPage(replyCount);
 		})
 	}
 	showList(1);
@@ -54,7 +129,7 @@ $(function(){
 				alert('댓글 등록 실패')
 			}
 			$('.replyContent').val('');
-			showList(1);
+			showList(-1);
 		});
 		
 	});
@@ -71,7 +146,7 @@ $(function(){
 			replyService.remove(rno,function(result){
 				if(result=='success'){
 					alert('댓글을 삭제하였습니다.');
-					showList(1);
+					showList(-2);
 				} else {
 					alert('댓글 삭제 실패');
 				}
@@ -111,10 +186,13 @@ $(function(){
 				// 수정 처리 메소드 호출
 				replyService.update(replyVO, function(result){
 					alert(result);
-					showList(1);
+					showList(pageNum);
 				})
 			})
 			return;
 		}
     });
+    
+    
+    
 })
