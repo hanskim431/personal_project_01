@@ -22,9 +22,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardRepository boardRepository;
 	
 	@Override
-	public List<BoardVO> getList(Criteria criteria) {
+	public List<BoardVO> getList(Criteria criteria, String boardType) {
 		List<BoardVO> list = new ArrayList<>();
-		return boardRepository.getList(criteria);
+		return boardRepository.getList(criteria, boardType);
 	}
 	
 	@Override

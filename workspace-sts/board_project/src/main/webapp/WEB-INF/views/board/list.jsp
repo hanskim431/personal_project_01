@@ -83,7 +83,7 @@
 						</c:if>
 					</ul>
 					
-					<form class="text-center my-3" id="searchForm" action="${ctxPath}/board/list">
+					<form class="text-center my-3" id="searchForm" action="${ctxPath}/board/${boardType}/list">
 						<div class="d-inline-block">
 							<select name="type" class="form-control">
 								<option value="TCW">제목+내용+작성자</option>
@@ -102,11 +102,12 @@
 						</div>
 					</form>
 
-					<form id="listForm" action="${ctxPath}/board/list" method="get">
+					<form id="listForm" action="${ctxPath}/board/${boardType}/list" method="get">
 						<input type="hidden" name="pageNum" value="${p.criteria.pageNum}">
 						<input type="hidden" name="amount" value="${p.criteria.amount}">
-						<input type="hidden" name="type" value="${param.type }">
-						<input type="hidden" name="keyword" value="${param.keyword }">
+						<input type="hidden" name="type" value="${param.type}">
+						<input type="hidden" name="keyword" value="${param.keyword}">
+						<input type="hidden" name="boardType" value="${boardType}">
 					</form>
 					
 					
@@ -136,7 +137,7 @@
 		e.preventDefault();
 		let bnoValue = $(this).attr('href');
 		listForm.append($('<input/>',{type : 'hidden', name : 'bno', value : bnoValue}))
-				.attr('action','${ctxPath}/board/get')
+				.attr('action','${ctxPath}/board/${boardType}/get')
 				.submit();
 	});
 	
@@ -149,7 +150,7 @@
 	
 	// 글쓰기 페이지로 이동
 	$('#regBtn').click(function(){
-		listForm.attr('action','${ctxPath}/board/register')
+		listForm.attr('action','${ctxPath}/board/${boardType}/register')
 				.submit();
 	});
 	

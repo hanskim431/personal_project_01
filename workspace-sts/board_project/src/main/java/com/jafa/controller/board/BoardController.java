@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,30 +19,36 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/board/{boardType}")
 public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
 	
-	@GetMapping("/list")
-	public String list(Model model, Criteria criteria) {
-		model.addAttribute("list", boardService.getList(criteria));
+	@GetMapping({"","/","/list"})
+	public String list(@PathVariable String boardType, Model model, Criteria criteria) {
+		log.info(boardType);
+		model.addAttribute("list", boardService.getList(criteria, boardType));
+		model.addAttribute("boardType", boardType);
 		model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria)));
 		return "/board/list";
 	}
 	
 	@GetMapping("/get")
-	public String get(Model model, @RequestParam("bno") Long bno, Criteria criteria) {
+	public String get(@PathVariable String boardType, Model model, 
+						@RequestParam("bno") Long bno, Criteria criteria) {
 		model.addAttribute("board", boardService.get(bno));
+		model.addAttribute("boardType", boardType);
 		return "/board/get";
 	}
 	
 	@GetMapping("/register")
-	public void register() {}
+	public String register(@PathVariable String boardType) {
+		return "board/register";
+	}
 	
 	@PostMapping("/register")
-	public String register(BoardVO vo, RedirectAttributes rttr) {		
+	public String register(BoardVO vo, RedirectAttributes rttr) {
 		boardService.register(vo);
 		rttr.addFlashAttribute("result", vo.getBno());
 		return "redirect:/board/list";
@@ -49,7 +56,8 @@ public class BoardController {
 	}
 	
 	@GetMapping("/modify")
-	public void modify(Model model, @RequestParam("bno") Long bno, RedirectAttributes rttr) {
+	public void modify(@PathVariable String boardType, Model model, 
+						@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		model.addAttribute("board", boardService.get(bno));
 		
 	}
@@ -65,7 +73,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(Long bno, RedirectAttributes rttr, Criteria criteria) {
+	public String remove(@PathVariable String boardType, Long bno, RedirectAttributes rttr, Criteria criteria) {
 		if(boardService.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}

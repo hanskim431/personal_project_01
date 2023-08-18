@@ -109,6 +109,7 @@
 
 <form>
 	<input type="hidden" name="bno"  value="${board.bno}">
+	<input type="hidden" name="boardType"  value="${boardType}">
 </form>
 
 <%@ include file="../includes/footer.jsp" %>
@@ -126,10 +127,12 @@ $(function(){
 			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
 			.append($('<input/>',{type : 'hidden', name : 'type', value : '${param.type}'}))
 			.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${param.keyword}'}))
+			.append($('<input/>',{type : 'hidden', name : 'boardType', value : '${boardType}'}))
 			.attr('method','get')
 		if(operration=='list'){
+			
 			form.find('#bno').remove();
-			form.attr('action','${ctxPath}/board/list')
+			form.attr('action','${ctxPath}/board/${boardType}/list')
 			form.submit();
 		} else if(operration=='modify'){
 			form.attr('action','${ctxPath}/board/modify')

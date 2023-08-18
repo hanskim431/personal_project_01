@@ -35,17 +35,28 @@ public class BoardRepositoryTest extends AppTest{
 	}
 
 	// R
-	@Ignore
+//	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
 		criteria.setPageNum(1);
-		criteria.setAmount(2);		
+		criteria.setAmount(10);	
+		String boardType = "BOARD2";
 		log.info("리스트 출력");
-		boardRepository.getList(criteria).forEach(board->log.info(board));
+		boardRepository.getList(criteria, boardType).forEach(board->log.info(board));
 	}
 	
-//	@Ignore
+	@Ignore
+	@Test
+	public void testGetListAll() {
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(1);
+		criteria.setAmount(10);	
+		log.info("리스트 출력");
+		boardRepository.getListAll(criteria).forEach(board->log.info(board));
+	}
+	
+	@Ignore
 	@Test
 	public void testRead() {
 		log.info("출력");
@@ -66,7 +77,8 @@ public class BoardRepositoryTest extends AppTest{
 		Criteria criteria = new Criteria(); 
 			criteria.setType("T");
 			criteria.setKeyword("200");
-		List<BoardVO> list = boardRepository.getList(criteria);
+		String boardType = "BOARD1";
+		List<BoardVO> list = boardRepository.getListAll(criteria);
 		log.info(list);
 	}
 

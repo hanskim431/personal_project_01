@@ -44,10 +44,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		BOARDTYPE, STATUS, REPLYCNT
 		FROM TBL_BOARD WHERE
 		]]>
-		<include refid="criteria" />			
 		<![CDATA[ 
-			ROWNUM <= #{maxRow} ORDER BY BNO DESC )
-			WHERE RN > #{minRow} 
+			ROWNUM <= #{criteria.maxRow} 
+			AND BOARDTYPE = #{boardType} 
+			ORDER BY BNO DESC )
+		WHERE RN > #{criteria.minRow}
 		]]>
 	</select>
 

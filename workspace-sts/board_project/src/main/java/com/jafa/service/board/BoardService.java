@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 public interface BoardService {
 	
 	//LIST
-	List<BoardVO> getList(Criteria criteria);
+	List<BoardVO> getList(Criteria criteria, String boardType);
 	
 	//C
 	boolean register(BoardVO vo);

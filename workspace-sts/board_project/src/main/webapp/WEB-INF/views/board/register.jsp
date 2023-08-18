@@ -61,7 +61,7 @@ $(function(){
 		if(type.val()&&keyword.val()){
 			form.append(type).append(keyword);				
 		}
-		form.attr('action','${ctxPath}/board/list')
+		form.attr('action','${ctxPath}/board/${boardType}/list')
 			.append($('[name="pageNum"]'))
 			.append($('[name="amount"]'))
 			.appendTo('body')

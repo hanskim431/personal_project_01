@@ -11,7 +11,11 @@ public interface BoardRepository {
 
 	
 	// List
-	List<BoardVO> getList(Criteria criteria);
+	List<BoardVO> getList(
+			@Param("criteria") Criteria criteria, 
+			@Param("boardType") String boardType);
+	
+	List<BoardVO> getListAll(Criteria criteria);
 	
 	// C
 	void insert(BoardVO vo);

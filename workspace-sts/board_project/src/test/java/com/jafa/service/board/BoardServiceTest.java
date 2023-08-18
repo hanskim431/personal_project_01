@@ -25,11 +25,20 @@ public class BoardServiceTest extends AppTest{
 		assertNotNull(boardService);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
-		boardService.getList(criteria).forEach(vo-> log.info(vo));
+		String boardType = "board1";
+		boardService.getList(criteria, boardType).forEach(vo-> log.info(vo));
+	}
+	
+	@Ignore
+	@Test
+	public void testGetListAll() {
+		Criteria criteria = new Criteria();
+		String boardType = "BOARD1";
+		boardService.getList(criteria, boardType).forEach(vo-> log.info(vo));
 	}
 	
 	@Ignore
@@ -52,7 +61,7 @@ public class BoardServiceTest extends AppTest{
 		log.info(vo.getBno()+"번 게시글 작성");
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testModify() {
 		BoardVO vo = BoardVO.builder()
