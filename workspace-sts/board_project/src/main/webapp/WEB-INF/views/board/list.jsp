@@ -30,6 +30,7 @@
 							<thead>
 								<tr>
 									<th>#번호</th>
+									<th>게시판</th>
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
@@ -40,6 +41,7 @@
 								<c:forEach items="${list}" var="board">
 									<tr>
 										<td>${board.bno}</td>
+										<td>${board.boardType}</td>
 										<td>
 											<a class="move" href="${board.bno}">
 												${board.title } ${board.replyCnt==0?'':[board.replyCnt]}

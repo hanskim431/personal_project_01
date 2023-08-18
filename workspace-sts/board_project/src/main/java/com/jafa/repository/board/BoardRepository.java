@@ -15,7 +15,8 @@ public interface BoardRepository {
 			@Param("criteria") Criteria criteria, 
 			@Param("boardType") String boardType);
 	
-	List<BoardVO> getListAll(Criteria criteria);
+	List<BoardVO> getListAll(
+			@Param("criteria") Criteria criteria);
 	
 	// C
 	void insert(BoardVO vo);
@@ -30,10 +31,13 @@ public interface BoardRepository {
 	void delete(Long bno);
 	
 	// 전체 게시물 수
-	int getTotalCount(Criteria criteria);
+	int getTotalCount(
+			@Param("criteria") Criteria criteria, 
+			@Param("boardType") String boardType
+		);
 	
 	// 댓글 수 셈
 	void updateReplyCnt(
 			@Param("bno") Long bno, 
 			@Param("amount") int amount);
-}
+		}

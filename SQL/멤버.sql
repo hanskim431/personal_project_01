@@ -64,7 +64,7 @@ CREATE TABLE TBL_MEMBER_IMAGE( -- 멤버 이미지 테이블
 --            게시글                      
 -----------------------------------
 CREATE TABLE TBL_BOARD( -- 게시글
-    BNO NUMBER(10) PRIMARY KEY, -- 글 번호    
+    BNO NUMBER(10), -- 글 번호    
     TITLE VARCHAR2(200), -- 글 제목
     CONTENT VARCHAR2(2000), -- 글 내용
     WRITER VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- 작성자
@@ -75,6 +75,8 @@ CREATE TABLE TBL_BOARD( -- 게시글
     REPLYCNT NUMBER, -- 댓글 수
     LIKEHIT NUMBER -- 좋아요 수
 );
+
+ALTER TABLE TBL_BOARD ADD CONSTRAINT PK_BOARD PRIMARY kEY (BNO);
 
 DROP SEQUENCE SEQ_BOARD; -- 게시글 번호 시퀀스
 CREATE SEQUENCE SEQ_BOARD; -- 게시글 번호 시퀀스
@@ -200,6 +202,8 @@ INSERT INTO TBL_REPLY
 --                                 커밋과 데이터 확인
 ------------------------------------------------------------------------------------
 
+UPDATE TBL_BOARD B SET REPLYCNT = (SELECT COUNT(RNO) FROM TBL_REPLY R WHERE R.BNO = B.BNO);
+
 COMMIT;
 
 -- 계정
@@ -211,7 +215,9 @@ SELECT * FROM TBL_MEMBER_IMAGE; -- 계정 이미지
 -- 게시글
 SELECT * FROM TBL_BOARD; -- 게시글
 SELECT * FROM TBL_BOARD_LIKE; -- 게시글 좋아요
-SELECT * FROM TBL_BOARD WHERE STATUS = 'VISIBLE'; -- 게시글
+SELECT * FROM TBL_BOARD WHERE STATUS = 'VISIBLE';
+SELECT * FROM TBL_BOARD WHERE BOARDTYPE = 'board2'; -- 게시글
+
 
 -- 댓글
 SELECT * FROM TBL_REPLY; -- 댓글

@@ -9,7 +9,7 @@
 				<div class="card-header"></div>
 				<!-- card-header end -->
 				<div class="card-body">
-					<form action="${ctxPath}/board/register" method="post">
+					<form action="${ctxPath}/board/${boardType}/register" method="post">
 						<div class="form-group">
 							<label>작성자 <span class="float-right d-flex">
 									<button type="fileAttach" class="btn btn-primary">file</button>
@@ -30,7 +30,7 @@
 							<label>첨부파일 목록</label>
 
 						</div>
-						<input type="hidden" name="boardType" value="BOARD3"> 
+						<input type="hidden" name="boardType" value="${boardType}"> 
 						<input type="hidden" name="status" value="VISIBLE">
 						<input type="hidden" name="pageNum" value="${param.pageNum }">
 						<input type="hidden" name="amount" value="${param.amount }">
@@ -52,6 +52,8 @@
 <%@ include file="../includes/footer.jsp" %>
 
 <script>
+console.log('register')
+console.log('${boardType}')
 $(function(){
 	$('.list').click(function(e){
 		e.preventDefault();

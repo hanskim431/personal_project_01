@@ -9,7 +9,7 @@
 				<div class="card-header"></div>
 				<!-- card-header end -->
 				<div class="card-body">
-					<form action="${ctxPath}/board/modify" method="post">
+					<form action="${ctxPath}/board/${boardType}/modify" method="post">
 						<div class="form-group">
 							<label>작성자
 								<button type="fileAttach" class="btn btn-default">file</button>

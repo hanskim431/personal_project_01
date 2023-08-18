@@ -135,10 +135,10 @@ $(function(){
 			form.attr('action','${ctxPath}/board/${boardType}/list')
 			form.submit();
 		} else if(operration=='modify'){
-			form.attr('action','${ctxPath}/board/modify')
+			form.attr('action','${ctxPath}/board/${boardType}/modify')
 			form.submit();
 		} else if(operration=='remove'){
-			form.attr('action','${ctxPath}/board/remove')
+			form.attr('action','${ctxPath}/board/${boardType}/remove')
 				.attr('method','post')
 			form.submit();
 		}

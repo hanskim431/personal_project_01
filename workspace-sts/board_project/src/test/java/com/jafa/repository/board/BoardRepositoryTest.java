@@ -41,19 +41,9 @@ public class BoardRepositoryTest extends AppTest{
 		Criteria criteria = new Criteria();
 		criteria.setPageNum(1);
 		criteria.setAmount(10);	
-		String boardType = "BOARD2";
+		String boardType = "";
 		log.info("리스트 출력");
 		boardRepository.getList(criteria, boardType).forEach(board->log.info(board));
-	}
-	
-	@Ignore
-	@Test
-	public void testGetListAll() {
-		Criteria criteria = new Criteria();
-		criteria.setPageNum(1);
-		criteria.setAmount(10);	
-		log.info("리스트 출력");
-		boardRepository.getListAll(criteria).forEach(board->log.info(board));
 	}
 	
 	@Ignore
@@ -64,11 +54,12 @@ public class BoardRepositoryTest extends AppTest{
 		log.info("vo"+vo);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testGetTotalCount() {
 		Criteria criteria = new Criteria();
-		log.info(boardRepository.getTotalCount(criteria));
+		String boardType = "";
+		log.info(boardRepository.getTotalCount(criteria, boardType));
 	}
 
 	@Ignore
@@ -95,7 +86,6 @@ public class BoardRepositoryTest extends AppTest{
 				.build();
 		boardRepository.update(vo);
 	}
-	
 	
 	//D
 	@Ignore

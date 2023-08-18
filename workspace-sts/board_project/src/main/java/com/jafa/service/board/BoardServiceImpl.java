@@ -54,8 +54,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int totalCount(Criteria criteria) {
-		return boardRepository.getTotalCount(criteria);
+	public int totalCount(Criteria criteria, String boardType) {
+		boardType = "board1";
+		return boardRepository.getTotalCount(criteria, boardType);
 	}
 
 }

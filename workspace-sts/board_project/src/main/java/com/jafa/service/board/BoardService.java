@@ -28,6 +28,6 @@ public interface BoardService {
 	
 	// TOTAL BOARD COUNT
 
-	int totalCount(Criteria criteria);
+	int totalCount(Criteria criteria, String boardType);
 	
 }

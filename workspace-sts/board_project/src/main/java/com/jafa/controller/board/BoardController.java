@@ -24,13 +24,16 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	
+
 	@GetMapping({"","/","/list"})
 	public String list(@PathVariable String boardType, Model model, Criteria criteria) {
+		if(boardType.equals("list")) {
+			return "home";
+		}
 		log.info(boardType);
-		model.addAttribute("list", boardService.getList(criteria, boardType));
 		model.addAttribute("boardType", boardType);
-		model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria)));
+		model.addAttribute("list", boardService.getList(criteria, boardType));
+		model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, boardType)));
 		return "/board/list";
 	}
 	
@@ -48,28 +51,29 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public String register(BoardVO vo, RedirectAttributes rttr) {
+	public String register(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr) {
 		boardService.register(vo);
 		rttr.addFlashAttribute("result", vo.getBno());
-		return "redirect:/board/list";
+		return "redirect:/board/"+boardType;
 //		return "redirect:/board/get?bno="+vo.getBno();
 	}
 	
 	@GetMapping("/modify")
-	public void modify(@PathVariable String boardType, Model model, 
+	public String modify(@PathVariable String boardType, Model model, 
 						@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		model.addAttribute("board", boardService.get(bno));
+		return "board/modify";
 		
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO vo, RedirectAttributes rttr, Criteria criteria) {
+	public String modify(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr, Criteria criteria) {
 		boardService.modify(vo);
 		rttr.addFlashAttribute("result",vo.getBno());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
 //		return "redirect:/board/list";
-		return "redirect:/board/get?bno="+vo.getBno();
+		return "redirect:/board/"+boardType+"/get?bno="+vo.getBno();
 	}
 	
 	@PostMapping("/remove")
@@ -79,6 +83,6 @@ public class BoardController {
 		}
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
-		return "redirect:/board/list";
+		return "redirect:/board/"+boardType+"/list";
 	}
 }
