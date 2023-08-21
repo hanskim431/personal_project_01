@@ -1,5 +1,7 @@
 package com.jafa.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.jafa.security.CustomUserDetailService;
 
@@ -24,6 +28,9 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	@Autowired
+	private DataSource dataSource;
+	
 	@Autowired
 	private AccessDeniedHandler accessDeniedHandler;
 	
@@ -52,8 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.successHandler(authenticationSuccessHandler)
 			.failureHandler(authenticationFailureHandler);
 		
-		http.logout().logoutUrl("/user/logout").invalidateHttpSession(true);
-			
+		http.logout().logoutUrl("/user/logout").invalidateHttpSession(true)
+				.deleteCookies("remember-me","JSESSION_ID")
+				;
+		
+		http.rememberMe().key("jafa")
+			.tokenRepository(persistentTokenRepository())
+			.tokenValiditySeconds(604800); // 604800 sec = 1 week
+		
 		http.exceptionHandling().accessDeniedPage("/accessDenied"); // 403에러 발생시 페이지를 당겨옴
 		http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 		
@@ -69,5 +82,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+		jdbcTokenRepositoryImpl.setDataSource(dataSource);
+		return jdbcTokenRepositoryImpl;
 	}
 }
