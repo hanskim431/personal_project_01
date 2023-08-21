@@ -45,8 +45,8 @@ CREATE TABLE TBL_MEMBER_DEL( -- 삭제 계정
 
 CREATE TABLE TBL_MEMBER_AUTH( -- 계정 권한
     MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- 아이디
-    AUTH VARCHAR2(10) , -- 권한
-    ENABLE VARCHAR2(10)  -- 계정상태
+    AUTH VARCHAR2(20) , -- 권한
+    ENABLE VARCHAR2(20) DEFAULT 'ACTIVE' -- 계정상태
 );
 
 
@@ -125,20 +125,38 @@ CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
 --                                  임시 데이터 삽입
 ------------------------------------------------------------------------------------
 -----------------------------------
---            계정
+--            계정 및 계정 권한
 -----------------------------------
 
 INSERT INTO TBL_MEMBER 
     (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
     VALUES ('admin1','1111','관리자1','admin1@test.com',SYSDATE);
     
+INSERT INTO TBL_MEMBER_AUTH VALUES ('admin1','ROLE_ADMIN','ACTIVE');
+    
 INSERT INTO TBL_MEMBER 
     (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
     VALUES ('admin2','1111','관리자2','admin2@test.com',SYSDATE);
+    
+INSERT INTO TBL_MEMBER_AUTH VALUES ('admin2','ROLE_ADMIN','ACTIVE');
+
+INSERT INTO TBL_MEMBER 
+    (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
+    VALUES ('member1','1111','사용자1','member1@test.com',SYSDATE);
+
+INSERT INTO TBL_MEMBER_AUTH VALUES ('member1','ROLE_MEMBER','ACTIVE');
+
+INSERT INTO TBL_MEMBER 
+    (MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL,REGDATE)
+    VALUES ('member2','1111','사용자2','member2@test.com',SYSDATE);
+
+INSERT INTO TBL_MEMBER_AUTH VALUES ('member2','ROLE_MEMBER','ACTIVE');
 
 INSERT INTO TBL_MEMBER_DEL
     (MEMBERID,MEMBERNAME,EMAIL,REGDATE,DELDATE)
     VALUES ('sampledel','삭제계정','sampledel@test.com',SYSDATE,SYSDATE);
+
+
 
 -----------------------------------
 --            게시판 1
