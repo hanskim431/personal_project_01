@@ -1,6 +1,7 @@
 package com.jafa.domain.member;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +21,6 @@ public class MemberVO {
     private String email;
     private LocalDateTime regDate; 
     private String address; 
+    
+    private List<AuthVO> authList;
 }

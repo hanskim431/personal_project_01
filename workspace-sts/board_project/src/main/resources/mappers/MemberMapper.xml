@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jafa.repository.member.MemberRepository">
+	
+	<!-- RESULT MAP -->
+	
+	<resultMap type="com.jafa.domain.member.MemberVO" id="memberMap">
+		<id property="memberId" column="memberId"/>
+		<result property="memberId" column="memberId"/>
+		<result property="memberPwd" column="memberPwd"/>
+		<result property="memberName" column="memberName"/>
+		<result property="email" column="email"/>
+		<result property="regDate" column="regDate"/>
+		<result property="address" column="address"/>
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+	
+	<resultMap type="com.jafa.domain.member.AuthVO" id="authMap">
+		<result property="memberId" column="memberId"/>
+		<result property="auth" column="auth"/>
+		<result property="enable" column="enable"/>
+	</resultMap>
+
+	<!-- CREATE -->
+	<insert id="insert">
+		INSERT INTO TBL_MEMBER(MEMBERID,MEMBERPWD,MEMBERNAME,EMAIL) 
+		VALUES (#{memberId},#{memberPwd},#{memberName},#{email})
+	</insert>
+
+	<!-- READ -->
+	<select id="read" resultMap="memberMap">
+		SELECT M.MEMBERID, MEMBERPWD,MEMBERNAME, EMAIL, REGDATE, ADDRESS, A.AUTH, A.ENABLE
+		FROM TBL_MEMBER M LEFT OUTER JOIN TBL_MEMBER_AUTH A
+		ON M.MEMBERID = A.MEMBERID
+		WHERE M.MEMBERID = #{memberId}
+	</select>
+
+	<!-- UPDATE -->
+
+	<!-- DELETE -->
+
+
+</mapper>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 
@@ -49,12 +50,16 @@
 			<li class="nav-item"><a class="nav-link" href="#"></a></li>
 		</ul>
 		<ul class="navbar-nav">
-			<li class="nav-item">
-					<a class="nav-link" href="${ctxPath}/login">로그인</a>
-			</li>
-			<li class="nav-item">
-					<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
-			</li>
+			<sec:authorize access="isAnonymous()">
+				<li class="nav-item">
+						<a class="nav-link" href="${ctxPath}/login">로그인</a>
+				</li>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<li class="nav-item">
+						<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
+				</li>
+			</sec:authorize>
 		</ul>
 	</nav>
 </div>
