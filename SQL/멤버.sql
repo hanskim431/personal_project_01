@@ -61,10 +61,10 @@ CREATE TABLE TBL_MEMBER_IMAGE( -- 멤버 이미지 테이블
 );
 
 CREATE TABLE PERSISTENT_LOGINS (
-    MEMBERNAME VARCHAR2(100) NOT NULL, -- 이름
+    MEMBERNAME VARCHAR2(100) not null, -- 이름
     SERIES VARCHAR2(64) PRIMARY KEY, -- 이름
-    TOKEN VARCHAR2(64) NOT NULL, -- 이름
-    LAST_USED TIMESTAMP NOT NULL -- 이름
+    TOKEN VARCHAR2(64) not null, -- 이름
+    LAST_USED TIMESTAMP not null -- 이름
 );
 
 -----------------------------------
