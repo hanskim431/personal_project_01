@@ -19,8 +19,14 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 	var ctxPath = '${ctxPath}'
+	var duplicateLogin = '${duplicateLogin}'
+	
+	if(duplicateLogin) {
+		alert(duplicateLogin)
+	}
 </script>
 
 <div>
@@ -42,5 +48,26 @@
 			</li>
 			<li class="nav-item"><a class="nav-link" href="#"></a></li>
 		</ul>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+					<a class="nav-link" href="${ctxPath}/login">로그인</a>
+			</li>
+			<li class="nav-item">
+					<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
+			</li>
+		</ul>
 	</nav>
 </div>
+
+<script>
+$(function(){
+	$('.logout').click(function(e){
+		e.preventDefault();
+		let form = $('<form>',{action:$(this).attr('href'),method:'post'});
+		form.append($('<input>',{type:'hidden',name:'${_csrf.parameterName}',value:'${_csrf.token}'}))
+			.appendTo('body')
+			.submit();
+	})
+	
+})
+</script>
