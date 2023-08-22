@@ -53,7 +53,7 @@ public class MemberController {
 	public String myPage(Model model, Principal principal, @PathVariable(required = false) String path) {
 		String memberId = principal.getName();
 		if(path==null) {
-			MemberVO vo = memberService.selectById(memberId);
+			MemberVO vo = memberService.read(memberId);
 		}
 		return "/member/memberPage";
 	}
