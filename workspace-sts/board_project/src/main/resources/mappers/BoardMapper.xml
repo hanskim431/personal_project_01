@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</sql>
 
-	<select id="getList" resultType="com.jafa.domain.board.BoardVO">
+	<select id="getList" resultType="board">
 		<![CDATA[
 		SELECT * FROM 
 		(SELECT /*INDEX_DESC(TBL_BOARD PK_BOARD)*/ 
@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 
-	<select id="read" resultType="com.jafa.domain.board.BoardVO">
+	<select id="read" resultType="board">
 		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
 	</select>
 

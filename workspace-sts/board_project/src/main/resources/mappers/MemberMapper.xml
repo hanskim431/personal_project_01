@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- RESULT MAP -->
 	
-	<resultMap type="com.jafa.domain.member.MemberVO" id="memberMap">
+	<resultMap type="member" id="memberMap">
 		<id property="memberId" column="memberId"/>
 		<result property="memberId" column="memberId"/>
 		<result property="memberPwd" column="memberPwd"/>
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 	
-	<resultMap type="com.jafa.domain.member.AuthVO" id="authMap">
+	<resultMap type="auth" id="authMap">
 		<result property="memberId" column="memberId"/>
 		<result property="auth" column="auth"/>
 		<result property="enable" column="enable"/>
@@ -38,7 +38,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE M.MEMBERID = #{memberId}
 	</select>
 
+	<select id="selectById" resultType="member">
+		select memberId, memberName, email, regDate, address 
+		from TBL_MEMBER
+		where memberId = #{memberId}
+	</select>
+	
 	<!-- UPDATE -->
+	<update id="update">
+		update TBL_MEMBER set
+		memberName = #{memberName},
+		email = #{email}
+		where memberId = #{memberId}
+	</update>
 
 	<!-- DELETE -->
 

@@ -96,16 +96,20 @@ $(function(){
 								</div>
 								<div class="comment_content py-2">${elem.reply}</div>
 							</div>
-						</div><!-- d-flex-end -->
-						<div class="reply_modify">
+						</div><!-- d-flex-end -->`;
+						
+						if(memberId== elem.replyer || auth.includes('ROLE_ADMIN')) {
+						replyList += `<div class="reply_modify">
 							<button type="button" class="btn btn-light dropdown-toggle" 
 							data-toggle="dropdown">변경</button>
 							<div class="dropdown-menu">
 						      <a class="dropdown-item" href="modify">수정</a>
 						      <a class="dropdown-item" href="delete">삭제</a>
 							</div>
-						</div><!-- reply_modify-end -->
-					</div><!-- d-flex justify-content-between-end -->
+						</div><!-- reply_modify-end -->`;
+						}
+						
+					replyList += `</div><!-- d-flex justify-content-between-end -->
 				</li>`;
 			});
 			replyContainer.html(replyList);
@@ -140,7 +144,14 @@ $(function(){
 		e.preventDefault();
 		
 		let rno = $(this).closest('li').data('rno');
-		let operation = $(this).attr('href')
+		let operation = $(this).attr('href');
+		let replyer = $(this).closest('li').find('.userName').text();
+		
+		if(replyer != memberId && !auth.includes('ROLE_ADMIN')){
+			alert('권한이 없습니다.')
+			return;
+		}
+		
 		
 		if(operation=='delete'){
 			replyService.remove(rno,function(result){

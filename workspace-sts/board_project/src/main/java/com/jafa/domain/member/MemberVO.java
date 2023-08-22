@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Alias("member")
 public class MemberVO {
     private String memberId;
     private String memberPwd;

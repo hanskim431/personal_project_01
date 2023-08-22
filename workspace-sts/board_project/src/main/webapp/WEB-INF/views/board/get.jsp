@@ -54,16 +54,25 @@
 	
 	
 	<div class="replyWriterForm my-3">
-		<div class="text-right">
-			<div class="submit p-2">
-				<span class="btn btn-outline-info col-2 replyer">admin1</span>
-				<button class="btn btn-outline-primary col-3">등록</button>
-			</div>
-		</div><!-- text-right-end -->
-		<textarea rows="2" placeholder="댓글을 작성해 주세요." maxlength="400" 
-		class="replyContent form-control"></textarea>
+		<sec:authorize access="isAnonymous()"> 
+			<div class="text-right">
+				<div class="submit p-2">
+					<a class="btn btn-outline-primary col-3" href="${ctxPath}/login">로그인</a>
+				</div>
+			</div><!-- text-right-end -->
+			<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." maxlength="400" class="replyContent form-control" readonly="readonly"></textarea>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()"> 
+			<div class="text-right">
+				<div class="submit p-2">
+					<span class="btn btn-outline-info col-2 replyer">admin1</span>
+					<button class="btn btn-outline-primary col-3">등록</button>
+				</div>
+			</div><!-- text-right-end -->
+			<textarea rows="2" placeholder="댓글을 작성해 주세요." maxlength="400" class="replyContent form-control"></textarea>
+		</sec:authorize>
 	</div><!-- replyWriterForm-end -->
-	
+
 	<div class="row">
 		<div class="col-12">
 			<ul class="list-group chat">
@@ -71,8 +80,9 @@
 					<div class="d-flex justify-content-between">
 						<div class="d-flex">
 							<div class="user_image mr-3" style="width: 75px">
-								<img class="rounded-circle" alt="userImg" 
-								src="${ctxPath}/resources/images/profile.bmp" style="max-width:70%">
+								<img class="rounded-circle" alt="userImg"
+									src="${ctxPath}/resources/images/profile.bmp"
+									style="max-width: 70%">
 							</div>
 							<div class="comment_wrap">
 								<div class="comment_info">
@@ -81,27 +91,28 @@
 								</div>
 								<div class="comment_content py-2">댓글 내용입니다.</div>
 							</div>
-						</div><!-- d-flex-end -->
-						<div class="reply_modify">
-							<button type="button" class="btn btn-light dropdown-toggle" 
-							data-toggle="dropdown">변경</button>
-							<div class="dropdown-menu">
-						      <a class="dropdown-item" href="modify">수정</a>
-						      <a class="dropdown-item" href="delete">삭제</a>
-							</div>
-						</div><!-- reply_modify-end -->
-					</div><!-- d-flex justify-content-between-end -->
+						</div>
+						<!-- d-flex-end -->
+							<div class="reply_modify">
+								<button type="button" class="btn btn-light dropdown-toggle"
+									data-toggle="dropdown">변경</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="modify">수정</a> <a
+										class="dropdown-item" href="delete">삭제</a>
+								</div>
+							</div> <!-- reply_modify-end -->
+					</div> <!-- d-flex justify-content-between-end -->
 				</li>
 			</ul>
 			<div class="card">
 				<div class="row mt-2">
 					<div class="col-12 pagination_wrap d-flex justify-content-center"></div>
 				</div>
-				<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글 닫기</button>	
+				<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글 닫기</button>
 			</div>
-		</div><!-- col-12-end -->
-	</div><!-- row-end -->
-	
+		</div> <!-- col-12-end -->
+	</div> <!-- row-end -->
+
 
 </div><!-- container-end -->
 
@@ -117,13 +128,11 @@
 
 <%@ include file="../includes/footer.jsp" %>
 
-<script src="${ctxPath}/resources/js/replyService.js"></script>
-<script src="${ctxPath}/resources/js/reply.js"></script>
-
 <script>
 $(function(){
 	// 목록 or 수정 페이지로
 	let form = $('form')
+	
 	$('.getBtns button').click(function(){
 		let operation = $(this).data('oper');
 		form.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
@@ -157,6 +166,7 @@ $(function(){
     });
 });
 
-
-
 </script>
+
+<script src="${ctxPath}/resources/js/replyService.js"></script>
+<script src="${ctxPath}/resources/js/reply.js"></script>

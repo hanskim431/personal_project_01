@@ -67,17 +67,17 @@ public class BoardController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
-	public String modify(@PathVariable String boardType, Model model, 
-						@RequestParam("bno") Long bno, RedirectAttributes rttr,
-						Authentication auth) throws AccessDeniedException {
+	public String modify(@PathVariable String boardType, Model model, @RequestParam("bno") Long bno,
+			RedirectAttributes rttr, Authentication auth) throws AccessDeniedException {
 		BoardVO vo = boardService.get(bno);
 		String username = auth.getName();
-		if(!vo.getWriter().equals(username) && !auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-			throw new AccessDeniedException("Access denied"); 
+		if (!vo.getWriter().equals(username)
+				&& !auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			throw new AccessDeniedException("Access denied");
 		}
 		model.addAttribute("board", boardService.get(bno));
 		return "board/modify";
-		
+
 	}
 	
 	@PreAuthorize("isAuthenticated() and principal.username== #vo.writer or hasRole('ROLE_ADMIN')")

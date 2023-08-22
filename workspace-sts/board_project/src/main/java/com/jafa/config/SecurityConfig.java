@@ -1,7 +1,5 @@
 package com.jafa.config;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -23,15 +22,10 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import com.jafa.security.CustomUserDetailService;
-
-import lombok.extern.log4j.Log4j;
-
 @Configuration
 @EnableWebSecurity
 @ComponentScan("com.jafa.security")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Log4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
@@ -47,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private AuthenticationFailureHandler authenticationFailureHandler; 
 	
 	@Autowired
-	private CustomUserDetailService customUserDetailService;
+	private UserDetailsService userDetailsService;
 	
 	// Spring Security의 웹 보안 설정
 	@Override
@@ -59,8 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
 		
-		// 접근 권한 
-		http.authorizeRequests().antMatchers("/guest/**").permitAll();
 		
 		// 로그인 폼
 		http.formLogin().loginPage("/login");
@@ -90,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetailService)
+		auth.userDetailsService(userDetailsService)
 			.passwordEncoder(passwordEncoder());
 	}
 	

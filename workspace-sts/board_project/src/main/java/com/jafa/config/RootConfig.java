@@ -53,6 +53,7 @@ public class RootConfig {
 	sqlSessionFactoryBean.setDataSource(dataSource());
 	sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
 			.getResources("classpath:mappers/**/*Mapper.xml"));
+	sqlSessionFactoryBean.setTypeAliasesPackage("com.jafa.domain"); // @alias 사용
 	return sqlSessionFactoryBean.getObject();
 	}
 	

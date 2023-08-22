@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.jafa.domain.member.MemberVO;
 import com.jafa.repository.member.MemberRepository;
 
-@Service
+@Component
 public class CustomUserDetailService implements UserDetailsService {
 
 	@Autowired

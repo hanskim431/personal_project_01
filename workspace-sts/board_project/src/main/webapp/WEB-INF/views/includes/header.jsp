@@ -7,6 +7,11 @@
 
 <c:set var="ctxPath" value="${pageContext.request.contextPath}" />
 
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.memberVO" var="authInfo"/>
+	<sec:authentication property="principal.memberVO.authList" var="authList"/>
+</sec:authorize>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,17 +27,24 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+	let csrfTokenValue = "${_csrf.token}"
+	let csrfHeaderName = "${_csrf.headerName}";
+
 	var ctxPath = '${ctxPath}'
 	var duplicateLogin = '${duplicateLogin}'
+
+	let memberId = "${authInfo.memberId}"
+	let auth = "${authList}" 
+	
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+	})
+
 	
 	if(duplicateLogin) {
 		alert(duplicateLogin)
 	}
 </script>
-
-<sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal.memberVO" var="authInfo"/>
-</sec:authorize>
 
 <div>
 	<nav class="navbar navbar-expand-sm bg-light justify-content-between">
@@ -61,7 +73,9 @@
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<li class="nav-item">
-					<element>${authInfo.username}</element>
+					<div>${authInfo.memberName}님, 어서오세요</div>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
 				</li>
 			</sec:authorize>

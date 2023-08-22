@@ -29,6 +29,9 @@ var replyService = {
 			url : `${ctxPath}/replies/new`, 
 			data : JSON.stringify(reply), 
 			contentType : "application/json; charset=utf-8", 
+			beforeSend : function(xhr){
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+			},
 			success : function(result){
 				if(callback) callback(result);
 			}, 
