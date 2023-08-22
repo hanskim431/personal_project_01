@@ -9,6 +9,19 @@ import org.springframework.security.core.userdetails.User;
 
 import com.jafa.domain.member.MemberVO;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter // 지정하지 않으면 오류 뜸 
+@Setter 
+/*
+ * org.springframework.beans.NotReadablePropertyException: Invalid property 
+ * 'principal.memberVO' of bean class [org.springframework.security.authentication
+ * .UsernamePasswordAuthenticationToken]: Bean property 'principal.memberVO' 
+ * is not readable or has an invalid getter method: Does the return type of 
+ * the getter match the parameter type of the setter?
+ *	at org.springframework.beans.AbstractNestablePropertyAccessor.getPropertyValue
+ */
 public class CustomUser extends User{
 
 	private static final long serialVersionUID = 1L;

@@ -3,6 +3,8 @@ package com.jafa.domain.member;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

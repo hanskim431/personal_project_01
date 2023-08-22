@@ -30,6 +30,10 @@
 	}
 </script>
 
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.memberVO" var="authInfo"/>
+</sec:authorize>
+
 <div>
 	<nav class="navbar navbar-expand-sm bg-light justify-content-between">
 		<ul class="navbar-nav">

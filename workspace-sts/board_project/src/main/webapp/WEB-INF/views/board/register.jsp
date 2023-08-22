@@ -16,7 +16,8 @@
 									<button type="submit" class="btn btn-primary">Submit</button>
 									<button type="button" class="btn btn-primary list">list</button>
 							</span>
-							</label> <input type="text" class="form-control" name="writer">
+							</label> <input type="text" class="form-control" name="writer" value="${authInfo.memberId}" readonly="readonly">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 						</div>
 						<div class="form-group">
 							<label>제목</label> <input type="text" class="form-control"

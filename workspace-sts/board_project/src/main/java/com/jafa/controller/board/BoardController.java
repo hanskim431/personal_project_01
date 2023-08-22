@@ -1,6 +1,7 @@
 package com.jafa.controller.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,11 +46,13 @@ public class BoardController {
 		return "/board/get";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public String register(@PathVariable String boardType) {
 		return "board/register";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register")
 	public String register(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr) {
 		boardService.register(vo);
