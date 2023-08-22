@@ -37,8 +37,10 @@
 						<input class="form-control" name="writer" value="${board.writer }" readonly="readonly"/>
 					</div>
 					<div class="getBtns">
-						<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
-						<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
+						<sec:authorize access="isAuthenticated() and principal.username== #board.writer or hasRole('ROLE_ADMIN')" >
+							<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
+							<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
+						</sec:authorize>
 						<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글  ${board.replyCnt==0?'':board.replyCnt}</button>		
 					</div>
 					
@@ -110,6 +112,7 @@
 <form>
 	<input type="hidden" name="bno"  value="${board.bno}">
 	<input type="hidden" name="boardType"  value="${boardType}">
+<%-- 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 </form>
 
 <%@ include file="../includes/footer.jsp" %>
@@ -122,22 +125,24 @@ $(function(){
 	// 목록 or 수정 페이지로
 	let form = $('form')
 	$('.getBtns button').click(function(){
-		let operration = $(this).data('oper');
+		let operation = $(this).data('oper');
 		form.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
 			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
 			.append($('<input/>',{type : 'hidden', name : 'type', value : '${param.type}'}))
 			.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${param.keyword}'}))
 			.append($('<input/>',{type : 'hidden', name : 'boardType', value : '${boardType}'}))
+			.append($('<input/>',{type : 'hidden', name : '${_csrf.parameterName}', value : '${_csrf.token}'}))
+			.append($('<input/>',{type : 'hidden', name : 'writer', value : '${board.writer}'}))
 			.attr('method','get')
-		if(operration=='list'){
+		if(operation=='list'){
 			
 			form.find('#bno').remove();
 			form.attr('action','${ctxPath}/board/${boardType}/list')
 			form.submit();
-		} else if(operration=='modify'){
+		} else if(operation=='modify'){
 			form.attr('action','${ctxPath}/board/${boardType}/modify')
 			form.submit();
-		} else if(operration=='remove'){
+		} else if(operation=='remove'){
 			form.attr('action','${ctxPath}/board/${boardType}/remove')
 				.attr('method','post')
 			form.submit();

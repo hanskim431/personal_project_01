@@ -29,9 +29,10 @@
 							<label>첨부파일 목록</label>
 
 						</div>
-						<input type="hidden" name="bno" value="${board.bno}"> <input
-							type="hidden" name="boardType" value="BOARD3"> <input
-							type="hidden" name="status" value="VISIBLE">
+						<input type="hidden" name="bno" value="${board.bno}"> 
+						<input type="hidden" name="boardType" value="BOARD3"> 
+						<input type="hidden" name="status" value="VISIBLE">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					</form>
 				</div>
 				<!-- card-body end -->
@@ -44,4 +45,4 @@
 </div>
 <!-- container end -->
 
-<%@ include file="../includes/footer.jsp" %>
+<%@ include file="../includes/footer.jsp"%>

@@ -56,12 +56,13 @@
 		<ul class="navbar-nav">
 			<sec:authorize access="isAnonymous()">
 				<li class="nav-item">
-						<a class="nav-link" href="${ctxPath}/login">로그인</a>
+					<a class="nav-link" href="${ctxPath}/login">로그인</a>
 				</li>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<li class="nav-item">
-						<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
+					<element>${authInfo.username}</element>
+					<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
 				</li>
 			</sec:authorize>
 		</ul>

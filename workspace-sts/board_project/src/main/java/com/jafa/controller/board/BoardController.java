@@ -1,7 +1,11 @@
 package com.jafa.controller.board;
 
+import java.nio.file.AccessDeniedException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,14 +65,22 @@ public class BoardController {
 //		return "redirect:/board/get?bno="+vo.getBno();
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
 	public String modify(@PathVariable String boardType, Model model, 
-						@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+						@RequestParam("bno") Long bno, RedirectAttributes rttr,
+						Authentication auth) throws AccessDeniedException {
+		BoardVO vo = boardService.get(bno);
+		String username = auth.getName();
+		if(!vo.getWriter().equals(username) && !auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			throw new AccessDeniedException("Access denied"); 
+		}
 		model.addAttribute("board", boardService.get(bno));
 		return "board/modify";
 		
 	}
 	
+	@PreAuthorize("isAuthenticated() and principal.username== #vo.writer or hasRole('ROLE_ADMIN')")
 	@PostMapping("/modify")
 	public String modify(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr, Criteria criteria) {
 		boardService.modify(vo);
@@ -79,8 +91,9 @@ public class BoardController {
 		return "redirect:/board/"+boardType+"/get?bno="+vo.getBno();
 	}
 	
+	@PreAuthorize("isAuthenticated() and principal.username== #writer or hasRole('ROLE_ADMIN')")
 	@PostMapping("/remove")
-	public String remove(@PathVariable String boardType, Long bno, RedirectAttributes rttr, Criteria criteria) {
+	public String remove(@PathVariable String boardType, Long bno, String writer, RedirectAttributes rttr, Criteria criteria) {
 		if(boardService.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
