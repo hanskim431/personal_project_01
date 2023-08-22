@@ -10,9 +10,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jafa.domain.member.MemberVO;
 import com.jafa.service.member.MemberService;
 
 @Controller
@@ -46,13 +48,13 @@ public class MemberController {
 		return "/error/accessError";
 	}
 	
-	@GetMapping("/guest/guestpage")
-	public void guestPage() {
-	}
-	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
-	@GetMapping("/member/memberpage")
-	public String memberPage() {
+	@GetMapping({"/myPage", "/myPage/{path}"})
+	public String myPage(Model model, Principal principal, @PathVariable(required = false) String path) {
+		String memberId = principal.getName();
+		if(path==null) {
+			MemberVO vo = memberService.selectById(memberId);
+		}
 		return "/member/memberPage";
 	}
 

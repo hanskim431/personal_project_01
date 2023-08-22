@@ -22,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	// C
 	@Transactional
 	@Override
 	public void join(MemberVO vo) {
@@ -29,4 +30,23 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.insert(vo);
 	}
 
+	// R
+	@Override
+	public MemberVO read(String memberId) {
+		return memberRepository.read(memberId);
+	}
+
+	@Override
+	public MemberVO selectById(String memberId) {
+		return memberRepository.selectById(memberId);
+	}
+
+	// U
+	@Override
+	public void modify(MemberVO vo) {
+		memberRepository.update(vo);
+	}
+
+	// D
+	
 }
