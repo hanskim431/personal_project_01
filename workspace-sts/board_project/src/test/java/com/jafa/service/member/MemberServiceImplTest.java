@@ -1,8 +1,12 @@
 package com.jafa.service.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.jafa.AppTest;
 import com.jafa.domain.member.AuthVO;
@@ -20,7 +24,10 @@ public class MemberServiceImplTest extends AppTest{
 	@Autowired
 	private AuthRepository authRepository;
 	
-//	@Ignore
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Ignore
 	@Test
 	public void test() {
 		MemberVO vo = new MemberVO();
@@ -44,4 +51,15 @@ public class MemberServiceImplTest extends AppTest{
 		authVO.setEnable("ACTIVE");
 		authRepository.insert(authVO);
 	}
+	
+//	@Ignore
+	@Test
+	public void testChangePassword() {
+		Map<String, String> memberMap = new HashMap();
+		memberMap.put("memberId", "admin1");
+		memberMap.put("newPwd", "1234");
+		memberMap.put("currentPwd", "1111");
+		memberService.changePassword(memberMap);
+	}
+	
 }

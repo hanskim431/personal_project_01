@@ -48,7 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update TBL_MEMBER set
 		memberName = #{memberName},
-		email = #{email}
+		address = #{address}
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="updatePassword">
+		update TBL_MEMBER set
+		memberPwd = #{memberPwd}
 		where memberId = #{memberId}
 	</update>
 

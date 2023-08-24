@@ -76,6 +76,9 @@
 					<div>${authInfo.memberName}님, 어서오세요</div>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="${ctxPath}/mypage">마이페이지</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
 				</li>
 			</sec:authorize>
