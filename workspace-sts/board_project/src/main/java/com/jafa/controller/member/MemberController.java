@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.member.MemberVO;
@@ -31,6 +32,30 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	// 회원 가입
+	@GetMapping("/member/join")
+	public String joinForm(MemberVO memberVO) {
+		return "member/join";
+	}
+	
+	// 회원 가입 처리
+	@PostMapping("/member/join")
+	public String join(RedirectAttributes rttr, MemberVO memberVO) {
+		memberService.join(memberVO);
+		return "redirect:/";
+	}
+	
+	// 아이디 중복 체크
+	@PostMapping("/member/idCheck")
+	@ResponseBody
+	public ResponseEntity<Boolean> idDuplicateCheck(String memberId){
+		MemberVO vo = memberService.selectById(memberId);
+		return vo == null?
+				new ResponseEntity<Boolean>(Boolean.TRUE,HttpStatus.OK)
+				: new ResponseEntity<Boolean>(Boolean.FALSE,HttpStatus.OK);
+	}
+	
 	
 	// 로그인 
 	@RequestMapping("/login")
