@@ -1,6 +1,8 @@
 package com.jafa.config;
 
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +15,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -61,6 +64,27 @@ public class RootConfig {
 	@Bean
 	public DataSourceTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());
+	}
+	
+	// 이메일 인증 
+	@Bean
+	public JavaMailSenderImpl mailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.naver.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("eatcodeall@naver.com");
+		mailSender.setPassword("zheldahdzl1!");
+		
+		 Properties properties = new Properties();
+		    properties.put("mail.transport.protocol", "smtp");
+		    properties.put("mail.smtp.auth", "true");
+		    properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		    properties.put("mail.smtp.starttls.enable", "true");
+		    properties.put("mail.debug", "true");
+		    properties.put("mail.smtp.ssl.trust", "smtp.naver.com");
+		    properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+		    mailSender.setJavaMailProperties(properties);
+		    return mailSender;
 	}
 
 }

@@ -69,6 +69,7 @@
 		<ul class="navbar-nav">
 			<sec:authorize access="isAnonymous()">
 				<li class="nav-item">
+					<a class="nav-link" href="${ctxPath}/join/step1">회원 가입</a>
 					<a class="nav-link" href="${ctxPath}/login">로그인</a>
 				</li>
 			</sec:authorize>

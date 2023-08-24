@@ -1,6 +1,7 @@
 package com.jafa.controller.member;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.member.MemberVO;
 import com.jafa.exception.PasswordMisMatchException;
+import com.jafa.service.member.MailSendService;
 import com.jafa.service.member.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -33,10 +35,40 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	// 회원 가입
-	@GetMapping("/member/join")
-	public String joinForm(MemberVO memberVO) {
+	@Autowired
+	private MailSendService mailSendService;
+
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		return mailSendService.joinEmail(email);
+	}
+	
+	// 약관 동의
+	@GetMapping("/join/step1")
+	public String step1() {
+		return "member/step1";
+	}
+	
+	// 약관 동의
+	@PostMapping("/join/step2")
+	public String step2(@RequestParam(defaultValue = "false") List<Boolean> agreement) {
+		if(agreement.size()>=2 && agreement.stream().allMatch(v->v)) {
+			return "member/step2";
+		}
+		return "member/step1";
+	}
+	
+	// 회원 가입 작성
+	@PostMapping("/join/step3")
+	public String step3(MemberVO memberVO) {
 		return "member/join";
+	}
+	
+	// 회원 가입 step 스킵 방지
+	@GetMapping({"/join/step2","/join/step3"})
+	public String joinForm() {
+		return "member/step1";
 	}
 	
 	// 회원 가입 처리
