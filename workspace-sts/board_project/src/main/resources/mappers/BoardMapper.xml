@@ -36,13 +36,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getList" resultType="board">
 		<![CDATA[
-		SELECT * FROM 
-		(SELECT /*INDEX_DESC(TBL_BOARD PK_BOARD)*/ 
-		ROWNUM as RN, BNO, 
-		TITLE, CONTENT, WRITER, 
-		REGDATE, UPDATEDATE, 
-		BOARDTYPE, STATUS, REPLYCNT
-		FROM TBL_BOARD WHERE
+		select * from 
+		(select /*INDEX_DESC(TBL_BOARD PK_BOARD)*/ 
+		rownum as rn, bno, 
+		title, content, writer, 
+		regdate, updatedate, 
+		boardtype, status, replycnt, likehit
+		from TBL_BOARD where
 		]]>
 		<![CDATA[ 
 			ROWNUM <= #{criteria.maxRow} 
@@ -89,6 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- REPLY COUNT -->
 	<update id="updateReplyCnt">
 		UPDATE TBL_BOARD SET REPLYCNT = REPLYCNT + #{amount} WHERE BNO = #{bno}
+	</update>
+
+	<!-- Like COUNT -->
+	<update id="updateLikeCnt">
+		update TBL_BOARD set LIKEHIT = LIKEHIT + #{amount} WHERE BNO = #{bno}
 	</update>
 
 </mapper>

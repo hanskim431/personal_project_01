@@ -42,6 +42,13 @@
 							<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
 						</sec:authorize>
 						<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글  ${board.replyCnt==0?'':board.replyCnt}</button>		
+					    <sec:authorize access="isAuthenticated()">
+					        <button class="btn btn-danger like">추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
+					    </sec:authorize>
+					    <sec:authorize access="!isAuthenticated()">
+					        <button class="btn btn-danger" onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
+					        추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
+					    </sec:authorize>	
 					</div>
 					
 				</div>
@@ -159,13 +166,55 @@ $(function(){
 	});
 });
 
-$(function(){
-    $('.back-to-top-css').click(function() {
-        // 댓글 영역으로 스크롤 이동
-        $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
-    });
+$(function() {
+
+	$('.back-to-top-css').click(function() {
+		// 댓글 영역으로 스크롤 이동
+		$('html, body').animate({scrollTop : $(document).height()}, 'slow');
+	});
+
 });
 
+$(function() {
+
+	$('.like').click(function(e) {
+		e.preventDefault();
+		let bno = $('[name="bno"]').val();
+
+		$.ajax({
+			type : 'post',
+			url : '${ctxPath}/board/${boardType}/like',
+			data : {
+				memberId : memberId,
+				bno : bno
+			},
+			success : function(message) {
+				alert(message);
+				isLike();
+			}
+		})
+	})
+});
+
+function isLike(){
+	let bno = $('[name="bno"]').val();
+	$.ajax({
+		type : 'post',
+		url : '${ctxPath}/board/${boardType}/islike',
+		data : {memberId : memberId , bno : bno},
+		success : function(result){
+			if(result){
+				$('.like').html('추천취소')
+			} else {
+				$('.like').html('추천')
+			}
+		}
+	})
+}
+
+if(memberId!=''){
+	isLike();
+}
 </script>
 
 <script src="${ctxPath}/resources/js/replyService.js"></script>

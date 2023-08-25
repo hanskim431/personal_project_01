@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jafa.domain.board.BoardVO;
+import com.jafa.domain.board.LikeDTO;
 import com.jafa.domain.common.Criteria;
+import com.jafa.repository.board.ArticleLikeRepository;
 import com.jafa.repository.board.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardRepository boardRepository;
+	
+	@Autowired
+	private ArticleLikeRepository articleLikeRepository;
 	
 	@Override
 	public List<BoardVO> getList(Criteria criteria, String boardType) {
@@ -57,6 +63,27 @@ public class BoardServiceImpl implements BoardService {
 	public int totalCount(Criteria criteria, String boardType) {
 		boardType = "board1";
 		return boardRepository.getTotalCount(criteria, boardType);
+	}
+
+	// 게시물 추천 기능
+	@Transactional
+	@Override
+	public boolean hitLike(LikeDTO likeDTO) {
+		LikeDTO result = articleLikeRepository.get(likeDTO);
+		if(result==null) { // 추천
+			articleLikeRepository.insert(likeDTO);
+			boardRepository.updateLikeCnt(likeDTO.getBno(), 1);
+			return true;
+		} else { // 추천 취소
+			articleLikeRepository.delete(likeDTO);
+			boardRepository.updateLikeCnt(likeDTO.getBno(), -1);
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isLike(LikeDTO likeDTO) {
+		return articleLikeRepository.get(likeDTO)!=null;
 	}
 
 }

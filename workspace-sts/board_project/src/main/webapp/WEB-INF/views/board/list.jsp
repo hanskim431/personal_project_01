@@ -33,6 +33,7 @@
 									<th>게시판</th>
 									<th>제목</th>
 									<th>작성자</th>
+									<th>추천수</th>
 									<th>작성일</th>
 									<th>수정일</th>
 								</tr>
@@ -47,10 +48,11 @@
 												${board.title } ${board.replyCnt==0?'':[board.replyCnt]}
 											</a>
 										</td>
-										<td>${board.writer }</td>
-										<td><tf:formatDateTime value="${board.regDate }"
+										<td>${board.writer}</td>
+										<td>${board.likeHit}</td>
+										<td><tf:formatDateTime value="${board.regDate}"
 												pattern="yyyy-MM-dd HH:mm" /></td>
-										<td><tf:formatDateTime value="${board.updateDate }"
+										<td><tf:formatDateTime value="${board.updateDate}"
 												pattern="yyyy-MM-dd HH:mm" /></td>
 										<td><button type="button" class="btn btn-primary active">보이기</button>
 											<button type="button" class="btn btn-primary disabled">숨기기</button></td>
