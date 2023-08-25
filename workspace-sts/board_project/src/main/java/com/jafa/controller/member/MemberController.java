@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.member.MemberVO;
+import com.jafa.exception.NotFoundMemberException;
 import com.jafa.exception.PasswordMisMatchException;
 import com.jafa.service.member.MailSendService;
 import com.jafa.service.member.MemberService;
@@ -44,6 +45,7 @@ public class MemberController {
 		return mailSendService.joinEmail(email);
 	}
 
+	// ========= 회원 가입 ========= 
 	// 약관동의 
 	@GetMapping("/join/step1")
 	public String step1() {
@@ -86,7 +88,8 @@ public class MemberController {
 		return vo == null ? new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK)
 				: new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
 	}
-	
+
+	// ========= 로그인 ========= 
 	// 로그인 
 	@RequestMapping("/login")
 	public String loginPage(HttpServletRequest request, Model model, Authentication authentication,
@@ -107,7 +110,8 @@ public class MemberController {
 		if(logout!=null) model.addAttribute("logout", "로그아웃");
 		return "member/login";
 	}
-	
+
+	// ========= 페이지 ========= 
 	// 403
 	@GetMapping("/accessDenied")
 	public String accessDenied() {
@@ -133,7 +137,8 @@ public class MemberController {
 	public String adminPage() {
 		return "/admin/adminPage";
 	}
-	
+
+	// ========= 정보 수정 ========= 
 	// 개인 정보 수정 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@PostMapping("/member/modify")
@@ -156,5 +161,25 @@ public class MemberController {
 		}
 		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
+
+	// ========= 정보 찾기 ========= 
+	// 아이디 / 비밀번호 찾기 페이지
+	@GetMapping("/findMemberInfo")
+	public String findMemberInfo() {
+		return "member/findMemberInfo";
+	}
 	
+	@ResponseBody
+	@PostMapping(value = "/findMemberId", produces = "plain/text; charset=utf-8")
+	public ResponseEntity<String> findMemberId(String email){
+		String message = null;
+		try {
+			mailSendService.findIdEmail(email);
+			message = "가입하신 이메일로 전송되었습니다.";
+		} catch (NotFoundMemberException e) {
+			 message = "회원 정보를 찾을 수 없습니다.";
+			 return new ResponseEntity<String> (message,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String> (message,HttpStatus.OK);
+	}
 }

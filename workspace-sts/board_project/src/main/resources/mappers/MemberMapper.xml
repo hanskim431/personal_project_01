@@ -43,6 +43,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from TBL_MEMBER
 		where memberId = #{memberId}
 	</select>
+
+	<select id="selectByEmail" resultType="string">
+		select memberId 
+		from TBL_MEMBER
+		where email = #{email}
+	</select>
 	
 	<!-- UPDATE -->
 	<update id="update">

@@ -30,6 +30,14 @@ public interface MemberRepository {
 	 * @return MemberVO (memberId, memberName, email, regDate, address)
 	 */
 	MemberVO selectById(String memberId);
+	
+	/**
+	 * SELETE member by email : repository
+	 * 
+	 * @param email
+	 * @return String (memberId)
+	 */
+	String selectByEmail(String email);
 
 	// U
 	/**

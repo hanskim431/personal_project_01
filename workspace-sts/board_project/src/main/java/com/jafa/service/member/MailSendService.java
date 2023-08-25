@@ -8,7 +8,12 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.jafa.exception.NotFoundMemberException;
+import com.jafa.repository.member.MemberRepository;
 
 import lombok.extern.log4j.Log4j;
 
@@ -18,6 +23,13 @@ public class MailSendService {
 	
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+	
+	@Autowired
+	private MemberRepository memberRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	private int authNumber; 
 	
 	public void makeRandomNumber() {
@@ -55,4 +67,50 @@ public class MailSendService {
 			e.printStackTrace();
 		}
 	}
+
+	// 아이디 찾기 이메일 전송
+	public void findIdEmail(String email) {
+		String findMemberId = memberRepository.selectByEmail(email);
+		if(findMemberId==null) {
+			throw new NotFoundMemberException();
+		}
+		
+		String setForm = "eatcodeall@naver.com";
+		String toMail = email;
+		String title = "[Board_Project] 아이디 찾기 서비스 메일입니다.";
+		String content = "";
+		content += "회원님의 아이디는 <b>";
+		content += findMemberId;
+		content += "</b> 입니다";
+		
+		mailSend(setForm, toMail, title, content);
+	}
+	
+	// 임시 비밀번호 이메일 전송
+	@Transactional
+	public void findPwdEmail(String email) {
+		String findMemberId = memberRepository.selectByEmail(email);
+		if(findMemberId==null) {
+			throw new NotFoundMemberException();
+		}
+		String tempPassword = generateTemporaryPassword();
+		String encodingPwd = passwordEncoder.encode(tempPassword);
+		memberRepository.updatePassword(findMemberId, encodingPwd);
+
+		String setFrom = "eatcodeall@naver.com"; // 발신자  
+		String toMail = email; // 수신자
+		String title = "[Board_Project] 임시비밀번호 발급 서비스 메일입니다.";  
+		String content = "";
+		content += "임시 비밀번호는 <b>";
+		content += tempPassword;
+		content += "</b> 입니다";
+		mailSend(setFrom, toMail, title, content);
+	}
+
+	// 임시 비밀번호 생성
+	private String generateTemporaryPassword() {
+		StringBuilder charSb = new StringBuilder();
+		return null;
+	}
+	
 }

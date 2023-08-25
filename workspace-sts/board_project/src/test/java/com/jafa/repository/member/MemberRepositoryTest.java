@@ -19,7 +19,7 @@ public class MemberRepositoryTest extends AppTest{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testRead() {
 		log.info(memberRepository.read("admin1"));
@@ -62,6 +62,12 @@ public class MemberRepositoryTest extends AppTest{
 	@Test
 	public void testSelectById() {
 		log.info(memberRepository.selectById("admin1"));
+	}
+	
+//	@Ignore
+	@Test
+	public void testSelectByEmail() {
+		log.info(memberRepository.selectByEmail("admin3@test.com"));
 	}
 
 }
