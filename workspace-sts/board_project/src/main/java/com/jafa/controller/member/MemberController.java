@@ -169,6 +169,7 @@ public class MemberController {
 		return "member/findMemberInfo";
 	}
 	
+	// 아이디 찾기 처리
 	@ResponseBody
 	@PostMapping(value = "/findMemberId", produces = "plain/text; charset=utf-8")
 	public ResponseEntity<String> findMemberId(String email){
@@ -179,6 +180,21 @@ public class MemberController {
 		} catch (NotFoundMemberException e) {
 			 message = "회원 정보를 찾을 수 없습니다.";
 			 return new ResponseEntity<String> (message,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String> (message,HttpStatus.OK);
+	}
+	
+	// 비밀번호 찾기 처리
+	@ResponseBody
+	@PostMapping(value = "/findMemberPwd", produces = "plain/text; charset=utf-8")
+	public ResponseEntity<String> findMemberPwd(String email){
+		String message = null;
+		try {
+			mailSendService.findPwdEmail(email);
+			message = "가입하신 이메일로 전송되었습니다.";
+		} catch (NotFoundMemberException e) {
+			message = "회원 정보를 찾을 수 없습니다.";
+			return new ResponseEntity<String> (message,HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<String> (message,HttpStatus.OK);
 	}

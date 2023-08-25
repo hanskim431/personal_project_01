@@ -15,7 +15,12 @@
 			<label>
 				<input type="checkbox" name="remember-me" class="mr-2">로그인 유지하기
 			</label>
-			<button class="form-control btn btn-outline-primary" >로그인</button>
+			<div class="form-group">
+				<button class="form-control btn btn-outline-primary" >로그인</button>
+			</div>
+			<div class="form-group">
+				<a  href="${ctxPath}/findMemberInfo" class="form-control btn btn-outline-primary" >아이디 / 비밀번호 찾기</a>
+			</div>
 			<c:if test="${not empty LoginFail}">
 				<p style="color: red; font-size: 10px">${LoginFail}</p>
 			</c:if>

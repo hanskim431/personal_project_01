@@ -1,5 +1,6 @@
 package com.jafa.service.member;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -45,7 +46,7 @@ public class MailSendService {
 		makeRandomNumber();
 		String setFrom = "eatcodeall@naver.com"; // 발신자  
 		String toMail = email; // 수신자
-		String title = "회원 가입 인증 이메일 입니다.";  
+		String title = "[Board_Project] 회원 가입 인증 이메일 입니다.";  
 		String content = "인증 번호는 " + authNumber + "입니다." + "<br>" + 
 			    "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; //이메일 내용 삽입
 		mailSend(setFrom, toMail, title, content);
@@ -101,16 +102,31 @@ public class MailSendService {
 		String toMail = email; // 수신자
 		String title = "[Board_Project] 임시비밀번호 발급 서비스 메일입니다.";  
 		String content = "";
-		content += "임시 비밀번호는 <b>";
+		content += "임시 비밀번호는 [<b>";
 		content += tempPassword;
-		content += "</b> 입니다";
+		content += "</b>] 입니다";
 		mailSend(setFrom, toMail, title, content);
 	}
 
 	// 임시 비밀번호 생성
-	private String generateTemporaryPassword() {
+	public String generateTemporaryPassword() {
 		StringBuilder charSb = new StringBuilder();
-		return null;
+		for(char c = 48; c <= 122; c++) {
+			if(c>=58 && c<=64 || c>=91 && c<=96) {continue;}
+			charSb.append(c);
+		}
+		
+		String characters = charSb.toString();
+		Random random = new SecureRandom();
+		
+		StringBuilder sb = new StringBuilder(12);
+		for(int i = 0; i<12; i++) {
+			int randomIdx = random.nextInt(characters.length());
+			char randomChar = characters.charAt(randomIdx);
+			sb.append(randomChar);
+		}
+		
+		return sb.toString();
 	}
 	
 }
