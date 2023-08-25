@@ -6,51 +6,54 @@
 		<div class="col-12">
 			<h1 class="page-header">
 				<div class="getBtns">
-					<button data-oper="list" class="btn btn-info list">목록으로</button>		
+					<button data-oper="list" class="btn btn-info list">목록으로</button>
 					${board.title}
 				</div>
 			</h1>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header">
-					Board Read Page
-				</div>
+				<div class="card-header">Board Read Page</div>
 				<div class="card-body">
 					<div class="form-group">
-						<label>번호</label>	
-						<input class="form-control" name="bno" value="${board.bno}" readonly="readonly"/>
+						<label>번호</label> <input class="form-control" name="bno"
+							value="${board.bno}" readonly="readonly" />
 					</div>
 					<div class="form-group">
-						<label>제목</label>
-						<input class="form-control" name="title" value="${board.title}" readonly="readonly"/>
+						<label>제목</label> <input class="form-control" name="title"
+							value="${board.title}" readonly="readonly" />
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea class="form-control" rows="10" name="content" readonly="readonly">${board.content}</textarea>
+						<textarea class="form-control" rows="10" name="content"
+							readonly="readonly">${board.content}</textarea>
 					</div>
 					<div class="form-group">
-						<label>작성자</label>
-						<input class="form-control" name="writer" value="${board.writer }" readonly="readonly"/>
+						<label>작성자</label> <input class="form-control" name="writer"
+							value="${board.writer }" readonly="readonly" />
 					</div>
 					<div class="getBtns">
-						<sec:authorize access="isAuthenticated() and principal.username== #board.writer or hasRole('ROLE_ADMIN')" >
-							<button data-oper="modify" class="btn btn-light modify">수정페이지</button>				
-							<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>		
+						<sec:authorize
+							access="isAuthenticated() and principal.username== #board.writer or hasRole('ROLE_ADMIN')">
+							<button data-oper="modify" class="btn btn-light modify">수정페이지</button>
+							<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>
 						</sec:authorize>
-						<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글  ${board.replyCnt==0?'':board.replyCnt}</button>		
-					    <sec:authorize access="isAuthenticated()">
-					        <button class="btn btn-danger like">추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
-					    </sec:authorize>
-					    <sec:authorize access="!isAuthenticated()">
-					        <button class="btn btn-danger" onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
-					        추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
-					    </sec:authorize>	
+						<button class="btn btn-warning back-to-top-css"
+							data-toggle="collapse" data-target=".reply">댓글
+							${board.replyCnt==0?'':board.replyCnt}</button>
+						<sec:authorize access="isAuthenticated()">
+							<button class="btn btn-danger like">추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
+						</sec:authorize>
+						<sec:authorize access="!isAuthenticated()">
+							<button class="btn btn-danger"
+								onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
+								추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
+						</sec:authorize>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -67,7 +70,8 @@
 					<a class="btn btn-outline-primary col-3" href="${ctxPath}/login">로그인</a>
 				</div>
 			</div><!-- text-right-end -->
-			<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." maxlength="400" class="replyContent form-control" readonly="readonly"></textarea>
+			<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'"
+			maxlength="400" class="replyContent form-control" readonly="readonly"></textarea>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()"> 
 			<div class="text-right">

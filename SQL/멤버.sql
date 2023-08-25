@@ -105,7 +105,7 @@ CREATE TABLE TBL_REPLY( -- 댓글 테이블
     REGDATE DATE default SYSDATE, -- 작성일
     UPDATEDATE DATE default SYSDATE, -- 수정일
     STATUS VARCHAR2(100), -- 댓글 상태
-    LIKEHIT NUMBER -- 좋아요 수
+    LIKEHIT NUMBER default 0 -- 좋아요 수
 );
 
 DROP SEQUENCE SEQ_REPLY; -- 게시글 번호 시퀀스
