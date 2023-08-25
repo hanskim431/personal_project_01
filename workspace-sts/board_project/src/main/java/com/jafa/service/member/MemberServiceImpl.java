@@ -31,9 +31,12 @@ public class MemberServiceImpl implements MemberService {
 	// C
 	@Transactional
 	@Override
-	public void join(MemberVO vo) {
-		vo.setMemberPwd(passwordEncoder.encode(vo.getMemberPwd()));
-		memberRepository.insert(vo);
+	public void join(MemberVO memberVO) {
+		memberVO.setMemberPwd(passwordEncoder.encode(memberVO.getMemberPwd()));
+		memberRepository.insert(memberVO);
+		
+		AuthVO authVO = new AuthVO(memberVO.getMemberId(),"ROLE_MEMBER","ACTIVE");
+		authRepository.insert(authVO);
 	}
 
 	// R

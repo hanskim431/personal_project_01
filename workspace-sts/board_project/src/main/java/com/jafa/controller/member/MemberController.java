@@ -43,51 +43,49 @@ public class MemberController {
 	public String mailCheck(String email) {
 		return mailSendService.joinEmail(email);
 	}
-	
-	// 약관 동의
+
+	// 약관동의 
 	@GetMapping("/join/step1")
 	public String step1() {
 		return "member/step1";
 	}
-	
-	// 약관 동의
+
+	// 이메일 인증
 	@PostMapping("/join/step2")
 	public String step2(@RequestParam(defaultValue = "false") List<Boolean> agreement) {
-		if(agreement.size()>=2 && agreement.stream().allMatch(v->v)) {
+		if(agreement.size()>=2 && agreement.stream().allMatch(v->v) ) {
 			return "member/step2";
 		}
 		return "member/step1";
 	}
-	
-	// 회원 가입 작성
+
+	// 회원가입작성
 	@PostMapping("/join/step3")
 	public String step3(MemberVO memberVO) {
 		return "member/join";
 	}
-	
-	// 회원 가입 step 스킵 방지
+
+	// 회원가입 처리 
+	@PostMapping("/member/join")
+	public String join(MemberVO memberVO, RedirectAttributes rttr) {
+		log.info(memberVO);
+		memberService.join(memberVO);
+		return "redirect:/";
+	}
+
 	@GetMapping({"/join/step2","/join/step3"})
 	public String joinForm() {
 		return "member/step1";
 	}
-	
-	// 회원 가입 처리
-	@PostMapping("/member/join")
-	public String join(RedirectAttributes rttr, MemberVO memberVO) {
-		memberService.join(memberVO);
-		return "redirect:/";
-	}
-	
-	// 아이디 중복 체크
+
+	// 아이디중복 체크
 	@PostMapping("/member/idCheck")
 	@ResponseBody
-	public ResponseEntity<Boolean> idDuplicateCheck(String memberId){
-		MemberVO vo = memberService.selectById(memberId);
-		return vo == null?
-				new ResponseEntity<Boolean>(Boolean.TRUE,HttpStatus.OK)
-				: new ResponseEntity<Boolean>(Boolean.FALSE,HttpStatus.OK);
+	public ResponseEntity<Boolean> idDuplicateCheck(String memberId) {
+		MemberVO vo = memberService.read(memberId);
+		return vo == null ? new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK)
+				: new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
 	}
-	
 	
 	// 로그인 
 	@RequestMapping("/login")

@@ -22,6 +22,8 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import com.jafa.security.CustomUserDetailService;
+
 @Configuration
 @EnableWebSecurity
 @ComponentScan("com.jafa.security")
@@ -41,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private AuthenticationFailureHandler authenticationFailureHandler; 
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private CustomUserDetailService customUserDetailService;
 	
 	// Spring Security의 웹 보안 설정
 	@Override
@@ -82,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService)
+		auth.userDetailsService(customUserDetailService)
 			.passwordEncoder(passwordEncoder());
 	}
 	

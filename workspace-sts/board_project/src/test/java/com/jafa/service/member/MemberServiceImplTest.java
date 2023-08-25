@@ -56,9 +56,9 @@ public class MemberServiceImplTest extends AppTest{
 	@Test
 	public void testChangePassword() {
 		Map<String, String> memberMap = new HashMap();
-		memberMap.put("memberId", "admin1");
-		memberMap.put("newPwd", "1234");
-		memberMap.put("currentPwd", "1111");
+		memberMap.put("memberId", "member3");
+		memberMap.put("newPwd", "1111");
+		memberMap.put("currentPwd", "1234");
 		memberService.changePassword(memberMap);
 	}
 	
