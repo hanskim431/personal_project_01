@@ -33,9 +33,23 @@ public class BoardRepositoryTest extends AppTest{
 		boardRepository.insert(vo);
 		log.info("데이터 삽입 완료");
 	}
+//	@Ignore
+	@Test
+	public void testInsertSelectKey() {
+		log.info("데이터 삽입");
+		BoardVO vo = BoardVO.builder()
+				.title("Key삽입 제목")
+				.content("Key삽입 내용")
+				.writer("admin1")
+				.boardType("board1")
+				.status("VISIBLE")
+				.build();
+		boardRepository.insert(vo);
+		log.info("데이터 삽입 완료");
+	}
 
 	// R
-//	@Ignore
+	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();

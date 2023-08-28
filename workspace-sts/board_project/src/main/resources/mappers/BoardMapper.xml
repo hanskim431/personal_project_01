@@ -11,6 +11,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
 		VALUES(SEQ_BOARD.NEXTVAL,#{title},#{content},#{writer},#{boardType},#{status})
 	</insert>
+	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			select SEQ_BOARD.nextval from dual		
+		</selectKey>
+		insert into TBL_BOARD (bno,title,content,writer,boardType, status)
+		values (#{bno},#{title},#{content},#{writer},#{boardType},#{status})
+	</insert>
+
+<!--    	<insert id="insertSelectKey" keyColumn="bno" keyProperty="bno" useGeneratedKeys="true"> -->
+<!--   	    insert into TBL_BOARD(bno,title,content,writer) -->
+<!--     	values (SEQ_BOARD.nextval,#{title},#{content},#{writer}) -->
+<!--     </insert> -->
 
 	<!-- READ -->
 

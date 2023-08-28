@@ -120,14 +120,18 @@ CREATE TABLE TBL_REPLY_LIKE( -- 게시글 좋아요 테이블
 --            첨부파일
 -----------------------------------
 CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
-    UUID VARCHAR2(100) PRIMARY KEY, -- 파일 아이디
-    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO), -- 글 번호
+    UUID VARCHAR2(200), -- 파일 아이디
+    BNO NUMBER(10), -- 글 번호
     UPLOADPATH VARCHAR2(200), -- 파일 경로
-    FILETYPE CHAR(1), -- 파일 형식
+    FILETYPE CHAR(1) default 'I', -- 파일 형식
     FILENAME VARCHAR2(100), -- 파일 이름
-    REGDATE DATE, -- 등록일
-    STATUS VARCHAR2(10) -- 상태
+    REGDATE DATE default sysdate, -- 등록일
+    STATUS VARCHAR2(10) default 'VISIBLE' -- 상태
 );
+
+alter table tbl_attach add constraint pk_attach primary key(uuid);
+alter table tbl_attach add constraint fk_board_attach 
+foreign key(bno) references tbl_board(bno);
 
 ------------------------------------------------------------------------------------
 --                                  임시 데이터 삽입
@@ -246,7 +250,6 @@ SELECT * FROM TBL_BOARD_LIKE; -- 게시글 좋아요
 SELECT * FROM TBL_BOARD WHERE STATUS = 'VISIBLE';
 SELECT * FROM TBL_BOARD WHERE BOARDTYPE = 'board2'; -- 게시글
 
-
 -- 댓글
 SELECT * FROM TBL_REPLY; -- 댓글
 SELECT * FROM TBL_REPLY WHERE STATUS = 'VISIBLE'; -- 댓글
@@ -256,3 +259,6 @@ SELECT * FROM TBL_BOARD B LEFT OUTER JOIN TBL_REPLY R ON B.BNO = R.BNO; -- 게�
 
 -- 첨부 파일
 SELECT * FROM TBL_ATTACH; -- 첨부파일
+
+
+SELECT * FROM TBL_BOARD B LEFT OUTER JOIN TBL_ATTACH A ON B.BNO = A.BNO; -- 게시글 + 첨부파일

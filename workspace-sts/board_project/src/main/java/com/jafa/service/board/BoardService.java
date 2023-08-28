@@ -16,7 +16,7 @@ public interface BoardService {
 	List<BoardVO> getList(Criteria criteria, String boardType);
 	
 	//C
-	boolean register(BoardVO vo);
+	void register(BoardVO vo);
 	
 	//R
 	BoardVO get(Long bno);

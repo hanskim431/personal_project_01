@@ -59,7 +59,9 @@ public class BoardController {
 	// 게시글 작성 페이지
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
-	public String register(@PathVariable String boardType) {
+	public String register(@PathVariable String boardType, Model model) {
+		log.info(boardType);
+		model.addAttribute("boardType", boardType);
 		return "board/register";
 	}
 	
@@ -67,10 +69,12 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register")
 	public String register(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr) {
+		log.info(vo.getAttachList());
 		boardService.register(vo);
-		rttr.addFlashAttribute("result", vo.getBno());
+		rttr.addFlashAttribute("result", vo.getBno()); // ? 
+		rttr.addFlashAttribute("operation", "register");
 		return "redirect:/board/"+boardType;
-//		return "redirect:/board/get?bno="+vo.getBno();
+//		return "redirect:/board"+boardType+"/get?bno="+vo.getBno();
 	}
 	
 	// 게시글 수정 페이지

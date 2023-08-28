@@ -36,6 +36,8 @@
 
 	let memberId = "${authInfo.memberId}"
 	let auth = "${authList}" 
+
+	let boardType = '${boardType}';
 	
 	$(document).ajaxSend(function(e, xhr, options){
 		xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);

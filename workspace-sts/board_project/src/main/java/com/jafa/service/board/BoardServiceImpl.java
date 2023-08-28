@@ -11,6 +11,7 @@ import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.board.LikeDTO;
 import com.jafa.domain.common.Criteria;
 import com.jafa.repository.board.ArticleLikeRepository;
+import com.jafa.repository.board.BoardAttachRepository;
 import com.jafa.repository.board.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardRepository boardRepository;
 	
 	@Autowired
+	private BoardAttachRepository boardAttachRepository;
+
+	@Autowired
 	private ArticleLikeRepository articleLikeRepository;
 	
 	@Override
@@ -33,11 +37,18 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.getList(criteria, boardType);
 	}
 	
+	@Transactional
 	@Override
-	public boolean register(BoardVO vo) {
-//		log.info("### register: "+ vo);
-		boardRepository.insert(vo);
-		return true;
+	public void register(BoardVO board) {
+		boardRepository.insertSelectKey(board);
+
+		// 첨부파일이 있을 때
+		if(board.getAttachList()!=null && !board.getAttachList().isEmpty()) { 
+			board.getAttachList().forEach(attachFile->{
+				attachFile.setBno(board.getBno());
+				boardAttachRepository.insert(attachFile);
+			});
+		}
 	}
 
 	@Override

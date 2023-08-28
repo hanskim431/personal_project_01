@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jafa.repository.board.BoardAttachRepository">
+
+	<!-- CREATE -->
+    <insert id="insert">
+		insert into TBL_ATTACH(uuid,uploadPath,fileName,fileType,bno)
+		values (#{uuid}, #{uploadPath}, #{fileName},#{fileType},#{bno})
+    </insert>
+
+	<!-- READ -->
+	<select id="selectByBno" resultType="boardAttach">
+		select * from TBL_ATTACH where BNO = #{bno}
+	</select>
+
+	<!-- UPDATE -->
+
+	<!-- DELETE -->
+	<delete id="delete">
+		delete from TBL_ATTACH where UUID = #{uuid}
+	</delete>
+
+</mapper>

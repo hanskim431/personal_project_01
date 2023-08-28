@@ -18,6 +18,8 @@ public interface BoardRepository {
 
 	// C
 	void insert(BoardVO vo);
+	
+	Integer insertSelectKey(BoardVO vo);
 
 	// R
 	BoardVO read(Long bno);
