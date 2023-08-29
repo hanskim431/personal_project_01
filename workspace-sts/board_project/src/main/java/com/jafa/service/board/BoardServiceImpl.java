@@ -42,6 +42,7 @@ public class BoardServiceImpl implements BoardService {
 	public void register(BoardVO board) {
 		boardRepository.insertSelectKey(board);
 
+		log.info("bno:"+board.getBno());
 		// 첨부파일이 있을 때
 		if(board.getAttachList()!=null && !board.getAttachList().isEmpty()) { 
 			board.getAttachList().forEach(attachFile->{

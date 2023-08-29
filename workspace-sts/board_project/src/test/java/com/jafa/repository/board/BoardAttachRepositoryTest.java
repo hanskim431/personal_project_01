@@ -17,7 +17,7 @@ public class BoardAttachRepositoryTest extends AppTest{
 	@Autowired
 	BoardAttachRepository boardAttachRepository;
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testInsert() {
 		BoardAttachVO vo = new BoardAttachVO();
@@ -31,13 +31,13 @@ public class BoardAttachRepositoryTest extends AppTest{
 		boardAttachRepository.insert(vo);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testDelete() {
-		boardAttachRepository.delete("80e3b517-80d4-4154-9ba1-c2882d0b4578");
+		boardAttachRepository.delete("34f7fde9-9a9c-4f11-a144-6c275ee957f0");
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testSelectByBno() {
 		log.info(boardAttachRepository.selectByBno(1L));

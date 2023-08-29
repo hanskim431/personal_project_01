@@ -21,8 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 <!--    	<insert id="insertSelectKey" keyColumn="bno" keyProperty="bno" useGeneratedKeys="true"> -->
-<!--   	    insert into TBL_BOARD(bno,title,content,writer) -->
-<!--     	values (SEQ_BOARD.nextval,#{title},#{content},#{writer}) -->
+<!--   	    insert into TBL_BOARD(bno,title,content,writer,boardType) -->
+<!--     	values (SEQ_BOARD.nextval,#{title},#{content},#{writer},#{boardType}) -->
 <!--     </insert> -->
 
 	<!-- READ -->

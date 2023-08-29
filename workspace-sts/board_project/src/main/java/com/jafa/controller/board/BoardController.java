@@ -69,9 +69,9 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register")
 	public String register(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr) {
-		log.info(vo.getAttachList());
+		log.info("getAttachList:"+vo.getAttachList());
 		boardService.register(vo);
-		rttr.addFlashAttribute("result", vo.getBno()); // ? 
+		rttr.addFlashAttribute("result", vo.getBno()); // ${result}
 		rttr.addFlashAttribute("operation", "register");
 		return "redirect:/board/"+boardType;
 //		return "redirect:/board"+boardType+"/get?bno="+vo.getBno();

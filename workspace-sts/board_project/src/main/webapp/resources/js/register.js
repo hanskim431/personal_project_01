@@ -1,44 +1,51 @@
+console.log('register.js');
 $(function(){
 	let uploadResultList = [];
 	let showUploadResult = function(attachList){
-		let fileList = '';
-		$.each(attachList,function(i,e){
-			uploadResultList.push(e); // 첨부파일 배열의 요소로 추가
-			fileList += `
-			<li class="list-group-item" data-uuid="${e.uuid}">
-				<div class="float-left">
-					<div class="thumnail d-inline-block mr-3" style="width:40px">
-						<img alt="" src="${ctxPath}/resources/images/attach.bmp" style="width: 100%">
+			let fileList = '';
+			$.each(attachList,function(i,e){
+				fileList += `
+				<li class="list-group-item" data-uuid="${e.uuid}">
+					<div class="float-left">`
+				if(e.fileType){ // 이미지 파일인 경우 섬네일 표시
+					let filePath = e.uploadPath+"/s_"+e.uuid+"_"+e.fileName; 
+					let encodingFilePath = encodeURIComponent(filePath); // uri 인코딩 
+					fileList +=`
+						<div class="thumnail d-inline-block mr-3">
+							<img alt="" src="${ctxPath}/files/display?fileName=${encodingFilePath}">	
+						</div>`
+				} else { // 이미지 파일이 아닐 때 
+					fileList +=` 
+						<div class="thumnail d-inline-block mr-3" style="width:40px">
+							<img alt="" src="${ctxPath}/resources/images/attach.png" style="width: 100%">
+						</div>`
+				}
+				fileList +=		
+						`<div class="d-inline-block">
+							<a href="#">${e.fileName}</a>
+						</div>
 					</div>
-					<div class="d-inline-block">
-						<a href="#">${e.fileName}</a>
+					<div class="float-right">
+						<a href="#" class="delete">삭제</a>
 					</div>
-				</div>
-				<div class="float-right">
-					<a href="#">삭제</a>
-				</div>
-			</li>`				
-		});
-		$('.uploadResultDiv ul').append(fileList);
-	}
+				</li>`				
+			});
+			$('.uploadResultDiv ul').append(fileList);
+		}
 	
 	// 게시물 목록
-	$('.list').click(function(e){
-		e.preventDefault();
+	$('.list').click(function(){
 		let form = $('<form/>')
 		let type = $('[name="type"]');
 		let keyword = $('[name="keyword"]');
-		
 		if(type.val()&&keyword.val()){
 			form.append(type).append(keyword);				
 		}
-		
-		form.attr('action',`${ctxPath}/board/${boardType}/list`)
+		form.attr('action','${ctxPath}/board/${boardType}/list')
 			.append($('[name="pageNum"]'))
 			.append($('[name="amount"]'))
 			.appendTo('body')
 			.submit();
-			
 	})
 	
 	// 파일 업로드 이벤트 
@@ -58,15 +65,19 @@ $(function(){
 			data : formData, 
 			dataType : 'json', 
 			success : function(attachList){
-				uploadResultList = attachList;
+				$.each(attachList,function(i,e){
+					uploadResultList.push(e);
+				})
 				showUploadResult(attachList);
+				console.log(uploadResultList);
 			}
 		});
 	});
 	
-	$('.register').click(function(e){
-		e.preventDefault();
+	// 게시글 등록
+	$('.register').click(function(){
 		let form = $('form');
+		console.log(uploadResultList);
 		if(uploadResultList.length>0){ // 첨부파일이 있으면 
 			$.each(uploadResultList, function(i,e){
 				let uuid = $('<input/>',{type:'hidden', name:`attachList[${i}].uuid`, value:`${e.uuid}`})
@@ -80,5 +91,39 @@ $(function(){
 			})
 		}
 		form.submit();	
-	})
+	});
+	
+	// 첨부파일 삭제 
+	$('.uploadResultDiv ul').on('click','.delete',function(e){
+		e.preventDefault(); 
+		let uuid = $(this).closest('li').data('uuid');
+		let targetFileIdx = -1;
+		let targetFile = null; 
+		
+		$.each(uploadResultList,function(i,e){
+			if(e.uuid == uuid){
+				targetFileIdx = i;
+				targetFile = e; 
+				return;
+			}		
+		})
+		
+		if(targetFileIdx!=-1) uploadResultList.splice(targetFileIdx,1);
+		console.log(uploadResultList);
+		
+		console.log('삭제 대상 파일 객체 :');
+		console.log(targetFile);
+		
+		$.ajax({
+			type : 'post',
+			url : `${ctxPath}/files/deleteFile`, 
+			data : targetFile, 
+			success : function(result){
+				console.log(result);
+			} 
+		});
+		
+		$(this).closest('li').remove();
+	});
+	
 })

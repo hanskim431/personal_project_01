@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +29,9 @@ public class BoardVO {
 		    private String content;
 		    private String writer;
 		    
+		    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 		    private LocalDateTime regDate;
+		    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 		    private LocalDateTime updateDate;
 		    
 		    private String boardType;

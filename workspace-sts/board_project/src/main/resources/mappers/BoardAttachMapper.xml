@@ -7,20 +7,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- CREATE -->
     <insert id="insert">
-		insert into TBL_ATTACH(uuid,uploadPath,fileName,fileType,bno)
+		insert into tbl_attach(uuid,uploadPath,fileName,fileType,bno)
 		values (#{uuid}, #{uploadPath}, #{fileName},#{fileType},#{bno})
     </insert>
 
 	<!-- READ -->
-	<select id="selectByBno" resultType="boardAttach">
-		select * from TBL_ATTACH where BNO = #{bno}
+	<select id="selectByBno" resultType="boardAttachVO">
+		select * from tbl_attach where bno = #{bno}
 	</select>
 
 	<!-- UPDATE -->
 
 	<!-- DELETE -->
 	<delete id="delete">
-		delete from TBL_ATTACH where UUID = #{uuid}
+		delete from tbl_attach where uuid=#{uuid}
 	</delete>
 
 </mapper>
+    
+	
+

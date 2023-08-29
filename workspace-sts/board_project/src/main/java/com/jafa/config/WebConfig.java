@@ -31,12 +31,12 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		filter.setForceEncoding(true);
 		return new Filter[] {filter};
 	}
-
+	
 	@Override
 	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
 		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
-		MultipartConfigElement multipartConfig = 
-				new MultipartConfigElement("c:\\storage\\temp", 20971520, 41943040, 20971520);
+		MultipartConfigElement multipartConfig 
+			= new MultipartConfigElement("C:\\storage\\temp", 20971520, 41943040, 20971520);
 		registration.setMultipartConfig(multipartConfig);
 	}
 

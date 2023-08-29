@@ -120,18 +120,14 @@ CREATE TABLE TBL_REPLY_LIKE( -- 게시글 좋아요 테이블
 --            첨부파일
 -----------------------------------
 CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
-    UUID VARCHAR2(200), -- 파일 아이디
-    BNO NUMBER(10), -- 글 번호
+    UUID VARCHAR2(200) primary key, -- 파일 아이디
+    BNO NUMBER(10) references TBL_BOARD(BNO), -- 글 번호
     UPLOADPATH VARCHAR2(200), -- 파일 경로
     FILETYPE CHAR(1) default 'I', -- 파일 형식
     FILENAME VARCHAR2(100), -- 파일 이름
     REGDATE DATE default sysdate, -- 등록일
     STATUS VARCHAR2(10) default 'VISIBLE' -- 상태
 );
-
-alter table tbl_attach add constraint pk_attach primary key(uuid);
-alter table tbl_attach add constraint fk_board_attach 
-foreign key(bno) references tbl_board(bno);
 
 ------------------------------------------------------------------------------------
 --                                  임시 데이터 삽입
