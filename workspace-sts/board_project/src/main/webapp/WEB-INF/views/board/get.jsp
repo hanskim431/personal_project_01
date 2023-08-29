@@ -13,6 +13,7 @@
 		</div>
 	</div>
 
+	<!-- 본문 -->
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
@@ -53,16 +54,44 @@
 								추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
 						</sec:authorize>
 					</div>
-
+				</div><!-- card-body END -->
+			</div><!-- card END -->
+		</div><!-- col END  -->
+	</div><!-- row END -->
+	
+	<!-- 파일 -->
+	<div class="row my-5">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>첨부 파일</h4>
 				</div>
-			</div>
-		</div>
-	</div>
+				<div class="card-body">
+					<div class="uploadResultDiv mt-3"> <!-- 파일업로드 결과 보여주기  -->
+						<ul class="list-group"></ul>
+					</div>
+				</div> <!-- card-body END -->
+			</div> <!-- card END -->
+		</div> <!-- col END -->
+	</div><!-- row END -->
+</div><!-- container END -->
+
+<!-- 원본 이미지 -->
+<div class="modal fade" id="showImage">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+	        <div class="modal-header">
+	            <h4 class="modal-title">원본 이미지 보기</h4>
+	            <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        </div>
+	        <div class="modal-body"></div>
+        </div>
+    </div>
 </div>
 
+
+<!-- 댓글 -->
 <div class="container reply collapse">
-	
-	
 	<div class="replyWriterForm my-3">
 		<sec:authorize access="isAnonymous()"> 
 			<div class="text-right">
@@ -127,9 +156,6 @@
 
 </div><!-- container-end -->
 
-<!-- <button class="btn btn-danger addBtn">댓글 추가 테스트</button>		 -->
-<!-- <button class="btn btn-danger updateBtn">댓글 수정 테스트</button>		 -->
-<!-- <button class="btn btn-danger deleteBtn">댓글 삭제 테스트</button>		 -->
 
 <form>
 	<input type="hidden" name="bno"  value="${board.bno}">
@@ -146,14 +172,21 @@ $(function(){
 	
 	$('.getBtns button').click(function(){
 		let operation = $(this).data('oper');
+		let type = '${criteria.type}'
+		let keyword = '${criteria.keyword}'
+			
 		form.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
 			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
-			.append($('<input/>',{type : 'hidden', name : 'type', value : '${param.type}'}))
-			.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${param.keyword}'}))
 			.append($('<input/>',{type : 'hidden', name : 'boardType', value : '${boardType}'}))
 			.append($('<input/>',{type : 'hidden', name : '${_csrf.parameterName}', value : '${_csrf.token}'}))
 			.append($('<input/>',{type : 'hidden', name : 'writer', value : '${board.writer}'}))
-			.attr('method','get')
+		.attr('method','get')
+		
+		if(type&&keyword){
+			form.append($('<input/>',{type : 'hidden', name : 'type', value : '${criteria.type}'}))
+				.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${criteria.keyword}'}))
+		}
+		
 		if(operation=='list'){
 			
 			form.find('#bno').remove();

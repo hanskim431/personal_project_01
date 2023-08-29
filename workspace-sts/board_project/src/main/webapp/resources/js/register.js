@@ -28,7 +28,8 @@ $(function(){
 					<div class="float-right">
 						<a href="#" class="delete">삭제</a>
 					</div>
-				</li>`				
+				</li>`			
+						
 			});
 			$('.uploadResultDiv ul').append(fileList);
 		}

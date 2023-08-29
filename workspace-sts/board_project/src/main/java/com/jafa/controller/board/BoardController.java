@@ -1,6 +1,7 @@
 package com.jafa.controller.board;
 
 import java.nio.file.AccessDeniedException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jafa.domain.board.BoardAttachVO;
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.board.LikeDTO;
 import com.jafa.domain.common.Criteria;
@@ -47,6 +49,13 @@ public class BoardController {
 		return "/board/list";
 	}
 
+	// 게시글 첨부파일 리스트 조회
+	@GetMapping("/getAttachList")
+	@ResponseBody
+	public ResponseEntity<List<BoardAttachVO>> getAttchList(Long bno){
+		return new ResponseEntity<List<BoardAttachVO>>(boardService.getAttachList(bno),HttpStatus.OK);
+	}
+	
 	// 게시글 조회 페이지
 	@GetMapping("/get")
 	public String get(@PathVariable String boardType, Model model, 
@@ -80,8 +89,8 @@ public class BoardController {
 	// 게시글 수정 페이지
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
-	public String modify(@PathVariable String boardType, Model model, @RequestParam("bno") Long bno,
-			RedirectAttributes rttr, Authentication auth) throws AccessDeniedException {
+	public String modify(@PathVariable String boardType, Model model, @RequestParam("bno") Long bno, 
+			Criteria criteria, RedirectAttributes rttr, Authentication auth) throws AccessDeniedException {
 		BoardVO vo = boardService.get(bno);
 		String username = auth.getName();
 		if (!vo.getWriter().equals(username)
@@ -138,6 +147,13 @@ public class BoardController {
 	@PostMapping(value = "/islike")
 	public ResponseEntity<Boolean> isLike(LikeDTO likeDTO){
 		return new ResponseEntity<>(boardService.isLike(likeDTO),HttpStatus.OK);
+	}
+	
+	// 첨부파일 확인
+	@GetMapping("/getAttachFileInfo")
+	@ResponseBody
+	public ResponseEntity<BoardAttachVO> getAttach(String uuid){
+		return new ResponseEntity<BoardAttachVO>(boardService.getAttach(uuid),HttpStatus.OK);
 	}
 	
 }

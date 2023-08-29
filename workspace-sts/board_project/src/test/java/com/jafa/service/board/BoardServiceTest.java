@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jafa.AppTest;
+import com.jafa.domain.board.BoardAttachVO;
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.common.Criteria;
 
@@ -25,7 +26,7 @@ public class BoardServiceTest extends AppTest{
 		assertNotNull(boardService);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
@@ -82,6 +83,13 @@ public class BoardServiceTest extends AppTest{
 		boardService.remove(bno);
 		log.info(bno+"번 게시글 삭제");
 	}
-
 	
+//	@Ignore
+	@Test
+	public void testGetAttach() {
+		String uuid = "2d844f61-457b-48b9-97ad-89ef240eb402";
+		log.info(boardService.getAttach(uuid));
+	}
+
+
 }

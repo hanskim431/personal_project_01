@@ -10,7 +10,7 @@ public interface BoardAttachRepository {
 	void insert(BoardAttachVO vo);
 	
 	// R
-	
+	BoardAttachVO selectByUuid(String uuid);
 	
 	// U
 	

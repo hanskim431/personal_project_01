@@ -2,18 +2,17 @@ package com.jafa.service.board;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
+import com.jafa.domain.board.BoardAttachVO;
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.board.LikeDTO;
 import com.jafa.domain.common.Criteria;
 
-import lombok.RequiredArgsConstructor;
-
 public interface BoardService {
-	
+
 	//LIST
 	List<BoardVO> getList(Criteria criteria, String boardType);
+	
+	List<BoardAttachVO> getAttachList(Long bno);
 	
 	//C
 	void register(BoardVO vo);
@@ -27,13 +26,17 @@ public interface BoardService {
 	//D
 	boolean remove(Long bno);
 	
+	
 	// TOTAL BOARD COUNT
-
 	int totalCount(Criteria criteria, String boardType);
 
-	// hit like
+	// 게시물 추천 기능
 	boolean hitLike(LikeDTO likeDTO);
 	
-	// is like
+	// 추천 토글 확인
 	boolean isLike(LikeDTO likeDTO);
+	
+	// 첨부파일 확인
+	BoardAttachVO getAttach(String uuid);
+	
 }
