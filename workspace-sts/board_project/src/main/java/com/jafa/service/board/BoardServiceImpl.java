@@ -1,7 +1,9 @@
 package com.jafa.service.board;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,10 +70,26 @@ public class BoardServiceImpl implements BoardService {
 
 	//U
 	@Override
-	public boolean modify(BoardVO vo) {
-//		log.info("### modify: " + vo);
-		boardRepository.update(vo);
-		return true;
+	public boolean modify(BoardVO board) {
+		
+		List<BoardAttachVO> attachList = board.getAttachList();
+		
+		if(attachList!=null) {
+			// 기존 파일 삭제
+			List<BoardAttachVO> delList = attachList.stream().filter(attach -> attach.getBno()!=null).collect(Collectors.toList());
+			deleteFiles(delList); // 파일 삭제 
+			delList.forEach(vo->{
+				boardAttachRepository.delete(vo.getUuid()); // 데이터베이스 기록 삭제 
+			});
+			
+			// 새로운 파일 추가 
+			attachList.stream().filter(attach -> attach.getBno()==null).forEach(vo->{
+				vo.setBno(board.getBno());
+				boardAttachRepository.insert(vo); // 데이터베이스 기록 
+			});
+		}
+		
+		return boardRepository.update(board)==1;
 	}
 
 	//D
@@ -118,5 +136,14 @@ public class BoardServiceImpl implements BoardService {
 		return boardAttachRepository.selectByUuid(uuid);
 	}
 
-
+	private void deleteFiles(List<BoardAttachVO> delList) {
+		delList.forEach(vo->{
+			File file = new File("C:/storage/"+vo.getUploadPath(),vo.getUuid() + "_" + vo.getFileName());
+			file.delete();
+			if(vo.isFileType()) {
+				file = new File("C:/storage/"+vo.getUploadPath(),"s_"+vo.getUuid() + "_" + vo.getFileName());
+				file.delete();
+			}
+		});
+	}
 }

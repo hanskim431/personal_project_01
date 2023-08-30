@@ -1,4 +1,3 @@
-console.log('register.js');
 $(function(){
 	let uploadResultList = [];
 	let showUploadResult = function(attachList){

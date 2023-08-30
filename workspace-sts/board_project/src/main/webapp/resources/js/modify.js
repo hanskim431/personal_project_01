@@ -6,7 +6,6 @@ $(function(){
 	let toBeDelList = [] // 삭제 대상 파일 목록;  
 	
 	let showUploadResult = function(attachList){
-		console.log(attachList);
 		let fileList = '';
 		$.each(attachList,function(i,e){
 			uploadResultList.push(e);
@@ -175,7 +174,7 @@ $(function(){
 			formObj.empty();
 			addCriteria();
 			formObj.attr('action',`${ctxPath}/board/${boardType}/list`)
-				   .attr('method','get');
+				.attr('method','get');
 		} else { // 수정 처리 
 			let idx = 0; 
 			if(toBeDelList.length>0){ // 삭제 대상 첨부파일이 있으면 

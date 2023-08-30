@@ -25,10 +25,10 @@ public interface BoardRepository {
 	BoardVO read(Long bno);
 
 	// U
-	void update(BoardVO vo);
+	int update(BoardVO vo);
 
 	// D
-	void delete(Long bno);
+	int delete(Long bno);
 
 	// 전체 게시물 수
 	int getTotalCount(
