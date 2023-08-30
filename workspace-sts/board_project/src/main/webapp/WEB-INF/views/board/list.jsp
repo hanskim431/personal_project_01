@@ -90,12 +90,12 @@
 					<form class="text-center my-3" id="searchForm" action="${ctxPath}/board/${boardType}/list">
 						<div class="d-inline-block">
 							<select name="type" class="form-control">
-								<option value="TCW">제목+내용+작성자</option>
-								<option value="T">제목</option>
-								<option value="C">내용</option>
-								<option value="W">작성자</option>
-								<option value="TC">제목+내용</option>
-								<option value="TW">제목+작성자</option>
+								<option value="TCW" ${criteria.type eq 'TCW' ? 'selected' : ''}>제목+내용+작성자</option>
+								<option value="T" ${criteria.type eq 'T' ? 'selected' : ''}>제목</option>
+								<option value="C" ${criteria.type eq 'C' ? 'selected' : ''}>내용</option>
+								<option value="W" ${criteria.type eq 'W' ? 'selected' : ''}>작성자</option>
+								<option value="TC" ${criteria.type eq 'TC' ? 'selected' : ''}>제목+내용</option>
+								<option value="TW" ${criteria.type eq 'TW' ? 'selected' : ''}>제목+작성자</option>
 							</select>
 						</div>
 						<div class="d-inline-block col-4">
@@ -127,6 +127,7 @@
 <!-- container end -->
 
 <script>
+	console.log('${criteria.type}')
 	//페이지 이동 
 	let listForm = $('#listForm');
 	$('.pagination a').click(function(e) {

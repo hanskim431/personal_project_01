@@ -69,7 +69,7 @@ $(function(){
 					$('.idCheck').html('변경');
 					idInput.attr('readonly',true);
 				} else { // 중복되는 경우 
-					alert('사용할수 없는 아이디입니다.');
+					alert('사용할 수 없는 아이디입니다.');
 					idInput.focus();
 				}
 			}

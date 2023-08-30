@@ -26,7 +26,7 @@ public class FileCheckTask {
 	private BoardAttachRepository boardAttachRepository;
 
 	// @Scheduled(cron = "초 분 시 일 월 요일 (년)")
-	@Scheduled(cron = "0 * * * * *")
+	@Scheduled(cron = "* 0 * * * *")
 	public void checkFile() {
 		log.info("FileCheckTask...");
 

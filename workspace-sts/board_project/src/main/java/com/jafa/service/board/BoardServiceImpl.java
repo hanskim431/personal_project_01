@@ -37,6 +37,7 @@ public class BoardServiceImpl implements BoardService {
 	//LIST
 	@Override
 	public List<BoardVO> getList(Criteria criteria, String boardType) {
+		log.info(criteria);
 		List<BoardVO> list = new ArrayList<>();
 		return boardRepository.getList(criteria, boardType);
 	}
