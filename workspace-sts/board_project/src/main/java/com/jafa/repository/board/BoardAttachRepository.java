@@ -18,8 +18,11 @@ public interface BoardAttachRepository {
 	// D
 	void delete(String uuid);
 	
+	void deleteAll(Long bno);
+	
+	
 	// LIST
 	List<BoardAttachVO> selectByBno(Long bno);
 	
-	
+	List<BoardAttachVO> pastFiles();
 }

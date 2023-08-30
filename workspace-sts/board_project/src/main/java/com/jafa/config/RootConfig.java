@@ -16,6 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -25,6 +26,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @PropertySource(value = "classpath:database/db.properties")
 @MapperScan("com.jafa.repository") // mapper를 스프링 빈으로 등록
 @EnableTransactionManagement // 트랜잭션 설정 
+@EnableScheduling
 @Import({SecurityConfig.class})
 public class RootConfig {
 	

@@ -31,7 +31,7 @@ public class BoardAttachRepositoryTest extends AppTest{
 		boardAttachRepository.insert(vo);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testDelete() {
 		boardAttachRepository.delete("34f7fde9-9a9c-4f11-a144-6c275ee957f0");
@@ -41,6 +41,12 @@ public class BoardAttachRepositoryTest extends AppTest{
 	@Test
 	public void testSelectByBno() {
 		log.info(boardAttachRepository.selectByBno(1L));
+	}
+	
+//	@Ignore
+	@Test
+	public void testPastFiles() {
+		log.info(boardAttachRepository.pastFiles());
 	}
 
 }

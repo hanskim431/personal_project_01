@@ -22,10 +22,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from TBL_ATTACH where UUID=#{uuid}
 	</delete>
+	
+	<delete id="deleteAll">
+		delete from TBL_ATTACH where BNO=#{bno}
+	</delete>
+	
 
 	<!-- LIST -->
 	<select id="selectByBno" resultType="boardAttachVO">
 		select * from TBL_ATTACH where bno = #{bno}
+	</select>
+
+	<select id="pastFiles" resultType="boardAttachVO">
+		select * from TBL_ATTACH where uploadPath = to_char(sysdate-1, 'yyyy/MM/dd')
 	</select>
 
 </mapper>

@@ -92,6 +92,12 @@ $(function(){
 		$('#showImage').modal();
 	});
 	
+	// 파일 다운로드 
+	$('.uploadResultDiv ul').on('click','.download',function(e){
+		e.preventDefault();
+		self.location = `${ctxPath}/files/download?fileName=${$(this).attr('href')}`
+	});
+	
 	// 파일 업로드 
 	$('input[type="file"]').change(function(){
 		let formData = new FormData(); 
@@ -212,4 +218,6 @@ $(function(){
 		} // else end
 		formObj.submit();
 	});
+	
+	
 })

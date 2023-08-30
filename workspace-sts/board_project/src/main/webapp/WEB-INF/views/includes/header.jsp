@@ -43,9 +43,24 @@
 		xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 	})
 
-	
-	if(duplicateLogin) {
+	if(duplicateLogin) { // 로그인 중복 제한
 		alert(duplicateLogin)
+	}
+	
+	function checkExtension(fileName, fileSize) { // 파일 업로드 제한 
+		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); // 업로드 불가 파일 형식
+		let maxSize = 10485760;
+		if(fileSize > maxSize){
+			alert('파일 크기는 최대 10MB까지 업로드 가능합니다.');
+			return false;
+		}
+
+		if(regex.test(fileName)){
+			alert('해당 파일 형식은 업로드 할 수 없습니다.');
+			return false;
+		}
+
+		return true;
 	}
 </script>
 
