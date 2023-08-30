@@ -50,6 +50,11 @@ $(function(){
 	$('#mailCheckBtn').click(function() {
 		const email = $('#email').val(); // 이메일 
 		const checkInput = $('.checkInput');
+
+		if(checkEmailExtension(email)==false){
+			alert('이메일 형식을 확인해주세요');
+			return;
+		}
 		
 		//ajax성공		
 		$.ajax({

@@ -54,14 +54,22 @@
 			alert('파일 크기는 최대 10MB까지 업로드 가능합니다.');
 			return false;
 		}
-
 		if(regex.test(fileName)){
 			alert('해당 파일 형식은 업로드 할 수 없습니다.');
 			return false;
 		}
-
 		return true;
 	}
+	
+	function checkEmailExtension(email) { // 이메일 형식 검증
+		let regex = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"); // 이메일 형식
+		if(!regex.test(email)){
+			return false;
+		}
+		return true;
+	}
+	
+	
 </script>
 
 <div>
@@ -73,23 +81,23 @@
 				</a>
 			</li>
 			<li class="nav-item my-auto">
-				<a class="nav-link" href="${ctxPath}/board/board1">게시판1</a>
+				<a class="btn btn-outline-info nav-link" href="${ctxPath}/board/board1">게시판1</a>
 			</li>
 			<li class="nav-item my-auto">
-				<a class="nav-link" href="${ctxPath}/board/board2">게시판2</a>
+				<a class="btn btn-outline-info nav-link" href="${ctxPath}/board/board2">게시판2</a>
 			</li>
 			<li class="nav-item my-auto">
-				<a class="nav-link" href="${ctxPath}/board/board3">게시판3</a>
+				<a class="btn btn-outline-info nav-link" href="${ctxPath}/board/board3">게시판3</a>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="#"></a></li>
 		</ul>
 		<ul class="navbar-nav">
 			<sec:authorize access="isAnonymous()">
 				<li class="nav-item">
-					<a class="nav-link" href="${ctxPath}/join/step1">회원 가입</a>
+					<a class="btn btn-outline-info nav-link" href="${ctxPath}/join/step1">회원 가입</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="${ctxPath}/login">로그인</a>
+					<a class="btn btn-outline-info nav-link" href="${ctxPath}/login">로그인</a>
 				</li>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
@@ -97,10 +105,10 @@
 					<div>${authInfo.memberName}님, 어서오세요</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="${ctxPath}/mypage">마이페이지</a>
+					<a class="btn btn-outline-info nav-link" href="${ctxPath}/mypage">마이페이지</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
+					<a class="btn btn-outline-info nav-link logout" href="${ctxPath}/user/logout">로그아웃</a>
 				</li>
 			</sec:authorize>
 		</ul>

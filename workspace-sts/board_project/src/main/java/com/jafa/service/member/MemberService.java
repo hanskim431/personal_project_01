@@ -30,6 +30,14 @@ public interface MemberService {
 	 * @return MemberVO
 	 */
 	MemberVO selectById(String memberId);
+	
+	/**
+	 * SELECT member by email : service
+	 * 
+	 * @param email
+	 * @return String (email)
+	 */
+	String selectByEmail(String email);
 
 // U
 	/**

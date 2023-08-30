@@ -49,6 +49,11 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO selectById(String memberId) {
 		return memberRepository.selectById(memberId);
 	}
+	
+	@Override
+	public String selectByEmail(String email){
+		return memberRepository.selectByEmail(email); 
+	}
 
 	// U
 	@Transactional

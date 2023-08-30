@@ -19,6 +19,9 @@
 				<button class="form-control btn btn-outline-primary" >로그인</button>
 			</div>
 			<div class="form-group">
+				<a  href="${ctxPath}/join/step1" class="form-control btn btn-outline-primary" >회원 가입</a>
+			</div>
+			<div class="form-group">
 				<a  href="${ctxPath}/findMemberInfo" class="form-control btn btn-outline-primary" >아이디 / 비밀번호 찾기</a>
 			</div>
 			<c:if test="${not empty LoginFail}">

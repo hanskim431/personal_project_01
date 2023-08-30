@@ -62,6 +62,20 @@ $(function(){
 		}
 	});
 	
+	// 약관 동의 버튼 다 누으면 모두 동의 버튼 활성화
+	$('[name="agreement"]').change(function(){
+		let checkFlag = [];
+		$(agreementCheck).each(function(index,element){
+			checkFlag.push($(element).is(':checked'));
+		})
+		
+		if(checkFlag.every(item => item === true)){
+			$('.checkAll').prop('checked',true);
+		} else {
+			$('.checkAll').prop('checked',false);	
+		}
+	});
+	
 	// 다음단계로 이동
 	$('.nextBtn').click(function(){
 		let checkFlag = [];

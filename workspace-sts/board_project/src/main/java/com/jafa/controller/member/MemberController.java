@@ -198,4 +198,19 @@ public class MemberController {
 		}
 		return new ResponseEntity<String> (message,HttpStatus.OK);
 	}
+	
+	// 이메일 중복 확인
+	@ResponseBody
+	@PostMapping(value = "/checkDuplicatedEmail", produces = "plain/text; charset=utf-8")
+	public ResponseEntity<String> checkDuplicatedEmail(String email){
+		String message = null;
+		try {
+			mailSendService.findIdEmail(email);
+			message = "가입하신 이메일로 전송되었습니다.";
+		} catch (NotFoundMemberException e) {
+			 message = "회원 정보를 찾을 수 없습니다.";
+			 return new ResponseEntity<String> (message,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String> (message,HttpStatus.OK);
+	}
 }
