@@ -18,7 +18,8 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<h2 class="mb-5">이메일 인증</h2>
 					<div class="form-group">
-						<input type="email" class="form-control" name="email" id="email" placeholder="이메일">
+						<span class="emailValidationMessage"></span>
+						<input type="email" class="form-control emailValid" name="email" id="email" placeholder="이메일">
 					</div>
 					<div class="form-group">
 						<button type="button" class="form-control btn btn-outline-info" id="mailCheckBtn">인증번호요청</button>
@@ -45,16 +46,30 @@ $(function(){
 		email : '', 
 		isAuth : false,	
 	}; 
+
+	// 이메일 유효성 검사
+	$('.emailValid').on('keyup',function(){
+		const email = $('#email').val(); // 이메일 
+		const emailValidationMessage = $('.emailValidationMessage');
+
+		if(checkEmailExtension(email)){
+			emailValidationMessage.html('인증되었습니다.');
+			emailValidationMessage.css('color','green');
+			$(this).removeClass('border-danger')
+				.addClass('border border-success')	
+				.css('box-shadow','0 0 0 0.2rem rgba(0,128,0,.25)')
+		} else {
+			emailValidationMessage.html('이메일 형식이 올바르지 않습니다.');
+			emailValidationMessage.css('color','red');
+			$(this).addClass('border border-danger')
+				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)')
+		}
+	});
 	
 	// 이메일과 인증 여부
 	$('#mailCheckBtn').click(function() {
 		const email = $('#email').val(); // 이메일 
 		const checkInput = $('.checkInput');
-
-		if(checkEmailExtension(email)==false){
-			alert('이메일 형식을 확인해주세요');
-			return;
-		}
 		
 		//ajax성공		
 		$.ajax({
@@ -68,6 +83,26 @@ $(function(){
 			}
 		});
 	});
+	
+	
+	// 이메일 중복 가입 검사
+	$('#mailCheckBtn').click(function() {
+		const email = $('#email').val(); // 이메일 
+		const checkInput = $('.checkInput');
+		
+		//ajax성공		
+		$.ajax({
+			type : 'get', 
+			url : '${ctxPath}/checkDuplicatedEmail?email='+email, 
+			success : function(result){
+				submitFlag.email = email;
+				checkInput.attr('disabled',false);
+				code = result;
+				alert('인증번호가 전송되었습니다.')
+			}
+		});
+	});
+	
 	
 	// 인증 일치 여부 확인
 	$('.checkInput').on('keyup',function(){
