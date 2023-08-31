@@ -54,7 +54,7 @@ $(function(){
 		let files = this.files;
 		
 		for(let f of files){
-			if(!checkExtension(f.name, f.size)){
+			if(!checkFileExtension(f.name, f.size)){
 				$(this).val('');
 				return;
 			}

@@ -19,7 +19,7 @@
 					<h2 class="mb-5">이메일 인증</h2>
 					<div class="form-group">
 						<span class="emailValidationMessage"></span>
-						<input type="email" class="form-control emailValid" name="email" id="email" placeholder="이메일">
+						<input type="email" class="form-control emailInput" name="email" id="email" placeholder="이메일">
 					</div>
 					<div class="form-group">
 						<button type="button" class="form-control btn btn-outline-info" id="mailCheckBtn">인증번호요청</button>
@@ -48,12 +48,11 @@ $(function(){
 	}; 
 
 	// 이메일 유효성 검사
-	$('.emailValid').on('keyup',function(){
+	$('.emailInput').on('keyup',function(){
 		const email = $('#email').val(); // 이메일 
 		const emailValidationMessage = $('.emailValidationMessage');
 
 		if(checkEmailExtension(email)){
-			emailValidationMessage.html('인증되었습니다.');
 			emailValidationMessage.css('color','green');
 			$(this).removeClass('border-danger')
 				.addClass('border border-success')	
@@ -70,18 +69,53 @@ $(function(){
 	$('#mailCheckBtn').click(function() {
 		const email = $('#email').val(); // 이메일 
 		const checkInput = $('.checkInput');
+		let emailInput = $('.emailInput');
+		let emailCheckFlag = false; 
 		
-		//ajax성공		
-		$.ajax({
-			type : 'get', 
-			url : '${ctxPath}/mailCheck?email='+email, 
+		if(emailInput.attr('readonly')){ // 이미 값이 입력된 경우 
+			emailInput.attr('readonly',false);
+			emailInput.focus();
+			$(this).html('인증번호요청');
+			emailCheckFlag = false;
+			return; 
+		}
+		
+		if(email==''){
+			alert('이메일을 입력해주세요.')
+			return;
+		}
+		
+		$.ajax({ // 중복검사 
+			type : 'post', 
+			url : '${ctxPath}/member/checkDuplicatedEmail',
+			data : { email : email },
+			async : false,
 			success : function(result){
-				submitFlag.email = email;
-				checkInput.attr('disabled',false);
-				code = result;
-				alert('인증번호가 전송되었습니다.')
+				if(result){ // 사용할 수 있는 경우
+					emailCheckFlag = true;
+					$('#mailCheckBtn').html('변경');
+					emailInput.attr('readonly',true);
+				} else { // 중복되는 경우 
+					alert('이미 가입되어있는 이메일입니다.');
+					$('.emailInput').focus();
+				}
 			}
 		});
+		
+		if(emailCheckFlag == true){
+			//ajax성공		
+			$.ajax({
+				type : 'get', 
+				url : '${ctxPath}/mailCheck?email='+email, 
+				success : function(result){
+					submitFlag.email = email;
+					checkInput.attr('disabled',false);
+					code = result;
+					alert('인증번호가 전송되었습니다.')
+				}
+			});
+		}
+		
 	});
 	
 	
@@ -138,3 +172,5 @@ $(function(){
 });
 
 </script>
+
+<script src="${ctxPath}/resources/js/checkExtension.js"></script>

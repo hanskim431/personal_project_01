@@ -51,10 +51,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public String selectByEmail(String email){
-		return memberRepository.selectByEmail(email); 
+	public String selectByEmail(String email) {
+		return memberRepository.selectByEmail(email);
 	}
-
+	
 	// U
 	@Transactional
 	@Override

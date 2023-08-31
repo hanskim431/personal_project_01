@@ -65,4 +65,5 @@
 
 <%@ include file="../includes/footer.jsp" %>
 
+<script src="${ctxPath}/resources/js/checkExtension.js"></script>
 <script src="${ctxPath}/resources/js/register.js"></script>

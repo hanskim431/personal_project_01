@@ -32,13 +32,13 @@ public interface MemberService {
 	MemberVO selectById(String memberId);
 	
 	/**
-	 * SELECT member by email : service
+	 * SELETE member by email : service
 	 * 
 	 * @param email
-	 * @return String (email)
+	 * @return String (memberId)
 	 */
 	String selectByEmail(String email);
-
+	
 // U
 	/**
 	 * UPDATE member information to TBL_MEMBER : service 

@@ -90,15 +90,12 @@ public class MemberController {
 	}
 
 	// 이메일 중복 확인
+	@PostMapping("/member/checkDuplicatedEmail")
 	@ResponseBody
-	@PostMapping(value = "/checkDuplicatedEmail", produces = "plain/text; charset=utf-8")
 	public ResponseEntity<Boolean> checkDuplicatedEmail(String email){
-		String message = null;
-			mailSendService.findIdEmail(email);
-
-			MemberVO vo = memberService.findIdEmail(email);
-			return vo == null ? new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK)
-					: new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
+		String memberId = memberService.selectByEmail(email);
+		return memberId == null ? new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK)
+				: new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
 	}
 	
 	
