@@ -30,12 +30,13 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping("/board/{boardType}")
+@RequestMapping({"/board/{boardType}"})
 public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
 
+	// ========= 게시글 ========= 
 	// 게시글 리스트 조회 페이지
 	@GetMapping({"","/","/list"})
 	public String list(@PathVariable String boardType, Model model, Criteria criteria) {
@@ -155,5 +156,4 @@ public class BoardController {
 	public ResponseEntity<BoardAttachVO> getAttach(String uuid){
 		return new ResponseEntity<BoardAttachVO>(boardService.getAttach(uuid),HttpStatus.OK);
 	}
-	
 }

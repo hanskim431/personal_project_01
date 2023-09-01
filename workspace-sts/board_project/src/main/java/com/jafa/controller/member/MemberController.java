@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jafa.domain.common.Criteria;
+import com.jafa.domain.common.Pagination;
 import com.jafa.domain.member.MemberVO;
 import com.jafa.exception.NotFoundMemberException;
 import com.jafa.exception.PasswordMisMatchException;
@@ -209,4 +211,5 @@ public class MemberController {
 		return new ResponseEntity<String> (message,HttpStatus.OK);
 	}
 	
+
 }

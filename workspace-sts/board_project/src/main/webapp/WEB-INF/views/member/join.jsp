@@ -15,11 +15,11 @@
 			<form:form action="${ctxPath}/member/join" modelAttribute="memberVO">
 				<h1 class="text-center py-3">회원가입</h1>
 				<div class="form-group row">
-					<div class="col-9">
+					<div class="col-8">
 						<span class="message"> </span>
 						<form:input class="form-control memberId" path="memberId" placeholder="아이디"/>
 					</div>
-					<div class="col-3">
+					<div class="col-4">
 						<button type="button" class="btn btn-outline-info form-control idCheck">ID중복확인</button>
 					</div>
 				</div>
@@ -30,13 +30,27 @@
 				<div class="form-group">
 					<form:input class="form-control" path="email" placeholder="이메일" readonly="true"/>
 				</div>
-				<div class="form-group">
-					<span class="message"> </span>
-					<form:password class="form-control memberPwd"  path="memberPwd" placeholder="비밀번호" />
+				<div class="form-group row">
+					<div class="col-8">
+						<span class="message"> </span>
+						<form:input type="password" class="form-control memberPwd"  path="memberPwd" placeholder="비밀번호" />
+					</div>
+					<div class="col-4">
+						<button type="button" class="btn btn-outline-info form-control showPwd">ID비밀번호 보기</button>
+					</div>
 				</div>
 				<button type="button" class="form-control btn btn-outline-primary join" >회원가입</button>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form:form>
+				<div class="passwordExtensionMessage mt-3">
+					<h4>비밀번호 생성 규칙</h4>
+					<ul>
+						<li class="messageLength">비밀번호는 8자에서 15자 사이의 길이여야 합니다.</li>
+						<li class="messageHasNumber">비밀번호에는 최소한 하나의 숫자가 포함되어야 합니다.</li>
+						<li class="messageHasAlphabet">비밀번호에는 최소한 하나의 알파벳 문자가 포함되어야 합니다.</li>
+						<li class="messageHasSpecialCharacter">비밀번호에는 최소한 하나의 특수문자가 포함되어야 합니다.</li>
+					</ul>
+				</div>
 		</div>
 	</div>
 </div>
@@ -46,7 +60,7 @@
 <script>
 $(function(){
 	let idCheckFlag = false; 
-	let formCheckFlag = true;
+	let formCheckFlag = false;
 
 	let idInput = $('.memberId')
 	let memberId = $('.memberId').val();
@@ -94,18 +108,66 @@ $(function(){
 		let message = $(this).siblings('.message');
 		let memberPwd = $(this).val();
 		
-		if(checkNameExtension(memberPwd)){
+		let extensionResult = checkPwdExtension(memberPwd);
+		
+		if(extensionResult.every(result => result===true)){
 			message.html('');
 			message.css('color','');
-			$(this).removeClass('border-danger').css('box-shadow','')
+			$(this).removeClass('border-danger')
+					.addClass('border border-success')	
+					.css('box-shadow','0 0 0 0.2rem rgba(0,128,0,.25)');
+			formCheckFlag = true;
 		} else {
-			message.html('이름 생성 규칙에 위배됩니다.');
+			message.html('비밀번호 생성 규칙에 위배됩니다.');
 			message.css('color','red');
 			$(this).addClass('border border-danger')
-				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)')
+				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)');
 			formCheckFlag = false;
 		}
+		
+		extensionMessage = $('.passwordExtensionMessage li:first-child');
+		for(const result of extensionResult){
+			if(result){
+				extensionMessage.css('color','green');
+			} else {
+				extensionMessage.css('color','red');
+			}
+			extensionMessage = extensionMessage.next();
+		}
+		
 	});
+	
+	let checkPwdExtensionMethod = function(){
+		let message = $(this).siblings('.message');
+		let memberPwd = $(this).val();
+		
+		let extensionResult = checkPwdExtension(memberPwd);
+		
+		if(extensionResult.every(result => result===true)){
+			message.html('');
+			message.css('color','');
+			$(this).removeClass('border-danger')
+					.addClass('border border-success')	
+					.css('box-shadow','0 0 0 0.2rem rgba(0,128,0,.25)');
+		} else {
+			message.html('비밀번호 생성 규칙에 위배됩니다.');
+			message.css('color','red');
+			$(this).addClass('border border-danger')
+				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)');
+			formCheckFlag = false;
+		}
+		
+		extensionMessage = $('.passwordExtensionMessage li:first-child');
+		for(const result of extensionResult){
+			if(result){
+				extensionMessage.css('color','green');
+			} else {
+				extensionMessage.css('color','red');
+			}
+			extensionMessage = extensionMessage.next();
+		}
+		
+	}
 	
 	
 	
@@ -117,6 +179,8 @@ $(function(){
 			idInput.focus();
 			$(this).html('ID중복확인');
 			idCheckFlag = false;
+			idInput.removeClass('border border-success')
+					.css('box-shadow','')
 			return; 
 		}
 		
@@ -189,7 +253,22 @@ $(function(){
 				$('#memberVO').submit();
 			}
 		});
+	
+	// 비밀번호 보기
+	$('.showPwd').click(function(e){
+		e.preventDefault();
+		let passwordInput = $('.memberPwd');
+		
+		passwordInput.toggleClass('active');
+		if(passwordInput.hasClass('active')){
+			$(this).html('비밀번호 가리기')	
+			passwordInput.attr('type','text');
+		} else {
+			$(this).html('비밀번호 보기')	
+			passwordInput.attr('type','password');
+		}
+	})
 
-	});
+});
 	
 </script>

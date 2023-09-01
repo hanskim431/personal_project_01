@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* 스타일을 추가하세요 */
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+
+.board-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.board-link .board-icon {
+  margin-right: 10px;
+  /* 아이콘에 대한 스타일을 추가하세요 */
+}
+
+.board-link .follow-button {
+  /* 팔로우 버튼에 대한 스타일을 추가하세요 */
+}
+
+.board-link:hover {
+  background-color: #ddd;
+}
+</style>
+</head>
+<body>
+
+<div class="board">
+  <a href="board1.html" class="board-link">
+    <span class="board-icon">아이콘</span>
+    게시판 1
+    <button class="follow-button">팔로우</button>
+  </a>
+  <!-- 다른 게시판들도 동일한 구조로 추가하세요 -->
+</div>
+
+</body>
+</html>

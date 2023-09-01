@@ -62,7 +62,7 @@ function checkNameExtension(memberId) {
 // PWD 유효성 검사
 function checkPwdExtension(memberPwd) {
 	let regexLength = new RegExp("^.{8,15}$");
-	let regexHasNumber= new RegExp("^.*\d.*$");
+	let regexHasNumber= new RegExp("^.*[0-9].*$");
 	let regexHasAlphabet= new RegExp(".*[a-zA-Z].*$");
 	let regexHasSpecialCharacter = new RegExp("^.*[!@#$%^&+=].*$");
 	

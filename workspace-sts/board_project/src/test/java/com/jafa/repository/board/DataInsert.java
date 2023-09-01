@@ -17,18 +17,22 @@ public class DataInsert extends AppTest{
 	public void test() {
 		
 		String writer;
+		String writerArr[] = {"admin1","admin2","member1","member2","member3","member4"};
 		String boardType;
 		String status;
 		
-		for(int i=1;i<=408;i++) {
-			BoardVO vo = BoardVO.builder()
-					.title("제목 : 페이징 처리 " + i)
-					.content("내용 : 페이징 처리 " + i)
-					.writer(writer = i % 2 == 0 ? "admin1" : "admin2")
-					.boardType(boardType ="board" + (i % 4 + 1))
-					.status(status = i % 5 == 0 ? "HIDDEN" : "VISIBLE")
-					.build();
-			boardRepository.insert(vo);			
+		for(int j=1; j<10; j++) {
+			for(int i=1;i<=408;i++) {
+				BoardVO vo = BoardVO.builder()
+						.title("제목 : 테스트 데이터 " + i)
+						.content("내용 : 테스트 데이터 " + i)
+						.writer(writer = writerArr[i%6])
+						.boardType(boardType ="board" + j)
+						.status(status = i % 5 == 0 ? "HIDDEN" : "VISIBLE")
+						.build();
+				boardRepository.insert(vo);			
+			}
 		}
+		
 	}
 }

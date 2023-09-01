@@ -39,6 +39,7 @@
 					<button type="button" class="btn btn-outline-primaty btn-lg form-control changePwdForm">비밀번호 변경</</button>
 				</div>
 			</form>
+			<a href="#">내가 쓴 글</a>
 		</div> <!-- w-50 my-5 END -->
 	</div> <!-- d-flex END -->
 </div> <!-- container END -->
@@ -104,6 +105,7 @@ $(function(){
 			success : function(result){
 				alert(result);
 				$('#changePwdModal').modal('hide');
+				$('[autocomplete="new-password"]').attr('type','password');
 			},
 			error : function(xhr, status, er){
 				alert(xhr.responseText)
@@ -114,12 +116,9 @@ $(function(){
 	
 	// 비밀번호 보기
 	$('.showPwd').click(function(){
-		console.log('비밀번호 보기')
-
 		let passwordInput = $('[autocomplete="new-password"]');
 		
-		passwordInput.toggleClass('active');
-		if(passwordInput.hasClass('active')){
+		if(passwordInput.attr('type')==='password'){
 			$(this).html('비밀번호 가리기')	
 			passwordInput.attr('type','text');
 		} else {
