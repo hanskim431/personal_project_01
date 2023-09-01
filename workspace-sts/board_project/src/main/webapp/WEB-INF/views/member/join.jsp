@@ -16,7 +16,7 @@
 				<h1 class="text-center py-3">회원가입</h1>
 				<div class="form-group row">
 					<div class="col-9">
-						<span class="Message"> </span>
+						<span class="message"> </span>
 						<form:input class="form-control memberId" path="memberId" placeholder="아이디"/>
 					</div>
 					<div class="col-3">
@@ -24,14 +24,14 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<span class="Message"> </span>
+					<span class="message"> </span>
 					<form:input class="form-control memberName" path="memberName" placeholder="이름" />
 				</div>
 				<div class="form-group">
 					<form:input class="form-control" path="email" placeholder="이메일" readonly="true"/>
 				</div>
 				<div class="form-group">
-					<span class="Message"> </span>
+					<span class="message"> </span>
 					<form:password class="form-control memberPwd"  path="memberPwd" placeholder="비밀번호" />
 				</div>
 				<button type="button" class="form-control btn btn-outline-primary join" >회원가입</button>
@@ -53,16 +53,16 @@ $(function(){
 	
 	// ID 유효성 검사
 	$('.memberId').on('keyup',function(){
-		let Message = $(this).siblings('.message');
+		let message = $(this).siblings('.message');
 		memberId = $(this).val();
 		
 		if(checkIDExtension(memberId)){
-			memberIdMessage.html('');
-			memberIdMessage.css('color','');
+			message.html('');
+			message.css('color','');
 			$(this).removeClass('border-danger').css('box-shadow','')
 		} else {
-			memberIdMessage.html('아이디 생성 규칙에 위배됩니다.');
-			memberIdMessage.css('color','red');
+			message.html('아이디 생성 규칙에 위배됩니다.');
+			message.css('color','red');
 			$(this).addClass('border border-danger')
 				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)')
 			formCheckFlag = false;
@@ -72,16 +72,16 @@ $(function(){
 	
 	// 이름 유효성 검사 
 	$('.memberName').on('keyup',function(){
-		let Message = $(this).siblings('.message');
+		let message = $(this).siblings('.message');
 		let memberName = $(this).val();
 		
 		if(checkNameExtension(memberName)){
-			memberNameMessage.html('');
-			memberNameMessage.css('color','');
+			message.html('');
+			message.css('color','');
 			$(this).removeClass('border-danger').css('box-shadow','')
 		} else {
-			memberNameMessage.html('이름 생성 규칙에 위배됩니다.');
-			memberNameMessage.css('color','red');
+			message.html('이름 생성 규칙에 위배됩니다.');
+			message.css('color','red');
 			$(this).addClass('border border-danger')
 				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)')
 			formCheckFlag = false;
@@ -91,16 +91,16 @@ $(function(){
 	
 	// 비밀번호 유효성 검사 
 	$('.memberPwd').on('keyup',function(){
-		let Message = $(this).siblings('.message');
+		let message = $(this).siblings('.message');
 		let memberPwd = $(this).val();
 		
 		if(checkNameExtension(memberPwd)){
-			memberNameMessage.html('');
-			memberNameMessage.css('color','');
+			message.html('');
+			message.css('color','');
 			$(this).removeClass('border-danger').css('box-shadow','')
 		} else {
-			memberNameMessage.html('이름 생성 규칙에 위배됩니다.');
-			memberNameMessage.css('color','red');
+			message.html('이름 생성 규칙에 위배됩니다.');
+			message.css('color','red');
 			$(this).addClass('border border-danger')
 				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)')
 			formCheckFlag = false;
@@ -155,9 +155,11 @@ $(function(){
 	$('.join').click(
 		function() {
 			let memberNameInput = $('.memberName');
-			let memberName = $('.memberName').val();
+			let memberName = memberNameInput.val();
+			let memberNameMessage = memberNameInput.siblings('.message');
 			let memberPwdInput = $('.memberPwd');
-			let memberPwd = $('.memberPwd').val();
+			let memberPwd = memberPwdInput.val();
+			let memberPwdMessage = memberPwdInput.siblings('.message');
 
 			if (!idCheckFlag) {
 				alert('ID 중복체크 바람');
@@ -167,8 +169,8 @@ $(function(){
 			}
 
 			if ((memberName == '')) {
-				$('.memberNameMessage').html('이름을 입력해주세요.');
-				$('.memberNameMessage').css('color', 'red');
+				memberNameMessage.html('이름을 입력해주세요.');
+				memberNameMessage.css('color', 'red');
 				memberNameInput.addClass('border border-danger').css(
 						'box-shadow', '0 0 0 0.2rem rgba(255,0,0,.25)')
 				memberNameInput.focus();
@@ -176,8 +178,8 @@ $(function(){
 			}
 
 			if ((memberPwd == '')) {
-				$('.memberPwdMessage').html('비밀번호를 입력해주세요.');
-				$('.memberPwdMessage').css('color', 'red');
+				memberPwdMessage.html('비밀번호를 입력해주세요.');
+				memberPwdMessage.css('color', 'red');
 				memberPwdInput.addClass('border border-danger').css(
 						'box-shadow', '0 0 0 0.2rem rgba(255,0,0,.25)')
 				memberPwdInput.focus();

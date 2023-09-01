@@ -89,28 +89,47 @@ $(function(){
 		$('#changePwdModal').find('input').val('');
 		$('#changePwdModal').modal();
 	})
-})
 
-// 비밀번호 변경 처리 
-$('.changePwd').click(function(){
-	console.log('비밀번호 변경-변경')
-	$.ajax({
-		type : 'post', 
-		url : '${ctxPath}/mypage/changePwd',
-		data : {
-			memberId : $('[name="memberId"]').val(),
-			currentPwd : $('.currentPwd').val(),
-			newPwd: $('.newPwd').val()
-		},
-		success : function(result){
-			alert(result);
-			$('#changePwdModal').modal('hide');
-		},
-		error : function(xhr, status, er){
-			alert(xhr.responseText)
-		}
+	// 비밀번호 변경 처리 
+	$('.changePwd').click(function(){
+		console.log('비밀번호 변경-변경')
+		$.ajax({
+			type : 'post', 
+			url : '${ctxPath}/mypage/changePwd',
+			data : {
+				memberId : $('[name="memberId"]').val(),
+				currentPwd : $('.currentPwd').val(),
+				newPwd: $('.newPwd').val()
+			},
+			success : function(result){
+				alert(result);
+				$('#changePwdModal').modal('hide');
+			},
+			error : function(xhr, status, er){
+				alert(xhr.responseText)
+			}
+		});
 	});
-});
+	
+	
+	// 비밀번호 보기
+	$('.showPwd').click(function(){
+		console.log('비밀번호 보기')
+
+		let passwordInput = $('[autocomplete="new-password"]');
+		
+		passwordInput.toggleClass('active');
+		if(passwordInput.hasClass('active')){
+			$(this).html('비밀번호 가리기')	
+			passwordInput.attr('type','text');
+		} else {
+			$(this).html('비밀번호 보기')	
+			passwordInput.attr('type','password');
+		}
+	})
+	
+	
+})
 </script>
 
 
