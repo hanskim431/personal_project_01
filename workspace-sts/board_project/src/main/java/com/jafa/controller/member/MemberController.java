@@ -26,6 +26,7 @@ import com.jafa.domain.common.Pagination;
 import com.jafa.domain.member.MemberVO;
 import com.jafa.exception.NotFoundMemberException;
 import com.jafa.exception.PasswordMisMatchException;
+import com.jafa.service.board.BoardService;
 import com.jafa.service.member.MailSendService;
 import com.jafa.service.member.MemberService;
 
@@ -40,6 +41,9 @@ public class MemberController {
 	
 	@Autowired
 	private MailSendService mailSendService;
+	
+	@Autowired
+	private BoardService boardService;
 
 	@GetMapping("/mailCheck")
 	@ResponseBody
@@ -50,11 +54,18 @@ public class MemberController {
 	// ========= 회원 가입 ========= 
 	// 약관동의 
 	@GetMapping("/join/step1")
-	public String step1() {
-		return "member/step1";
+	public String step1(Authentication authentication) {
+	    if (authentication != null && (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")) || authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MEMBER")))) {
+	        // ROLE_ADMIN 또는 ROLE_MEMBER 역할을 가진 경우 홈으로 리다이렉트
+	        return "redirect:/";
+	    }
+	    // 해당 역할이 없는 경우 회원가입 단계 1 페이지로 이동
+	    return "member/step1";
 	}
 
+
 	// 이메일 인증
+	@PreAuthorize("not hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@PostMapping("/join/step2")
 	public String step2(@RequestParam(defaultValue = "false") List<Boolean> agreement) {
 		if(agreement.size()>=2 && agreement.stream().allMatch(v->v) ) {
@@ -64,12 +75,14 @@ public class MemberController {
 	}
 
 	// 회원가입작성
+	@PreAuthorize("not hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@PostMapping("/join/step3")
 	public String step3(MemberVO memberVO) {
 		return "member/join";
 	}
 
 	// 회원가입 처리 
+	@PreAuthorize("not hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@PostMapping("/member/join")
 	public String join(MemberVO memberVO, RedirectAttributes rttr) {
 		log.info(memberVO);
@@ -133,14 +146,20 @@ public class MemberController {
 	// 마이페이지
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@GetMapping({"/mypage", "/mypage/{path}"})
-	public String myPage(Model model, Principal principal, @PathVariable(required = false) String path) {
+	public String myPage(Model model, Principal principal, 
+			@PathVariable(required = false) String path, Criteria criteria) {
 		String memberId = principal.getName();
-		if(path==null) {
+		if(path==null || path.isEmpty()) {
 			MemberVO memberVO = memberService.read(memberId);
 			model.addAttribute("vo",memberVO);
 			return "member/mypage";
+		} else if(path.equals("mypost")) {
+			
+			model.addAttribute("list", boardService.getList(criteria, null));
+			model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, null)));
+			return "member/mypost";
 		}
-		return "member/memberPage";
+		return "member/mypage";
 	}
 
 	// 관리자 페이지

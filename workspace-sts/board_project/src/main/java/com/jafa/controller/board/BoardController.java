@@ -112,7 +112,7 @@ public class BoardController {
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
 //		return "redirect:/board/list";
-		return "redirect:/board/"+boardType+"/get?bno="+vo.getBno();
+		return "";
 	}
 
 	// 게시글 삭제 처리 페이지

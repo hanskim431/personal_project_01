@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(BNO) FROM TBL_BOARD WHERE
 		<include refid="criteria" />
 		BNO > 0
-		<choose>
+			<choose>
 				<when test='boardType != null and boardType != "" '>
 					AND BOARDTYPE = #{boardType}
 				</when>

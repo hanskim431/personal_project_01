@@ -170,7 +170,8 @@ $(function(){
 	// 목록 or 수정 페이지로
 	let form = $('form')
 	
-	$('.getBtns button').click(function(){
+	$('.getBtns button').click(function(e){
+		e.preventDefault();
 		let operation = $(this).data('oper');
 		let type = '${criteria.type}'
 		let keyword = '${criteria.keyword}'
@@ -188,10 +189,10 @@ $(function(){
 		}
 		
 		if(operation=='list'){
-			
 			form.find('#bno').remove();
 			form.attr('action','${ctxPath}/board/${boardType}/list')
-			form.submit();
+			//form.submit();
+			history.back();
 		} else if(operation=='modify'){
 			form.attr('action','${ctxPath}/board/${boardType}/modify')
 			form.submit();
@@ -199,6 +200,7 @@ $(function(){
 			form.attr('action','${ctxPath}/board/${boardType}/remove')
 				.attr('method','post')
 			form.submit();
+			history.back();
 		}
 	});
 });
