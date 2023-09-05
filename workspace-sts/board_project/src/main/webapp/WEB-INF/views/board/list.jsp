@@ -13,7 +13,7 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="float-left">게시판</h3>
+					<h3 class="float-left">${boardType}</h3>
 					<div class="float-right d-flex">
 						<select class="amount form-control mx-2">
 							<option value="10" ${criteria.amount==10 ? 'selected':''}>10개씩 보기</option>

@@ -2,48 +2,68 @@
     pageEncoding="UTF-8"%>
 <%@ include file="includes/header.jsp" %>
 <style>
-.board{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 열의 크기를 조절합니다 */
-    grid-gap: 20px; /* 열 간격 설정 */
-    background-color: yellow;
+body{
+	background-color: darkgray;
 }
-.board-link{
-.board-link {
-    text-align: center; /* 텍스트를 중앙 정렬합니다 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* 링크 영역의 높이를 100%로 설정하여 내용을 수직으로 정렬합니다 */
-    text-decoration: none;
-    color: #333;
+img {
+    width: 200px;
+    height: 200px;
 }
-.board-link .board-icon{
-	font-size: 40px;
+
+.col-3 {
+    min-width: 17.6%;
+    max-width: 17.6%;
 }
-.board-link .board-name{
-    font-size: 24px; /* 텍스트 크기를 조절합니다 */
-}
-.board-link .follow-button{
-}
+
 </style>
 
-
 <h1>메인페이지</h1>
-<div class="container">
-	<div class="row my-auto">
-		<c:forEach items="">
-			<div class="board mx-auto text-center">
-				<a href="${ctxPath}/board/board1" class="board-link">
-					<span class="board-icon">😮</span>
-					<span class="board-name">게시판 1</span>
-					<button class="follow-button btn">🖤</button>
-				</a>
-			</div><!-- board END -->
-		</c:forEach>
 
-	</div><!-- row END -->
-</div><!-- container END -->
+<div class="container ">
+	<div class="row justify-content-md-center">
+	    <div class="col-3" >
+	        <a href="${ctxPath}/board/Road">
+	            <img src="${ctxPath}/resources/images/main/road.jpg" alt="로드">
+	        </a>
+	    </div>
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Mtb">
+	            <img src="${ctxPath}/resources/images/main/mountain.jpg" alt="MTB">
+	        </a>
+	    </div>
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Commuter">
+	            <img src="${ctxPath}/resources/images/main/commuter.jpg" alt="출퇴근">
+	        </a>
+	    </div>
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Touring">
+	            <img src="${ctxPath}/resources/images/main/touring.jpg" alt="여행">
+	        </a>
+	    </div>
+    </div>
+	<div class="row justify-content-md-center">
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Gears">
+	            <img src="${ctxPath}/resources/images/main/gears.jpg" alt="징비">
+	        </a>
+	    </div>
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Items">
+	            <img src="${ctxPath}/resources/images/main/repair.jpg" alt="정비">
+	        </a>
+	    </div>
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Shop">
+	            <img src="${ctxPath}/resources/images/main/shop.jpg" alt="장터">
+	        </a>
+	    </div>
+	    <div class="col-3">
+	        <a href="${ctxPath}/board/Lost-and-Found">
+	            <img src="${ctxPath}/resources/images/main/lostandfound.jpg" alt="분실물센터">
+	        </a>
+	    </div>
+	</div>
+</div>
 
 <%@ include file="includes/footer.jsp" %>

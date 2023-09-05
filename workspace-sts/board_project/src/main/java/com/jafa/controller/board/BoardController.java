@@ -1,6 +1,7 @@
 package com.jafa.controller.board;
 
 import java.nio.file.AccessDeniedException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,24 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	private String[] boardNames = {"Road","Mtb","Commuter","Touring","Gears","Repair","Shop","Lost-and-Found"};
 
 	// ========= 게시글 ========= 
 	// 게시글 리스트 조회 페이지
 	@GetMapping({"","/","/list"})
 	public String list(@PathVariable String boardType, Model model, Criteria criteria) {
+		boolean isBoard = false;
+		
 		if(boardType.equals("list")) {
 			return "home";
 		}
+		
+		if (!Arrays.asList(boardNames).contains(boardType)) {
+		    throw new IllegalArgumentException("유효하지 않은 게시판 종류입니다."); // 예외 던지기
+		}
+
+		
 		log.info(boardType);
 		model.addAttribute("boardType", boardType);
 		model.addAttribute("list", boardService.getList(criteria, boardType));

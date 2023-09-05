@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
 
+
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Catch"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.FileNotFoundException"%>
+<%@page import="java.io.FileReader"%>
+<%@page import="java.io.BufferedReader"%>
+
+
 <div class="container">
 	
 	<div class="row my-5">
@@ -17,7 +25,34 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<div class="form-group">
 					<h4>이용약관</h4>
-					<textarea rows="6" class="form-control my-2 bg-light border border-primary" readonly="readonly"></textarea>
+					<textarea rows="6" class="form-control my-2 bg-light border border-primary" readonly="readonly">
+<%
+					BufferedReader reader1 = null;
+					try{
+						String filePath = application.getRealPath("/resources/text/terms1.txt"); 
+						reader1 = new BufferedReader(new FileReader(filePath));
+						while(true){
+							String str = reader1.readLine();
+							if(str==null) break;
+							out.print(str+"\n");
+						}
+					}
+					catch(FileNotFoundException fnfe){
+						out.print("파일이 존재 하지 않습니다.");
+					}
+					catch(IOException ioe){
+						out.print("파일을 읽을수 없습니다.");
+					}
+					
+					finally{
+						try {
+							reader1.close();
+						}
+						catch(Exception e){
+						}
+					}
+%>					
+					</textarea>
 					<label class="mt-3">
 						<input type="checkbox" name="agreement">
 						<span>위 이용약관에 동의합니다.</span>
@@ -25,7 +60,34 @@
 				</div>
 				<div class="form-group">
 					<h4>개인정보 수집 및 이용에 대한 안내</h4>
-					<textarea rows="6" class="form-control my-2 bg-light border border-primary" readonly="readonly"></textarea>
+					<textarea rows="6" class="form-control my-2 bg-light border border-primary" readonly="readonly">
+<%
+					BufferedReader reader2 = null;
+					try{
+						String filePath = application.getRealPath("/resources/text/terms2.txt"); 
+						reader2 = new BufferedReader(new FileReader(filePath));
+						while(true){
+							String str = reader2.readLine();
+							if(str==null) break;
+							out.print(str+"\n");
+						}
+					}
+					catch(FileNotFoundException fnfe){
+						out.print("파일이 존재 하지 않습니다.");
+					}
+					catch(IOException ioe){
+						out.print("파일을 읽을수 없습니다.");
+					}
+					
+					finally{
+						try {
+							reader2.close();
+						}
+						catch(Exception e){
+						}
+					}
+%>
+					</textarea>
 					<label class="mt-3">
 						<input type="checkbox" name=agreement>
 						<span>위의 개인정보 수집 및 이용에 대한 안내에 동의합니다</span>

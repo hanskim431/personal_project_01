@@ -54,19 +54,8 @@
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link"	href="${ctxPath == '' ? '/': ctxPath}"> 
-					<img src="${ctxPath}/resources/images/logo.bmp" class="logo" alt="logo">
+					<img src="${ctxPath}/resources/images/bicycle_logo.png" class="logo" style="width:230px; height:70px" alt="logo">
 				</a>
-			</li>
-			<li class="nav-item my-auto">
-				<a class="btn btn-outline-info nav-link" href="${ctxPath}/board/board1">게시판1</a>
-			</li>
-			<li class="nav-item my-auto">
-				<a class="btn btn-outline-info nav-link" href="${ctxPath}/board/board2">게시판2</a>
-			</li>
-			<li class="nav-item my-auto">
-				<a class="btn btn-outline-info nav-link" href="${ctxPath}/board/board3">게시판3</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="#"></a></li>
 		</ul>
 		<ul class="navbar-nav">
 			<sec:authorize access="isAnonymous()">

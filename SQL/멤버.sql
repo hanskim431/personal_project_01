@@ -172,68 +172,68 @@ INSERT INTO TBL_MEMBER
 
 INSERT INTO TBL_MEMBER_AUTH VALUES ('member2','ROLE_MEMBER','ACTIVE');
 
-INSERT INTO TBL_MEMBER_DEL
-    (MEMBERID,MEMBERNAME,EMAIL,REGDATE,DELDATE)
-    VALUES ('sampledel','삭제계정','sampledel@test.com',SYSDATE,SYSDATE);
+--INSERT INTO TBL_MEMBER_DEL
+--    (MEMBERID,MEMBERNAME,EMAIL,REGDATE,DELDATE)
+--    VALUES ('sampledel','삭제계정','sampledel@test.com',SYSDATE,SYSDATE);
 
 
 
 -----------------------------------
 --            게시판 1
------------------------------------
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목1','게시판 내용1','admin1','board1','VISIBLE');
-    
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목2','게시판 내용2','admin1','board1','VISIBLE');
-
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목3','게시판 내용3','admin1','board1','HIDDEN');
-
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목4','게시판 내용4','admin1','board1','DELETED');
+-------------------------------------
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목1','게시판 내용1','admin1','board1','VISIBLE');
+--    
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목2','게시판 내용2','admin1','board1','VISIBLE');
+--
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목3','게시판 내용3','admin1','board1','HIDDEN');
+--
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목4','게시판 내용4','admin1','board1','DELETED');
     
 -----------------------------------
 --            게시판 2
 -----------------------------------
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목1','게시판 내용1','admin2','board2','VISIBLE');
-    
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목2','게시판 내용2','admin2','board2','VISIBLE');
-
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목3','게시판 내용3','admin2','board2','HIDDEN');
-
-INSERT INTO TBL_BOARD
-    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
-    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목4','게시판 내용4','admin2','board2','DELETED');
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목1','게시판 내용1','admin2','board2','VISIBLE');
+--    
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목2','게시판 내용2','admin2','board2','VISIBLE');
+--
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목3','게시판 내용3','admin2','board2','HIDDEN');
+--
+--INSERT INTO TBL_BOARD
+--    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
+--    VALUES(SEQ_BOARD.NEXTVAL,'게시판2 제목4','게시판 내용4','admin2','board2','DELETED');
     
 -----------------------------------
 --            게시판 1 게시글1 댓글
 -----------------------------------
-INSERT INTO TBL_REPLY
-    (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글1','admin1','VISIBLE');
-    
-INSERT INTO TBL_REPLY
-    (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글2','admin1','VISIBLE');  
-    
-INSERT INTO TBL_REPLY
-    (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글3','admin1','HIDDEN');  
-    
-INSERT INTO TBL_REPLY
-    (RNO,BNO,REPLY,REPLYER,STATUS)
-    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글4','admin1','DELETE');
+--INSERT INTO TBL_REPLY
+--    (RNO,BNO,REPLY,REPLYER,STATUS)
+--    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글1','admin1','VISIBLE');
+--    
+--INSERT INTO TBL_REPLY
+--    (RNO,BNO,REPLY,REPLYER,STATUS)
+--    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글2','admin1','VISIBLE');  
+--    
+--INSERT INTO TBL_REPLY
+--    (RNO,BNO,REPLY,REPLYER,STATUS)
+--    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글3','admin1','HIDDEN');  
+--    
+--INSERT INTO TBL_REPLY
+--    (RNO,BNO,REPLY,REPLYER,STATUS)
+--    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글4','admin1','DELETE');
     
     
 ------------------------------------------------------------------------------------
