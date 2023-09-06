@@ -50,11 +50,11 @@
 </script>
 
 <div>
-	<nav class="navbar navbar-expand-sm bg-light justify-content-between">
+	<nav class="navbar navbar-expand-sm justify-content-between">
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link"	href="${ctxPath == '' ? '/': ctxPath}"> 
-					<img src="${ctxPath}/resources/images/bicycle_logo.png" class="logo" style="width:230px; height:70px" alt="logo">
+					<img src="${ctxPath}/resources/images/bicycle_logo.png" class="logo" style="width:100px; height:38px" alt="logo">
 				</a>
 		</ul>
 		<ul class="navbar-nav">

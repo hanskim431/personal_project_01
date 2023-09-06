@@ -169,6 +169,7 @@
 		}
 		searchForm.submit();
 	});
+	
 </script>
 
 <%@ include file="../includes/footer.jsp"%>

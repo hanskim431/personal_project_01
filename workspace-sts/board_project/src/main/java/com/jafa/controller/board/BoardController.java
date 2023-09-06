@@ -37,7 +37,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	private String[] boardNames = {"Road","Mtb","Commuter","Touring","Gears","Repair","Shop","Lost-and-Found"};
+	private String[] boardNames = {"road","mtb","commuter","touring","gears","repair","shop","lost-and-found"};
 
 	// ========= 게시글 ========= 
 	// 게시글 리스트 조회 페이지

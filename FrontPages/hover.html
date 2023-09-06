@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>마우스 오버 텍스트 표시 예제</title>
+</head>
+<body>
+    <div id="hover-div">
+        <p id="hover-text" style="display:none;">여기에 표시할 텍스트</p>
+    </div>
+
+    <script>
+        // 마우스를 올리면 텍스트를 표시하는 함수
+        function showText() {
+            var textElement = document.getElementById("hover-text");
+            textElement.style.display = "block";
+        }
+
+        // 마우스를 벗어나면 텍스트를 숨기는 함수
+        function hideText() {
+            var textElement = document.getElementById("hover-text");
+            textElement.style.display = "none";
+        }
+
+        // 마우스 오버 및 아웃 이벤트 핸들러 설정
+        var hoverDiv = document.getElementById("hover-div");
+        hoverDiv.addEventListener("mouseover", showText);
+        hoverDiv.addEventListener("mouseout", hideText);
+    </script>
+</body>
+</html>
