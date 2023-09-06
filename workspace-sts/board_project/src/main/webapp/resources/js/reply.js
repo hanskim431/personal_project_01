@@ -128,7 +128,7 @@ $(function(){
 		
 		replyService.add(reply,function(result){
 			if(result=='success'){
-				alert('댓글을 등록하였습니다.')
+				//alert('댓글을 등록하였습니다.')
 			} else {
 				alert('댓글 등록 실패')
 			}

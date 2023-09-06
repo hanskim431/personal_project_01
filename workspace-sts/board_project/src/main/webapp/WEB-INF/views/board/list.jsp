@@ -2,12 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
 
+<style>
+.container{
+	
+}
+
+
+
+
+</style>
+
 <div class="container">
-	<div class="row">
-		<div class="col-12">
-			<h1 class="page-header"></h1>
-		</div>
-	</div>
+	<div class="row"><div class="col-12"><h1 class="page-header"></h1></div></div>
 
 	<div class="row">
 		<div class="col-12">
@@ -24,25 +30,15 @@
 						<button id="regBtn" class="btn btn-s btn-primary ">register</button>
 					</div>
 				</div>
+				
 				<div class="card-body">
 					<table class="table table-striped table-bordered table-hover">
 						<c:if test="${!empty list}">
 							<thead>
-								<tr>
-									<th>#번호</th>
-									<th>게시판</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>추천수</th>
-									<th>작성일</th>
-									<th>수정일</th>
-								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${list}" var="board">
 									<tr>
-										<td>${board.bno}</td>
-										<td>${board.boardType}</td>
 										<td>
 											<a class="move" href="${board.bno}">
 												${board.title } ${board.replyCnt==0?'':[board.replyCnt]}
@@ -50,13 +46,7 @@
 										</td>
 										<td>${board.writer}</td>
 										<td>${board.likeHit}</td>
-										<td><tf:formatDateTime value="${board.regDate}"
-												pattern="yyyy-MM-dd HH:mm" /></td>
-										<td><tf:formatDateTime value="${board.updateDate}"
-												pattern="yyyy-MM-dd HH:mm" /></td>
-										<td><button type="button" class="btn btn-primary active">보이기</button>
-											<button type="button" class="btn btn-primary disabled">숨기기</button></td>
-										<td><button type="button" class="btn btn-primary active">삭제</button></td>
+										<td><tf:formatDateTime value="${board.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -69,6 +59,7 @@
 								</tbody>
 							</c:if>
 					</table>
+					
 					<ul class="pagination justify-content-center">
 						<c:if test="${p.prev }">
 							<li class="page-item"><a class="page-link"

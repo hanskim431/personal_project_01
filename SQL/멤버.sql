@@ -99,7 +99,7 @@ CREATE TABLE TBL_BOARD_LIKE( -- 게시글 좋아요 테이블
 -----------------------------------
 CREATE TABLE TBL_REPLY( -- 댓글 테이블
     RNO NUMBER(10) PRIMARY KEY, -- 댓글 번호
-    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO), -- 글 번호
+    BNO NUMBER(10) REFERENCES TBL_BOARD(BNO) ON DELETE CASCADE, -- 글 번호
     REPLY VARCHAR2(1000), -- 댓글 내용
     REPLYER VARCHAR2(50) REFERENCES TBL_MEMBER(MEMBERID), -- 작성자
     REGDATE DATE default SYSDATE, -- 작성일
@@ -273,4 +273,6 @@ SELECT * FROM TBL_BOARD B LEFT OUTER JOIN TBL_ATTACH A ON B.BNO = A.BNO; -- 게�
 
 SELECT * FROM TBL_BOARD WHERE WRITER = 'admin1' ;
 
-SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0 
+SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0 ;
+
+delete from TBL_BOARD where bno = 101 cascade;

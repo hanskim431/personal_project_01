@@ -19,15 +19,16 @@ public class DataInsert extends AppTest{
 		String writer;
 		String writerArr[] = {"admin1","admin2","member1","member2","member3","member4"};
 		String boardType;
+		String boardTypeArr[] = {"road","mtb","commuter","touring","gears","repair","shop","lost-and-found"};
 		String status;
 		
-		for(int j=1; j<10; j++) {
-			for(int i=1;i<=408;i++) {
+		for(int j=0; j<8; j++) {
+			for(int i=1;i<=101;i++) {
 				BoardVO vo = BoardVO.builder()
-						.title("제목 : 테스트 데이터 " + i)
-						.content("내용 : 테스트 데이터 " + i)
+						.title(boardTypeArr[j] + " 게시판 제목 테스트 데이터 " + i)
+						.content(boardTypeArr[j] + " 내용 : 테스트 데이터 " + i)
 						.writer(writer = writerArr[i%6])
-						.boardType(boardType ="board" + j)
+						.boardType(boardType = boardTypeArr[j])
 						.status(status = i % 5 == 0 ? "HIDDEN" : "VISIBLE")
 						.build();
 				boardRepository.insert(vo);			

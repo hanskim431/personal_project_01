@@ -67,7 +67,7 @@
 				</li>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-				<li class="nav-item">
+				<li class="nav-item my-auto">
 					<div>${authInfo.memberName}님, 어서오세요</div>
 				</li>
 				<li class="nav-item">
