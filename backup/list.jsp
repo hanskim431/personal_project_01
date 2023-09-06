@@ -3,68 +3,63 @@
 <%@ include file="../includes/header.jsp"%>
 
 <style>
-.thumbnail img{
-	width: 240px;
-	height: 135px;
+.container{
+	
 }
-.userimage img{
-	width: 35px;
-	height: 35px;
-}
+
+
+
 
 </style>
 
 <div class="container">
+	<div class="row"><div class="col-12"><h1 class="page-header"></h1></div></div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
 					<h3 class="float-left">${boardType}</h3>
+					<div class="float-right d-flex">
+						<select class="amount form-control mx-2">
+							<option value="10" ${criteria.amount==10 ? 'selected':''}>10개씩 보기</option>
+							<option value="25" ${criteria.amount==25 ? 'selected':''}>25개씩 보기</option>
+							<option value="50" ${criteria.amount==50 ? 'selected':''}>50개씩 보기</option>
+							<option value="100" ${criteria.amount==100 ? 'selected':''}>100개씩 보기</option>
+						</select>
+						<button id="regBtn" class="btn btn-s btn-primary ">register</button>
+					</div>
 				</div>
 				
 				<div class="card-body">
-					<div class="container">
+					<table class="table table-striped table-bordered table-hover">
 						<c:if test="${!empty list}">
-							<c:forEach items="${list}" var="board" varStatus="s">
-								<c:if test="${s.index mod 4 == 0}"> <div class="row"> </c:if>
-									<div class="col-3">
-											<div class="thumbnail"  style="margin:auto;">
-												<a class="move" href="${board.bno}">
-												<img class="" alt="thumbnail" src="${ctxPath}/resources/images/main/mountain.jpg">
-												</a>
-											</div>
-											<div class="row content-info">
-												<div class="col-2 userimage " style="margin:auto;">
-													<a class="userpage" href="#">
-														<img class="" alt="userimage" src="${ctxPath}/resources/images/main/mountain.jpg">
-													</a><!-- col-2 END -->
-												</div>
-												<div class="col-9 float-left">
-													<a class="move" href="${board.bno}">
-														<div>${board.title }</div>
-													</a>
-													<a class="userpage" href="#">
-														<div>${board.writer}</div>
-													</a>
-													<a class="move" href="${board.bno}">
-														<div>댓글 ${board.replyCnt} • 추천 ${board.likeHit}</div>
-													</a>
-												</div><!-- col-9 END -->
-											</div> <!-- row content-info END -->
-									</div><!-- col-3 -->
-								<c:if test="${s.index mod 4 == 3}"> </div> </c:if>
-							</c:forEach>
-						</c:if>
-						<c:if test="${empty list}">
+							<thead>
+							</thead>
 							<tbody>
-								<tr>
-									<td colspan="5">게시물이 존재하지 않습니다.</td>
-								</tr>
+								<c:forEach items="${list}" var="board">
+									<tr>
+										<td>
+											<a class="move" href="${board.bno}">
+												${board.title } ${board.replyCnt==0?'':[board.replyCnt]}
+											</a>
+										</td>
+										<td>${board.writer}</td>
+										<td>${board.likeHit}</td>
+										<td><tf:formatDateTime value="${board.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+									</tr>
+								</c:forEach>
 							</tbody>
-						</c:if>
-					</div>
-				</div>
-				<div class="card-body">	
+							</c:if>
+							<c:if test="${empty list}">
+								<tbody>
+									<tr>
+										<td colspan="5">게시물이 존재하지 않습니다.</td>
+									</tr>
+								</tbody>
+							</c:if>
+					</table>
+					
 					<ul class="pagination justify-content-center">
 						<c:if test="${p.prev }">
 							<li class="page-item"><a class="page-link"
@@ -111,11 +106,16 @@
 					</form>
 					
 					
-				</div><!-- card-body end -->
-			</div><!-- card end -->
-		</div><!-- col-12 end -->
-	</div><!-- row end -->
-</div><!-- container end -->
+				</div>
+				<!-- card-body end -->
+			</div>
+			<!-- card end -->
+		</div>
+		<!-- col-12 end -->
+	</div>
+	<!-- row end -->
+</div>
+<!-- container end -->
 
 <script>
 	console.log('${criteria.type}')

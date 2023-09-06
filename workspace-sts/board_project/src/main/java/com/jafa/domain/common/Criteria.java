@@ -18,7 +18,7 @@ public class Criteria {
 	private String keyword;
 	
 	public Criteria() {
-		this(1, 10);
+		this(1, 16);
 	}
 	/**
 	 * DB 결과 필터링 기준
