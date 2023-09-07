@@ -1,95 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
-<div class="container">
-	<div class="row">
-		<div class="col-12">
-			<h1 class="page-header">
-				<div class="getBtns">
-					<button data-oper="list" class="btn btn-info list">목록으로</button>
-					${board.title}
-				</div>
-			</h1>
-		</div>
-	</div>
 
+<style>
+.userimage img {
+	width: 45px;
+	height: 45px;
+}
+.menu img{
+	height: 30px;
+}
+
+</style>
+
+<div class="container">
 	<!-- 본문 -->
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header">Board Read Page</div>
+				<div class="card-header">
+					<div class="row my-2"> <!-- row1 -->
+						<div class="col-1 text-center getBtns" style="padding:0;">
+							<a data-oper="list" class="btn btn-light list dropdown-item" href="#">
+								<img alt="←" src="${ctxPath}/resources/images/icon/arrow-back.png" style="width: 35px; height: 35px;"/>
+							</a>
+						</div>
+						<div class="col-11" style="padding:0;">
+							<h2 class="float-left" style="margin:0;">${board.title}</h2>
+						</div>
+					</div>
+				
+				</div>
+				<div class="card-header">
+					<div class="row">
+						<div class="col-1 userimage text-center" style="margin:auto; padding:0px">
+							<a class="userpage" href="#">
+								<img class="rounded-circle" alt="userimage" src="${ctxPath}/resources/images/member/userImage.png">
+							</a>
+						</div>
+						<div class="col-10 text-left" style="margin:auto; padding:0px">
+							<span style="font-size:18px;">${board.writer }</span>
+							<span class="mx-2" style="font-size:12px;">
+								<tf:formatDateTime value="${board.regDate}" pattern="yy-MM-dd HH:mm" />
+							</span>
+						</div>
+						<div class="col-1 menu text-center" style="margin:auto; padding:0px">
+							<div class="dropdown">
+								<img alt="menu" src="${ctxPath}/resources/images/icon/menu-kebab.png" 
+									class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<div class="dropdown-menu getBtns" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="#">
+										<img class="" alt="report" src="${ctxPath}/resources/images/icon/report.png">
+										신고
+									</a>
+									<sec:authorize access="isAuthenticated() and principal.username== #board.writer or hasRole('ROLE_ADMIN')">
+										<a data-oper="modify" class="btn btn-light modify dropdown-item" href="#">
+											<img class="" alt="edit" src="${ctxPath}/resources/images/icon/edit.png">
+											수정
+										</a>
+										<a data-oper="remove" class="btn btn-light remove dropdown-item" href="remove">
+											<img class="" alt="remove" src="${ctxPath}/resources/images/icon/remove.png">
+											삭제
+										</a>
+									</sec:authorize>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="card-body">
-					<div class="form-group">
-						<label>번호</label> <input class="form-control" name="bno"
-							value="${board.bno}" readonly="readonly" />
+					<div class="row">
+						<div class="col-6 uploadResultDiv"><!-- 파일업로드 결과 보여주기  -->
+								<div></div>
+						</div>
+						<div class="col-6">
+							<div class="form-group">
+								<textarea class="form-control" rows="10" name="content" readonly="readonly">${board.content}</textarea>
+							</div>
+							<div class="getBtns text-right">
+								<button class="btn btn-warning back-to-top-css"
+									data-toggle="collapse" data-target=".reply">댓글
+									${board.replyCnt==0?'':board.replyCnt}</button>
+								<sec:authorize access="isAuthenticated()">
+									<button class="btn btn-danger like">추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
+								</sec:authorize>
+								<sec:authorize access="!isAuthenticated()">
+									<button class="btn btn-danger" onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
+										추천 ${board.likeHit == 0 ? '' : board.likeHit}
+									</button>
+								</sec:authorize>
+							</div> <!-- getBtns END -->
+						</div>
 					</div>
-					<div class="form-group">
-						<label>제목</label> <input class="form-control" name="title"
-							value="${board.title}" readonly="readonly" />
-					</div>
-					<div class="form-group">
-						<label>내용</label>
-						<textarea class="form-control" rows="10" name="content"
-							readonly="readonly">${board.content}</textarea>
-					</div>
-					<div class="form-group">
-						<label>작성자</label> <input class="form-control" name="writer"
-							value="${board.writer }" readonly="readonly" />
-					</div>
-					<div class="getBtns">
-						<sec:authorize
-							access="isAuthenticated() and principal.username== #board.writer or hasRole('ROLE_ADMIN')">
-							<button data-oper="modify" class="btn btn-light modify">수정페이지</button>
-							<button data-oper="remove" class="btn btn-danger remove">게시글삭제</button>
-						</sec:authorize>
-						<button class="btn btn-warning back-to-top-css"
-							data-toggle="collapse" data-target=".reply">댓글
-							${board.replyCnt==0?'':board.replyCnt}</button>
-						<sec:authorize access="isAuthenticated()">
-							<button class="btn btn-danger like">추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
-						</sec:authorize>
-						<sec:authorize access="!isAuthenticated()">
-							<button class="btn btn-danger"
-								onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
-								추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
-						</sec:authorize>
-					</div>
+					
+					
 				</div><!-- card-body END -->
 			</div><!-- card END -->
 		</div><!-- col END  -->
 	</div><!-- row END -->
 	
-	<!-- 파일 -->
-	<div class="row my-5">
-		<div class="col-lg-12">
-			<div class="card">
-				<div class="card-header">
-					<h4>첨부 파일</h4>
-				</div>
-				<div class="card-body">
-					<div class="uploadResultDiv mt-3"> <!-- 파일업로드 결과 보여주기  -->
-						<ul class="list-group"></ul>
-					</div>
-				</div> <!-- card-body END -->
-			</div> <!-- card END -->
-		</div> <!-- col END -->
-	</div><!-- row END -->
-</div><!-- container END -->
-
-<!-- 원본 이미지 -->
-<div class="modal fade" id="showImage">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-	        <div class="modal-header">
-	            <h4 class="modal-title">원본 이미지 보기</h4>
-	            <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        </div>
-	        <div class="modal-body"></div>
-        </div>
-    </div>
-</div>
-
-
 <!-- 댓글 -->
 <div class="container reply collapse">
 	<div class="replyWriterForm my-3">
@@ -137,8 +146,8 @@
 								<button type="button" class="btn btn-light dropdown-toggle"
 									data-toggle="dropdown">변경</button>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="modify">수정</a> <a
-										class="dropdown-item" href="delete">삭제</a>
+									<a class="dropdown-item" href="modify">수정</a> 
+									<a class="dropdown-item" href="delete">삭제</a>
 								</div>
 							</div> <!-- reply_modify-end -->
 					</div> <!-- d-flex justify-content-between-end -->
@@ -170,7 +179,7 @@ $(function(){
 	// 목록 or 수정 페이지로
 	let form = $('form')
 	
-	$('.getBtns button').click(function(e){
+	$('.getBtns a').click(function(e){
 		e.preventDefault();
 		let operation = $(this).data('oper');
 		let type = '${criteria.type}'
@@ -180,6 +189,7 @@ $(function(){
 			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
 			.append($('<input/>',{type : 'hidden', name : 'boardType', value : '${boardType}'}))
 			.append($('<input/>',{type : 'hidden', name : '${_csrf.parameterName}', value : '${_csrf.token}'}))
+			.append($('<input/>',{type : 'hidden', name : 'bno', value : '${board.bno}'}))
 			.append($('<input/>',{type : 'hidden', name : 'writer', value : '${board.writer}'}))
 		.attr('method','get')
 		
@@ -258,3 +268,4 @@ if(memberId!=''){
 
 <script src="${ctxPath}/resources/js/replyService.js"></script>
 <script src="${ctxPath}/resources/js/reply.js"></script>
+<script src="${ctxPath}/resources/js/boardAttach.js"></script>

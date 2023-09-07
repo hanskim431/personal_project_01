@@ -63,6 +63,9 @@ public class FileUploadController {
 					FileOutputStream tumbnail = new FileOutputStream(new File(uploadPath,"s_"+uuid+"_"+filName));
 					Thumbnailator.createThumbnail(multipartFile.getInputStream(), tumbnail,40,40);
 					tumbnail.close();
+					FileOutputStream listTumbnail = new FileOutputStream(new File(uploadPath,"m_"+uuid+"_"+filName));
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), listTumbnail,520,250);
+					listTumbnail.close();
 				}
 				multipartFile.transferTo(saveFile); // 파일 저장
 				list.add(attachVO);

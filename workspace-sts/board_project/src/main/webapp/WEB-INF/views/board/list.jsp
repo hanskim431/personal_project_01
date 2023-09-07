@@ -20,8 +20,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="row my-2"> <!-- row1 -->
-						<div class="col-1 text-center" style="padding:0;">
-							<img alt="←" src="${ctxPath}/resources/images/icon/arrow-back.png" style="width: 35px; height: 35px;"/>
+						<div class="col-1">
 						</div>
 						<div class="col-10" style="padding:0;">
 							<h2 class="float-left" style="margin:0;">${info.boardName}</h2>
@@ -32,7 +31,7 @@
 					</div>
 					<div class="row my-2"> <!-- row2 -->
 						<div class="col-3 text-center" style="padding:0;">
-							<img alt="←" src="${ctxPath}/resources/images/main/${boardType}.jpg" style="width: 200px; height: 200px;"/>
+							<img alt="boardImage" src="${ctxPath}/resources/images/main/${boardType}.jpg" style="width: 200px; height: 200px;"/>
 						</div>
 						<div class="col-6" style="padding:0;">
 							<h3 class="float-left" style="margin:0;">
@@ -62,24 +61,22 @@
 									<div class="col-3">
 											<div class="thumbnail"  style="margin:auto;">
 												<a class="move" href="${board.bno}">
-												<img class="" alt="thumbnail" src="${ctxPath}/resources/images/main/mountain.jpg">
+												<img class="" alt="thumbnail" src="${ctxPath}/resources/images/main/${boardType}.jpg">
 												</a>
 											</div>
 											<div class="row content-info">
 												<div class="col-2 userimage " style="margin:auto;">
 													<a class="userpage" href="#">
-														<img class="" alt="userimage" src="${ctxPath}/resources/images/main/mountain.jpg">
+														<img class="rounded-circle" alt="userimage" src="${ctxPath}/resources/images/member/userImage.png">
 													</a><!-- col-2 END -->
 												</div>
 												<div class="col-9 float-left">
 													<a class="move" href="${board.bno}">
 														<div>${board.title }</div>
+														<div>댓글 ${board.replyCnt} • 추천 ${board.likeHit}</div>
 													</a>
 													<a class="userpage" href="#">
 														<div>${board.writer}</div>
-													</a>
-													<a class="move" href="${board.bno}">
-														<div>댓글 ${board.replyCnt} • 추천 ${board.likeHit}</div>
 													</a>
 												</div><!-- col-9 END -->
 											</div> <!-- row content-info END -->

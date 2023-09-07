@@ -105,6 +105,7 @@ public class BoardController {
 	public String modify(@PathVariable String boardType, Model model, @RequestParam("bno") Long bno, 
 			Criteria criteria, RedirectAttributes rttr, Authentication auth) throws AccessDeniedException {
 		BoardVO vo = boardService.get(bno);
+		log.info(vo);
 		String username = auth.getName();
 		if (!vo.getWriter().equals(username)
 				&& !auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
@@ -119,12 +120,13 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated() and principal.username== #vo.writer or hasRole('ROLE_ADMIN')")
 	@PostMapping("/modify")
 	public String modify(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr, Criteria criteria) {
+//		log.info(vo.getBno());
 		boardService.modify(vo);
 		rttr.addFlashAttribute("result",vo.getBno());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
 //		return "redirect:/board/list";
-		return "redirect:/board/"+boardType + "/get?=" + vo.getBno();
+		return "redirect:/board/"+boardType + "/get?bno=" + vo.getBno();
 	}
 
 	// 게시글 삭제 처리 페이지

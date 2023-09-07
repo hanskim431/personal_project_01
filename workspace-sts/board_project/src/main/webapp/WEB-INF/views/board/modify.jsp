@@ -6,33 +6,32 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header"></div>
-				<!-- card-header end -->
+				<div class="card-header">
+					<div class="row my-2"> <!-- row1 -->
+						<div class="col-1 text-center getBtns" style="padding:0;">
+							<a data-oper="list" class="btn btn-light list dropdown-item" href="#">
+								<img alt="←" src="${ctxPath}/resources/images/icon/arrow-back.png" style="width: 35px; height: 35px;"/>
+							</a>
+						</div>
+						<div class="col-11" style="padding:0;">
+							<h2 class="float-left" style="margin:0;">${board.title}</h2>
+						</div>
+					</div>
+				</div> <!-- card-header end -->
+				
 				<div class="card-body">
 					<form action="${ctxPath}/board/${boardType}/modify" class="modifyForm" method="post">
-						<div class="form-group">
-							<label>작성자
-								<button type="fileAttach" class="btn btn-default">file</button>
-								<button type="submit" class="btn btn-default">Submit</button>
-							</label> <input type="text" class="form-control" name="writer"
-								value="${board.writer}" readonly="readonly">
-						</div>
-						<div class="form-group">
-							<label>제목</label> <input type="text" class="form-control"
-								name="title" value="${board.title}">
-						</div>
 						<div class="form-group">
 							<label>내용</label>
 							<textarea class="form-control" rows="10" name="content">${board.content}</textarea>
 						</div>
 						<div class="form-group">
 							<label>첨부파일 목록</label>
-
 						</div>
-						<input type="hidden" name="bno" value="${board.bno}"> 
-						<input type="hidden" name="boardType" value="BOARD3"> 
-						<input type="hidden" name="status" value="VISIBLE">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						
+							<button type="fileAttach" class="btn btn-default">file</button>
+							<button type="submit" class="btn btn-default">Submit</button>
+						
 					</form>
 				</div><!-- card-body END -->
 			</div><!-- card END -->
@@ -82,6 +81,11 @@ let keyword = '${criteria.keyword}'
 let addCriteria = function(){
 	formObj.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
 		   .append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
+			.append($('<input/>',{type : 'hidden', name : 'boardType', value : '${boardType}'}))
+			.append($('<input/>',{type : 'hidden', name : '${_csrf.parameterName}', value : '${_csrf.token}'}))
+		   .append($('<input/>',{type : 'hidden', name : 'bno', value : '${board.bno}'}))
+		   .append($('<input/>',{type : 'hidden', name : 'title', value : '${board.title}'}))
+		   .append($('<input/>',{type : 'hidden', name : 'writer', value : '${board.writer}'}))
 	if(type&&keyword){
 		formObj.append($('<input/>',{type : 'hidden', name : 'type', value : '${criteria.type}'}))
 			.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${criteria.keyword}'}))
