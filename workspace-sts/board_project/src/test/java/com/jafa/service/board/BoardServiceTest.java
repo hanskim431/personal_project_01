@@ -48,6 +48,14 @@ public class BoardServiceTest extends AppTest{
 		log.info("get:"+boardService.get(1L));
 	}
 	
+//	@Ignore
+	@Test
+	public void testReadBoardInfo() {
+		log.info("Info:"+boardService.readBoardInfo("road"));
+	}
+	
+	
+	
 	@Ignore
 	@Test
 	public void testRegister() {
@@ -84,7 +92,7 @@ public class BoardServiceTest extends AppTest{
 		log.info(bno+"번 게시글 삭제");
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testGetAttach() {
 		String uuid = "2d844f61-457b-48b9-97ad-89ef240eb402";

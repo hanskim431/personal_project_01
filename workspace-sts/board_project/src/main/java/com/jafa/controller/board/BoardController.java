@@ -56,6 +56,7 @@ public class BoardController {
 		
 		log.info(boardType);
 		model.addAttribute("boardType", boardType);
+		model.addAttribute("info", boardService.readBoardInfo(boardType));
 		model.addAttribute("list", boardService.getList(criteria, boardType));
 		model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, boardType)));
 		return "/board/list";
@@ -123,7 +124,7 @@ public class BoardController {
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
 //		return "redirect:/board/list";
-		return "";
+		return "redirect:/board/"+boardType + "/get?=" + vo.getBno();
 	}
 
 	// 게시글 삭제 처리 페이지

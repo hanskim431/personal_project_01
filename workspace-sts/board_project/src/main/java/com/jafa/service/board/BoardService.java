@@ -3,6 +3,7 @@ package com.jafa.service.board;
 import java.util.List;
 
 import com.jafa.domain.board.BoardAttachVO;
+import com.jafa.domain.board.BoardInfoVO;
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.board.LikeDTO;
 import com.jafa.domain.common.Criteria;
@@ -19,6 +20,8 @@ public interface BoardService {
 	
 	//R
 	BoardVO get(Long bno);
+	
+	BoardInfoVO readBoardInfo(String boardType);
 	
 	//U
 	boolean modify(BoardVO vo);

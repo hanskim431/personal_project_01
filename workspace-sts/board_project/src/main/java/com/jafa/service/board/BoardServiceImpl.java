@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jafa.domain.board.BoardAttachVO;
+import com.jafa.domain.board.BoardInfoVO;
 import com.jafa.domain.board.BoardVO;
 import com.jafa.domain.board.LikeDTO;
 import com.jafa.domain.common.Criteria;
 import com.jafa.repository.board.ArticleLikeRepository;
 import com.jafa.repository.board.BoardAttachRepository;
+import com.jafa.repository.board.BoardInfoRepository;
 import com.jafa.repository.board.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardRepository boardRepository;
+
+	@Autowired
+	private BoardInfoRepository boardInfoRepository;
 	
 	@Autowired
 	private BoardAttachRepository boardAttachRepository;
@@ -69,6 +74,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.read(bno);
 	}
 
+	@Override
+	public BoardInfoVO readBoardInfo(String boardType) {
+		return boardInfoRepository.read(boardType);
+	}
+	
+	
 	//U
 	@Override
 	public boolean modify(BoardVO board) {
@@ -146,4 +157,5 @@ public class BoardServiceImpl implements BoardService {
 			}
 		});
 	}
+
 }

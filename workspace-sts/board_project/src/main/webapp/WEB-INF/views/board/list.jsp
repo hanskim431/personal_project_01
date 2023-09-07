@@ -8,8 +8,8 @@
 	height: 135px;
 }
 .userimage img{
-	width: 35px;
-	height: 35px;
+	width: 45px;
+	height: 45px;
 }
 
 </style>
@@ -19,7 +19,39 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="float-left">${boardType}</h3>
+					<div class="row my-2"> <!-- row1 -->
+						<div class="col-1 text-center" style="padding:0;">
+							<img alt="←" src="${ctxPath}/resources/images/icon/arrow-back.png" style="width: 35px; height: 35px;"/>
+						</div>
+						<div class="col-10" style="padding:0;">
+							<h2 class="float-left" style="margin:0;">${info.boardName}</h2>
+						</div>
+						<div class="col-1" style="padding:0;">
+							<button id="regBtn" class="btn btn-s btn-primary ">글쓰기</button>
+						</div>
+					</div>
+					<div class="row my-2"> <!-- row2 -->
+						<div class="col-3 text-center" style="padding:0;">
+							<img alt="←" src="${ctxPath}/resources/images/main/${boardType}.jpg" style="width: 200px; height: 200px;"/>
+						</div>
+						<div class="col-6" style="padding:0;">
+							<h3 class="float-left" style="margin:0;">
+								<div>${info.expanation}</div>
+							</h3>
+						</div>
+						<div class="col-3 text-center" style="padding:0;">
+						</div>
+					</div>
+<!-- 					<div class="float-right d-flex"> -->
+<!-- 						<select class="amount form-control mx-2"> -->
+<%-- 							<option value="10" ${criteria.amount==10 ? 'selected':''}>10개씩 보기</option> --%>
+<%-- 							<option value="25" ${criteria.amount==25 ? 'selected':''}>25개씩 보기</option> --%>
+<%-- 							<option value="50" ${criteria.amount==50 ? 'selected':''}>50개씩 보기</option> --%>
+<%-- 							<option value="100" ${criteria.amount==100 ? 'selected':''}>100개씩 보기</option> --%>
+<!-- 						</select> -->
+<!-- 						<button id="regBtn" class="btn btn-s btn-primary ">register</button> -->
+<!-- 					</div> -->
+
 				</div>
 				
 				<div class="card-body">

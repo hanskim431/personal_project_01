@@ -49,6 +49,14 @@
 	
 </script>
 
+<style type="text/css">
+
+.card-header {
+    background-color: rgba(0,0,0,.0);
+}
+
+</style>
+
 <div>
 	<nav class="navbar navbar-expand-sm justify-content-between">
 		<ul class="navbar-nav">

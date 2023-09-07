@@ -26,7 +26,7 @@ img {
 	    </div>
 	    <div class="col-3" id="mtb-div" onmouseover="showText('MTB')" onmouseout="hideText()">
 	        <a href="${ctxPath}/board/mtb">
-	            <img src="${ctxPath}/resources/images/main/mountain.jpg" alt="MTB">
+	            <img src="${ctxPath}/resources/images/main/mtb.jpg" alt="MTB">
 	        </a>
 	    </div>
 	    <div class="col-3" id="commuter-div" onmouseover="showText('COMMUTER')" onmouseout="hideText()">
@@ -58,7 +58,7 @@ img {
 	    </div>
 	    <div class="col-3" id="lostandfound-div" onmouseover="showText('분실물센터')" onmouseout="hideText()">
 	        <a href="${ctxPath}/board/lost-and-found">
-	            <img src="${ctxPath}/resources/images/main/lostandfound.jpg" alt="분실물센터">
+	            <img src="${ctxPath}/resources/images/main/lost-and-found.jpg" alt="분실물센터">
 	        </a>
 	    </div>
 	</div>

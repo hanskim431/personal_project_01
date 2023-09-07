@@ -14,6 +14,7 @@ DROP TABLE TBL_MEMBER_DEL; -- 삭제 계정
 DROP TABLE TBL_ATTACH; -- 첨부파일
 DROP TABLE PERSISTENT_LOGINS; -- 로그인 정보
 DROP TABLE TBL_BOARD_LIKE; -- 게시글 좋아요
+DROP TABLE TBL_BOARD_INFO; -- 게시글 정보
 DROP TABLE TBL_REPLY_LIKE; -- 댓글 좋아요
 DROP TABLE TBL_REPLY; --  댓글
 DROP TABLE TBL_BOARD; -- 게시글
@@ -76,7 +77,7 @@ CREATE TABLE TBL_BOARD( -- 게시글
     TITLE VARCHAR2(200), -- 글 제목
     CONTENT VARCHAR2(2000), -- 글 내용
     WRITER VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID), -- 작성자
-    BOARDTYPE VARCHAR2(100), -- 카테고리
+    BOARDTYPE VARCHAR2(100), -- 게시판 형식
     REGDATE DATE default SYSDATE, -- 작성일
     UPDATEDATE DATE default SYSDATE, -- 수정일
     STATUS VARCHAR2(100), -- 상태
@@ -94,6 +95,11 @@ CREATE TABLE TBL_BOARD_LIKE( -- 게시글 좋아요 테이블
     MEMBERID VARCHAR2(100) REFERENCES TBL_MEMBER(MEMBERID) ON DELETE CASCADE -- 아이디
 );
 
+CREATE TABLE TBL_BOARD_INFO( -- 게시글 좋아요 테이블
+    BOARDTYPE VARCHAR2(100), -- 게시판 형식
+    BOARDNAME VARCHAR2(1000), -- 게시판 이름
+    EXPANATION VARCHAR2(2000) -- 게시판 이름
+);
 -----------------------------------
 --            댓글
 -----------------------------------
@@ -180,7 +186,8 @@ INSERT INTO TBL_MEMBER_AUTH VALUES ('member2','ROLE_MEMBER','ACTIVE');
 
 -----------------------------------
 --            게시판 1
--------------------------------------
+-----------------------------------
+
 --INSERT INTO TBL_BOARD
 --    (BNO,TITLE,CONTENT,WRITER,BOARDTYPE,STATUS)
 --    VALUES(SEQ_BOARD.NEXTVAL,'게시판1 제목1','게시판 내용1','admin1','board1','VISIBLE');
@@ -234,6 +241,19 @@ INSERT INTO TBL_MEMBER_AUTH VALUES ('member2','ROLE_MEMBER','ACTIVE');
 --INSERT INTO TBL_REPLY
 --    (RNO,BNO,REPLY,REPLYER,STATUS)
 --    VALUES(SEQ_REPLY.NEXTVAL,1,'게시글1 댓글4','admin1','DELETE');
+
+
+-----------------------------------
+--            게시판 정보
+-----------------------------------
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('road','로드 자전거','로드 자전거와 관련된 이야기를 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('mtb','산악 자전거','산악 자전거와 관련된 이야기를 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('commuter','자전거 출퇴근','자전거 출퇴근와 관련된 이야기를 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('touring','자전거 여행','자전거 여행과 관련된 이야기를 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('gears','자전거 장비','자전거 장비와 관련된 이야기를 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('repair','정비/수리','자전거 정비와 관련된 이야기를 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('shop','사고팔기','자전거를 사고, 팔고, 나누는 게시판 입니다.');
+INSERT INTO TBL_BOARD_INFO (BOARDTYPE,BOARDNAME,EXPANATION) VALUES ('lost-and-found','분실물센터','자전거 분실•획득, 장비 분실•획득시 서로 알려주는 게시판 입니다.');
     
     
 ------------------------------------------------------------------------------------
@@ -274,5 +294,3 @@ SELECT * FROM TBL_BOARD B LEFT OUTER JOIN TBL_ATTACH A ON B.BNO = A.BNO; -- 게�
 SELECT * FROM TBL_BOARD WHERE WRITER = 'admin1' ;
 
 SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0 ;
-
-delete from TBL_BOARD where bno = 101 cascade;
