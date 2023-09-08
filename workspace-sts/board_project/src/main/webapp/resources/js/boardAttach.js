@@ -8,9 +8,13 @@ $(function(){
 			let fileList = '';
 			$(attachList).each(function(i,e){
 				fileList += `<div class="text-center" data-uuid="${e.uuid}">`
-				if(e.fileType){ // 이미지 파일인 경우 섬네일 표시
+				if(e.fileType){ // 이미지 파일인 경우 사진 표시
 					let filePath = e.uploadPath+"/m_"+e.uuid+"_"+e.fileName; 
 					let encodingFilePath = encodeURIComponent(filePath);
+					
+					$('.col-12 .textDiv').attr('class', 'col-6 textDiv')
+					$('.uploadResultDiv').attr('class', 'col-6 uploadResultDiv')
+					
 					fileList +=`
 						<div class="thumnail d-inline-block mr-3">
 							<img alt="" src="${ctxPath}/files/display?fileName=${encodingFilePath}">	

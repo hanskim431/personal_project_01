@@ -70,23 +70,50 @@
 				</div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-6 uploadResultDiv"><!-- 파일업로드 결과 보여주기  -->
-								<div></div>
+						<div class="uploadResultDiv"><!-- 파일업로드 결과 보여주기  -->
+							<div></div>
 						</div>
-						<div class="col-6">
+						<div class="col-12 textDiv">
 							<div class="form-group">
 								<textarea class="form-control" rows="10" name="content" readonly="readonly">${board.content}</textarea>
 							</div>
-							<div class="getBtns text-right">
-								<button class="btn btn-warning back-to-top-css"
-									data-toggle="collapse" data-target=".reply">댓글
-									${board.replyCnt==0?'':board.replyCnt}</button>
+							<div class="getBtns text-right ">
+								<button class="btn btn-outline-basic back-to-top-css" 
+									data-toggle="collapse" data-target=".reply">
+									<div class="row">
+										<div class="col-6">
+											<img alt="댓글" src="${ctxPath}/resources/images/icon/reply.png" style="width:40px">
+										</div>
+										<div class="col-6" style="margin:auto; font-size: 20px">
+											${board.replyCnt}
+										</div>
+									</div>
+								</button>
+									
 								<sec:authorize access="isAuthenticated()">
-									<button class="btn btn-danger like">추천 ${board.likeHit == 0 ? '' : board.likeHit}</button>
+									<button class="btn btn-outline-basic like">
+										<div class="row">
+											<div class="col-6">
+												<img alt="댓글" src="${ctxPath}/resources/images/icon/like.png" style="width:40px">
+											</div>
+											<div class="col-6 likeCnt" style="margin:auto; font-size: 20px">
+												${board.likeHit}
+											</div>
+										</div>
+									</button>
 								</sec:authorize>
+								
 								<sec:authorize access="!isAuthenticated()">
-									<button class="btn btn-danger" onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
-										추천 ${board.likeHit == 0 ? '' : board.likeHit}
+									<button class="btn btn-outline-basic like" 
+										onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
+										<div class="row">
+											<div class="col-6">
+												<img alt="댓글" src="${ctxPath}/resources/images/icon/like.png" style="width:40px">
+											</div>
+											<div class="col-6 likeCnt" style="margin:auto; font-size: 20px">
+												${board.likeHit}
+											</div>
+										</div>
 									</button>
 								</sec:authorize>
 							</div> <!-- getBtns END -->
@@ -108,7 +135,8 @@
 					<a class="btn btn-outline-primary col-3" href="${ctxPath}/login">로그인</a>
 				</div>
 			</div><!-- text-right-end -->
-			<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'"
+			<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." 
+				onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'"
 			maxlength="400" class="replyContent form-control" readonly="readonly"></textarea>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()"> 
@@ -157,7 +185,6 @@
 				<div class="row mt-2">
 					<div class="col-12 pagination_wrap d-flex justify-content-center"></div>
 				</div>
-				<button class="btn btn-warning back-to-top-css" data-toggle="collapse" data-target=".reply">댓글 닫기</button>
 			</div>
 		</div> <!-- col-12-end -->
 	</div> <!-- row-end -->
@@ -177,7 +204,7 @@
 <script>
 $(function(){
 	// 목록 or 수정 페이지로
-	let form = $('form')
+	let form = $('form');
 	
 	$('.getBtns a').click(function(e){
 		e.preventDefault();
@@ -225,6 +252,7 @@ $(function() {
 });
 
 $(function() {
+	let likeHit = ${board.likeHit};
 
 	$('.like').click(function(e) {
 		e.preventDefault();
@@ -238,32 +266,30 @@ $(function() {
 				bno : bno
 			},
 			success : function(message) {
-				alert(message);
+				console.log(message);
 				isLike();
 			}
 		})
 	})
-});
 
-function isLike(){
-	let bno = $('[name="bno"]').val();
-	$.ajax({
-		type : 'post',
-		url : '${ctxPath}/board/${boardType}/islike',
-		data : {memberId : memberId , bno : bno},
-		success : function(result){
-			if(result){
-				$('.like').html('추천취소')
-			} else {
-				$('.like').html('추천')
+	function isLike(){
+		let bno = $('[name="bno"]').val();
+		$.ajax({
+			type : 'post',
+			url : '${ctxPath}/board/${boardType}/islike',
+			data : {memberId : memberId , bno : bno},
+			success : function(result){
+				if(result){
+					likeHit++;
+					$('.likeCnt').html(likeHit);
+				} else {
+					likeHit--;
+					$('.likeCnt').html(likeHit);
+				}
 			}
-		}
-	})
-}
-
-if(memberId!=''){
-	isLike();
-}
+		})
+	}
+});
 </script>
 
 <script src="${ctxPath}/resources/js/replyService.js"></script>

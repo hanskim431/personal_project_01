@@ -18,8 +18,9 @@ $(function(){
                     
                     // 첫 번째 사진을 썸네일로 표시
                     thumbnailContainer.find('img.thumbnail-image').attr('src', `${ctxPath}/files/display?fileName=${encodingFilePath}`);
-                } else { // 첫 번째 사진이 없는 경우 기본 이미지를 표시하거나 아무 작업 없이 유지할 수 있음
-                    // 기본 이미지를 표시하거나 아무 작업 없이 유지
+                } else { 
+                	// 첫 번째 사진이 없는 경우 기본 이미지를 표시
+                    thumbnailContainer.find('img.thumbnail-image').attr('src', `${ctxPath}/resources/images/main/${boardType}.jpg`);
                 }
             }
         );

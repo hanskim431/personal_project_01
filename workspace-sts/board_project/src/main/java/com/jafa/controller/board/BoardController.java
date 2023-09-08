@@ -147,7 +147,7 @@ public class BoardController {
 	public ResponseEntity<String> hitLike(LikeDTO likeDTO){
 		log.info(likeDTO.getMemberId());
 		log.info(likeDTO.getBno());
-		
+
 		String message = likeDTO.getBno() + "번";
 		if(boardService.hitLike(likeDTO)) {
 			message += "게시글을 추천하였습니다.";

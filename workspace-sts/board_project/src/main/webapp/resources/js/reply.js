@@ -57,7 +57,6 @@ $(function(){
 	let showList = function(page){
 		let param = {bno:bnoValue, page: page||1};
 		replyService.getList(param,function(replyCount,list){
-			console.log(replyCount);
 			// 글 작성 후 마지막 페이지 호출
 			if(page==-1){ // 글 작성후 마지막 페이지 호출
 				pageNum = Math.ceil(replyCount/10.0);
@@ -139,7 +138,6 @@ $(function(){
 	
 	// 댓글 등록 처리
 	$('.chat').on('click', '.reply_modify a', function(e){
-	    console.log('수정 삭제 버튼 클릭');
 		e.preventDefault();
 		
 		let rno = $(this).closest('li').data('rno');

@@ -61,7 +61,7 @@
 									<div class="col-3">
 											<div class="thumbnail uploadResultDiv"  style="margin:auto;">
 												<a class="move" href="${board.bno}">
-													<img class="thumbnail-image" alt="thumbnail" src="${ctxPath}/resources/images/main/${boardType}.jpg">
+													<img class="thumbnail-image" alt="thumbnail" src="">
 												</a>
 											</div>
 											<div class="row content-info">
