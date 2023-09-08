@@ -1,7 +1,10 @@
 $(function(){
-	
-	
+	let bnoValue = $('[name="bno"]').val()
+	let replyContainer = $('.chat');
+	let pageNum = 1; // 기본 페이지 번호  
+	let paginationWrap = $('.pagination_wrap');
 	// 페이지네이션
+	
 	// showList 함수에서 호출
 	let showReplyPage = function(replyCount){
 		let endNum = Math.ceil(pageNum/10.0)*10; // 끝페이지

@@ -61,7 +61,7 @@ public class BoardController {
 		model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, boardType)));
 		return "/board/list";
 	}
-
+	
 	// 게시글 첨부파일 리스트 조회
 	@GetMapping("/getAttachList")
 	@ResponseBody

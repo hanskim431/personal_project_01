@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="row my-2"> <!-- row2 -->
-						<div class="col-3 text-center" style="padding:0;">
+						<div class="col-3 text-center " style="padding:0;">
 							<img alt="boardImage" src="${ctxPath}/resources/images/main/${boardType}.jpg" style="width: 200px; height: 200px;"/>
 						</div>
 						<div class="col-6" style="padding:0;">
@@ -59,9 +59,9 @@
 							<c:forEach items="${list}" var="board" varStatus="s">
 								<c:if test="${s.index mod 4 == 0}"> <div class="row"> </c:if>
 									<div class="col-3">
-											<div class="thumbnail"  style="margin:auto;">
+											<div class="thumbnail uploadResultDiv"  style="margin:auto;">
 												<a class="move" href="${board.bno}">
-												<img class="" alt="thumbnail" src="${ctxPath}/resources/images/main/${boardType}.jpg">
+													<img class="thumbnail-image" alt="thumbnail" src="${ctxPath}/resources/images/main/${boardType}.jpg">
 												</a>
 											</div>
 											<div class="row content-info">
@@ -72,6 +72,7 @@
 												</div>
 												<div class="col-9 float-left">
 													<a class="move" href="${board.bno}">
+														<input type="hidden" name="bno" value="${board.bno}">
 														<div>${board.title }</div>
 														<div>댓글 ${board.replyCnt} • 추천 ${board.likeHit}</div>
 													</a>
@@ -193,3 +194,5 @@
 </script>
 
 <%@ include file="../includes/footer.jsp"%>
+
+<script src="${ctxPath}/resources/js/boardThumbnail.js"></script>

@@ -1,8 +1,5 @@
 $(function(){
 	let bnoValue = $('[name="bno"]').val()
-	let replyContainer = $('.chat');
-	let pageNum = 1; // 기본 페이지 번호  
-	let paginationWrap = $('.pagination_wrap');
 	
     $.getJSON(
 	    `${ctxPath}/board/${boardType}/getAttachList`,

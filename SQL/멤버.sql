@@ -127,7 +127,7 @@ CREATE TABLE TBL_REPLY_LIKE( -- 게시글 좋아요 테이블
 -----------------------------------
 CREATE TABLE TBL_ATTACH( -- 첨부파일 테이블
     UUID VARCHAR2(200) primary key, -- 파일 아이디
-    BNO NUMBER(10) references TBL_BOARD(BNO), -- 글 번호
+    BNO NUMBER(10) references TBL_BOARD(BNO) ON DELETE CASCADE, -- 글 번호
     UPLOADPATH VARCHAR2(200), -- 파일 경로
     FILETYPE CHAR(1) default 'I', -- 파일 형식
     FILENAME VARCHAR2(100), -- 파일 이름
