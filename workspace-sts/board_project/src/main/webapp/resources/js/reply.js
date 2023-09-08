@@ -191,7 +191,7 @@ $(function(){
 					reply : replyUpdateForm.find('.replyContent').val()
 				}
 				
-				// 수정 처리 메소드 호출
+				// 수정 처리 메소드  호출  
 				replyService.update(replyVO, function(result){
 					alert(result);
 					showList(pageNum);
