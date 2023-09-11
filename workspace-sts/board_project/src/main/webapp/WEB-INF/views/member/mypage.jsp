@@ -39,13 +39,18 @@
 					<button type="button" class="btn btn-outline-primaty btn-lg form-control changePwdForm">비밀번호 변경</</button>
 				</div>
 			</form>
-			<form action="${ctxPath}/mypage/mypost" method="get">
-				<input type="hidden" name="type" value="W">
-				<input type="hidden" name="keyword" value="${vo.memberId}">
-				<button class="mypost btn btn-primary">내가 쓴 글</button>
-			</form>
-			<a href="${ctxPath}/mypage/myreply">내가 쓴 글</a>
-			<a href="${ctxPath}/mypage/mylike">내가 좋아요한 글</a>
+			<div class="row">
+				<form action="${ctxPath}/mypage/mypost" method="get">
+					<input type="hidden" name="type" value="W">
+					<input type="hidden" name="keyword" value="${vo.memberId}">
+					<button class="mypost btn btn-primary">내가 쓴 글</button>
+				</form>
+				<form action="${ctxPath}/mypage/mypost" method="get">
+					<input type="hidden" name="replyer" value="${memberId}">
+					<a class="btn btn-primary" href="${ctxPath}/mypage/myreply">내가 쓴 댓글</a>
+				</form>
+				<a class="btn btn-primary" href="${ctxPath}/mypage/mylike">내가 좋아요한 글</a>
+			</div>
 		</div> <!-- w-50 my-5 END -->
 	</div> <!-- d-flex END -->
 </div> <!-- container END -->
@@ -133,11 +138,6 @@ $(function(){
 		}
 	})
 	
-	
-	// 내가 쓴 글 
-	$('.mypost').click(function(){
-		
-	})
 	
 })
 </script>

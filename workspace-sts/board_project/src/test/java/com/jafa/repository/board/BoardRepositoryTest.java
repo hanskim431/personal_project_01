@@ -19,21 +19,22 @@ public class BoardRepositoryTest extends AppTest{
 	private BoardRepository boardRepository;
 	
 	//C
-	@Ignore
+//	@Ignore
 	@Test
 	public void testInsert() {
 		log.info("데이터 삽입");
 		BoardVO vo = BoardVO.builder()
 				.title("삽입 제목")
 				.content("삽입 내용")
-				.writer("admin")
-				.boardType("BOARD1")
+				.writer("admin1")
+				.boardType("road")
 				.status("VISIBLE")
 				.build();
 		boardRepository.insert(vo);
 		log.info("데이터 삽입 완료");
 	}
-//	@Ignore
+	
+	@Ignore
 	@Test
 	public void testInsertSelectKey() {
 		log.info("데이터 삽입");

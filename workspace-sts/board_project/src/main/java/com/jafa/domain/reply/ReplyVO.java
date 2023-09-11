@@ -20,6 +20,7 @@ import lombok.ToString;
 public class ReplyVO {
 	private Long rno;
 	private Long bno;
+	private String boardType;
 	private String reply;
 	private String replyer;
 	

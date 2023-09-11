@@ -22,13 +22,11 @@ public class ReplyInsert extends AppTest{
 	@Test
 	public void test() {
 		
-		String replyer;
-		
 		for(int i=1; i<=100; i++) {
 				ReplyVO vo = ReplyVO.builder()
 						.bno(1L)
 						.reply("댓글 : 페이징 처리 " + i)
-						.replyer(replyer = i % 2 == 0 ? "admin1" : "admin2")
+						.replyer("admin1")
 						.status("VISIBLE")
 						.build();
 				replyRepository.insert(vo);

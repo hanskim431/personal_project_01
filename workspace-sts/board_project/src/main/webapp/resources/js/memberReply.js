@@ -1,5 +1,5 @@
 $(function(){
-	let bnoValue = $('[name="bno"]').val()
+	let replyer = memberId;
 	let replyContainer = $('.chat');
 	let pageNum = 1; // 기본 페이지 번호  
 	let paginationWrap = $('.pagination_wrap');
@@ -55,8 +55,8 @@ $(function(){
 	
 	// 댓글 조회
 	let showList = function(page){
-		let param = {bno:bnoValue, page: page||1};
-		replyService.getList(param,function(replyCount,list){
+		let param = {replyer:replyer, page: page||1};
+		replyService.getListByMemberId(param,function(replyCount,list){
 			// 글 작성 후 마지막 페이지 호출
 			if(page==-1){ // 글 작성후 마지막 페이지 호출
 				pageNum = Math.ceil(replyCount/10.0);
@@ -83,9 +83,10 @@ $(function(){
 				replyList += `<li class="list-group-item" data-rno="${elem.rno}">
 					<div class="d-flex justify-content-between">
 						<div class="d-flex">
-							<div class="user_image mr-3" style="width: 75px">
-								<img class="rounded-circle" alt="userImg" 
-								src="${ctxPath}/resources/images/profile.bmp" style="max-width:70%">
+							<div class="mr-3">
+								<a href="${ctxPath}/board/${boardType}/get/${elem.bno}">
+									게시글 보기
+								</a>
 							</div>
 							<div class="comment_wrap">
 								<div class="comment_info">
@@ -98,12 +99,10 @@ $(function(){
 						
 						if(memberId== elem.replyer || auth.includes('ROLE_ADMIN')) {
 						replyList += `<div class="reply_modify">
-							<button type="button" class="btn btn-light dropdown-toggle" 
-							data-toggle="dropdown">변경</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="modify">수정</a>
-								<a class="dropdown-item" href="delete">삭제</a>
-							</div>
+							<a class="btn btn-outline-basic" href="delete">
+								<img class="" alt="remove" src="${ctxPath}/resources/images/icon/remove.png" style="width:30px">
+								삭제
+							</a>
 						</div><!-- reply_modify-end -->`;
 						}
 						

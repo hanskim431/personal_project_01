@@ -158,15 +158,11 @@ public class MemberController {
 			model.addAttribute("vo",memberVO);
 			return "member/mypage";
 		} else if(path.equals("mypost")) {
-			
 			model.addAttribute("list", boardService.getList(criteria, null));
 			model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, null)));
 			return "member/mypost";
 		} else if(path.equals("myreply")) {
-			
-			model.addAttribute("list", boardService.getList(criteria, null));
-			model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, null)));
-			return "member/mypost";
+			return "member/myreply";
 		}
 		return "member/mypage";
 	}

@@ -294,3 +294,4 @@ SELECT * FROM TBL_BOARD WHERE WRITER = 'admin1' ;
 
 SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0 ;
 
+select boardType from tbl_board where bno = 1;

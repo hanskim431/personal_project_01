@@ -22,7 +22,7 @@ var replyService = {
 	},
 	
 	getListByMemberId : function(param, callback, error){
-		console.log('getList');
+		console.log('getListByMemberId');
 		
 		let replyer = param.replyer;
 		let page= param.page|| 1;

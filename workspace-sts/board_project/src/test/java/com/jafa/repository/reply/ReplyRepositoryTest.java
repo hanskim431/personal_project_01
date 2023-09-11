@@ -36,11 +36,12 @@ public class ReplyRepositoryTest extends AppTest{
 		log.info(replyRepository.read(2L));
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testInsert() {
 		ReplyVO vo = ReplyVO.builder()
-				.bno(2L)
+				.bno(1L)
+				.boardType("road")
 				.reply("댓글 작성")
 				.replyer("admin2")
 				.status("VISIBLE")
