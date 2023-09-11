@@ -18,15 +18,10 @@ public class ReplyServiceTest extends AppTest{
 	
 	@Autowired
 	private ReplyService replyService;
+
 	
+	// LIST
 	@Ignore
-	@Test
-	public void test() {
-		log.info(replyService);
-		assertNotNull(replyService);
-	}
-	
-//	@Ignore
 	@Test
 	public void testGetList() {
 		Criteria criteria = new Criteria();
@@ -36,10 +31,21 @@ public class ReplyServiceTest extends AppTest{
 	
 	@Ignore
 	@Test
+	public void testSelectByMemberId() {
+		Criteria criteria = new Criteria();
+		String replyer = "admin1";
+		log.info(replyService.selectByMemberId(new Criteria(), replyer));
+		
+	}
+	
+	// READ
+	@Ignore
+	@Test
 	public void testGet() {
 		log.info(replyService.get(1L));
 	}
 	
+	// CRATE
 	@Ignore
 	@Test
 	public void testRegister() {
@@ -51,6 +57,7 @@ public class ReplyServiceTest extends AppTest{
 		replyService.register(vo);
 	}
 	
+	// UPDATE
 	@Ignore
 	@Test
 	public void testModify() {
@@ -58,9 +65,12 @@ public class ReplyServiceTest extends AppTest{
 		replyService.modify(vo);
 	}
 	
+	
+	// DELETE
 	@Ignore
 	@Test
 	public void testDelete() {
 		replyService.remove(4L);
 	}
+	
 }

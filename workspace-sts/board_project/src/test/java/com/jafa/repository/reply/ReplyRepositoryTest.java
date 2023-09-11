@@ -25,6 +25,13 @@ public class ReplyRepositoryTest extends AppTest{
 	
 	@Ignore
 	@Test
+	public void testSelectByMemberId() {
+		Criteria criteria = new Criteria();
+		replyRepository.selectByMemberId(criteria, "admin1").forEach(vo-> log.info(vo));
+	}
+	
+	@Ignore
+	@Test
 	public void testRead() {
 		log.info(replyRepository.read(2L));
 	}
@@ -58,10 +65,16 @@ public class ReplyRepositoryTest extends AppTest{
 		replyRepository.delete(2L);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
-	public void testgetTotalCount() {
+	public void testGetTotalCount() {
 		log.info(replyRepository.getTotalCount(1L));
+	}
+	
+	@Ignore
+	@Test
+	public void testGetTotalCountByMemberId() {
+		log.info(replyRepository.getTotalCountByMemberId("admin1"));
 	}
 
 }

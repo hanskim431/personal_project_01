@@ -20,6 +20,25 @@ var replyService = {
 			
 		})
 	},
+	
+	getListByMemberId : function(param, callback, error){
+		console.log('getList');
+		
+		let replyer = param.replyer;
+		let page= param.page|| 1;
+		
+		$.ajax({
+			type : 'get',
+			url : `${ctxPath}/replies/replyer/${replyer}/${page}`,
+			success : function(replyPageDTO){
+				if(callback) callback(replyPageDTO.replyCount, replyPageDTO.list);
+			},
+			error : function(xhr,status,er){
+				if(error) error(er);
+			}
+			
+		})
+	},
 		
 	add : function (reply, callback, error){
 		console.log('add');	

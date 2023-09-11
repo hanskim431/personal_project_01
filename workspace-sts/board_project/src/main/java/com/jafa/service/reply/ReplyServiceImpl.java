@@ -31,6 +31,14 @@ public class ReplyServiceImpl implements ReplyService {
 				replyRepository.getList(criteria, bno));
 	}
 
+	@Override
+	public ReplyPageDTO selectByMemberId(Criteria criteria, String replyer) {
+		return new ReplyPageDTO(
+				replyRepository.getTotalCountByMemberId(replyer),
+				replyRepository.selectByMemberId(criteria, replyer)
+				);
+	}
+
 	@Transactional
 	@Override
 	public int register(ReplyVO vo) {

@@ -29,6 +29,7 @@ import com.jafa.exception.PasswordMisMatchException;
 import com.jafa.service.board.BoardService;
 import com.jafa.service.member.MailSendService;
 import com.jafa.service.member.MemberService;
+import com.jafa.service.reply.ReplyService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -44,6 +45,9 @@ public class MemberController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private ReplyService replyService;
 
 	@GetMapping("/mailCheck")
 	@ResponseBody
@@ -154,6 +158,11 @@ public class MemberController {
 			model.addAttribute("vo",memberVO);
 			return "member/mypage";
 		} else if(path.equals("mypost")) {
+			
+			model.addAttribute("list", boardService.getList(criteria, null));
+			model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, null)));
+			return "member/mypost";
+		} else if(path.equals("myreply")) {
 			
 			model.addAttribute("list", boardService.getList(criteria, null));
 			model.addAttribute("p", new Pagination(criteria, boardService.totalCount(criteria, null)));

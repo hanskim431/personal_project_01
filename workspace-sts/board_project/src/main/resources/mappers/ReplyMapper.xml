@@ -13,8 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>  
   	
   <!-- READ -->
-    
-   
 
 	<select id="getList" resultType="com.jafa.domain.reply.ReplyVO">
 	<![CDATA[
@@ -25,8 +23,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND ROWNUM <= #{criteria.maxRow})
 		WHERE RN > #{criteria.minRow}
 	]]>
-		
-		
+	</select>
+
+	<select id="selectByMemberId" resultType="com.jafa.domain.reply.ReplyVO">
+	<![CDATA[
+		SELECT * FROM
+		(SELECT ROWNUM AS RN,RNO,BNO,REPLY,REPLYER,
+		REGDATE,UPDATEDATE,STATUS,LIKEHIT
+		FROM TBL_REPLY WHERE REPLYER=#{replyer} 
+		AND ROWNUM <= #{criteria.maxRow})
+		WHERE RN > #{criteria.minRow}
+	]]>
 	</select>
 	 
 	<select id="read" resultType="com.jafa.domain.reply.ReplyVO">
@@ -35,6 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(RNO) FROM TBL_REPLY WHERE BNO = #{bno}
+	</select>
+	
+	<select id="getTotalCountByMemberId" resultType="int">
+		SELECT COUNT(RNO) FROM TBL_REPLY WHERE REPLYER = #{replyer}
 	</select>
   
   <!-- UPDATE -->

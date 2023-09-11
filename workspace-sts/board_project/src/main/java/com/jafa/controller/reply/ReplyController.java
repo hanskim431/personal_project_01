@@ -31,9 +31,14 @@ public class ReplyController {
 	// LIST
 	@GetMapping("/pages/{bno}/{page}")
 	private ResponseEntity<ReplyPageDTO> getList(@PathVariable int page, @PathVariable Long bno) {
-		log.info(page + "," + bno);
 		Criteria criteria = new Criteria(page, 10);
 		return new ResponseEntity<>(replyService.getList(criteria, bno), HttpStatus.OK);
+	}
+	
+	@GetMapping("/replyer/{replyer}/{page}")
+	private ResponseEntity<ReplyPageDTO> getListByMemberId(@PathVariable int page, @PathVariable String replyer) {
+		Criteria criteria = new Criteria(page, 10);
+		return new ResponseEntity<>(replyService.selectByMemberId(criteria, replyer), HttpStatus.OK);
 	}
 
 	// C

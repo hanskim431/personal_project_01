@@ -14,6 +14,10 @@ public interface ReplyRepository {
 			@Param("criteria") Criteria criteria, 
 			@Param("bno")  Long bno);
 	
+	List<ReplyVO> selectByMemberId(
+			@Param("criteria") Criteria criteria, 
+			@Param("replyer")  String replyer);
+	
 	//C
 	int insert(ReplyVO vo);
 	
@@ -29,7 +33,16 @@ public interface ReplyRepository {
 	//D
 	int delete(Long rno);
 	
-	//getTotalCount
+	/**
+	 * @param bno
+	 * @return reply Total Count
+	 */
 	int getTotalCount(Long bno);
+	
+
+	/**
+	 * @param replyer
+	 * @return reply Total Count Selected by memberId
+	 */	int getTotalCountByMemberId(String replyer);
 
 }
