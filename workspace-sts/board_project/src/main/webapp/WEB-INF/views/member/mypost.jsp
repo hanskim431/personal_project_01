@@ -53,9 +53,6 @@
 												pattern="yyyy-MM-dd HH:mm" /></td>
 										<td><tf:formatDateTime value="${board.updateDate}"
 												pattern="yyyy-MM-dd HH:mm" /></td>
-										<td><button type="button" class="btn btn-primary active">보이기</button>
-											<button type="button" class="btn btn-primary disabled">숨기기</button></td>
-										<td><button type="button" class="btn btn-primary active">삭제</button></td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -10,7 +10,7 @@
 			</div> <!-- jumbotron END -->
 			<div class="userImage d-flex justify-content-center my-5">
 				<label for="imageUpload"> <img alt="userImage"
-					src="${ctxPath}/resources/images/profile.bmp" style="width: 120px">
+					src="${ctxPath}/resources/images/member/userImage.png" style="width: 120px">
 				</label>
 				<input type="text" name="userImage" id="imageUpload" style="display:none; width:100%; height:100%">
 			</div> <!-- userImage END -->
@@ -40,17 +40,24 @@
 				</div>
 			</form>
 			<div class="row">
-				<form action="${ctxPath}/mypage/mypost" method="get">
-					<input type="hidden" name="type" value="W">
-					<input type="hidden" name="keyword" value="${vo.memberId}">
-					<button class="mypost btn btn-primary">내가 쓴 글</button>
-				</form>
-				<form action="${ctxPath}/mypage/mypost" method="get">
-					<input type="hidden" name="replyer" value="${memberId}">
-					<a class="btn btn-primary" href="${ctxPath}/mypage/myreply">내가 쓴 댓글</a>
-				</form>
-				<a class="btn btn-primary" href="${ctxPath}/mypage/mylike">내가 좋아요한 글</a>
+				<div class="col-6">
+					<form action="${ctxPath}/mypage/mypost" method="get" class="text-center">
+						<input type="hidden" name="type" value="W">
+						<input type="hidden" name="keyword" value="${vo.memberId}">
+						<button class="form-group mypost btn btn-outline-primaty btn-lg">내가 쓴 글</button>
+					</form>
+				</div>
+				<div class="col-6">
+					<form action="${ctxPath}/mypage/mypost" method="get" class="text-center">
+						<input type="hidden" name="replyer" value="${memberId}">
+						<a class="form-group btn btn-outline-primaty btn-lg" href="${ctxPath}/mypage/myreply">내가 쓴 댓글</a>
+					</form>
+				</div>
 			</div>
+<%-- 				<form action="${ctxPath}/mypage/mypost" method="get"> --%>
+<%-- 					<input type="hidden" name="replyer" value="${memberId}"> --%>
+<%-- 					<a class="btn btn-primary" href="${ctxPath}/mypage/mylike">내가 좋아요한 글</a> --%>
+<!-- 				</form> -->
 		</div> <!-- w-50 my-5 END -->
 	</div> <!-- d-flex END -->
 </div> <!-- container END -->

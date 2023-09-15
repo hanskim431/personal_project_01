@@ -53,6 +53,7 @@ $(function(){
 		const emailValidationMessage = $('.emailValidationMessage');
 
 		if(checkEmailExtension(email)){
+			emailValidationMessage.html('');
 			emailValidationMessage.css('color','green');
 			$(this).removeClass('border-danger')
 				.addClass('border border-success')	

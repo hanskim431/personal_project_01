@@ -85,7 +85,7 @@ $(function(){
 						<div class="d-flex">
 							<div class="user_image mr-3" style="width: 75px">
 								<img class="rounded-circle" alt="userImg" 
-								src="${ctxPath}/resources/images/profile.bmp" style="max-width:70%">
+								src="${ctxPath}/resources/images/member/userImage.png" style="max-width:70%">
 							</div>
 							<div class="comment_wrap">
 								<div class="comment_info">

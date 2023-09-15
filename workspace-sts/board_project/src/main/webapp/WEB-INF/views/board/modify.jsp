@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
-
 <div class="container">
+
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
@@ -18,21 +18,26 @@
 						</div>
 					</div>
 				</div> <!-- card-header end -->
-				
 				<div class="card-body">
-					<form action="${ctxPath}/board/${boardType}/modify" class="modifyForm" method="post">
-						<div class="form-group">
-							<label>내용</label>
-							<textarea class="form-control" rows="10" name="content">${board.content}</textarea>
+					<h3>내용</h3>
+				</div> <!-- card-body end -->
+				<div class="card-body">
+					<div class="row">
+						<div class="uploadcontentDiv">
+							<div></div>
 						</div>
-						<div class="form-group">
-							<label>첨부파일 목록</label>
+						<div class="col-12 textDiv">
+							<form action="${ctxPath}/board/${boardType}/modify" class="modifyForm" method="post">
+								<div class="form-group">
+									<textarea class="form-control" rows="10" name="content">${board.content}</textarea>
+								</div>
+								<div class="text-right">
+									<button type="submit" class="btn btn-default">Submit</button>
+								</div>
+								<input type="hidden" name="bno" value="${board.bno}">
+							</form>
 						</div>
-						
-							<button type="fileAttach" class="btn btn-default">file</button>
-							<button type="submit" class="btn btn-default">Submit</button>
-						
-					</form>
+					</div>
 				</div><!-- card-body END -->
 			</div><!-- card END -->
 		</div><!-- col-12 END -->

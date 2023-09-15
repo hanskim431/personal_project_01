@@ -3,28 +3,31 @@
 <%@ include file="../includes/header.jsp"%>
 <div class="container">
 	<div class="row">
-		<div class="col-12">
-			<h1 class="page-header">Tables</h1>
+		<div class="col-1 text-center getBtns" style="padding:0;">
+			<a data-oper="back" class="btn btn-light back" href="#">
+				<img alt="←" src="${ctxPath}/resources/images/icon/arrow-back.png" style="width: 35px; height: 35px;"/>
+			</a>
+		</div>
+		<div class="col-11">
+			<h1 class="page-header">글 작성</h1>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header">Board Register</div>
 				<div class="card-body">
 					<form action="${ctxPath}/board/${boardType}/register" method="post">
 						<div class="form-group">
-							<label>Title </label>
+							<label>제목 </label>
 							<input class="form-control" name="title"/>
 						</div>
 						<div class="form-group">
-							<label>Text area </label>
+							<label>내용 </label>
 							<textarea class="form-control" rows="10" name="content"></textarea>
 						</div>
 						<div class="form-group">
-							<label>Writer </label>
-							<input class="form-control" name="writer" value="${authInfo.memberId}" readonly="readonly"/>
+							<input type="hidden" class="form-control" name="writer" value="${authInfo.memberId}" readonly="readonly"/>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 						</div>	
 						
@@ -32,7 +35,6 @@
 						<input type="hidden" name="status" value="VISIBLE">		
 						
 						<button class="btn btn-outline-primary register">Submit Button</button>
-						<button type="button" class="btn btn-outline-info list">List</button>		
 					</form>
 				</div>
 			</div>
@@ -64,6 +66,37 @@
 <input type="hidden" name="keyword" value="${param.keyword }" >
 
 <%@ include file="../includes/footer.jsp" %>
+
+<script>
+$(function(){
+	// 목록 or 수정 페이지로
+	let form = $('form');
+	
+	$('.getBtns a').click(function(e){
+		e.preventDefault();
+		let operation = $(this).data('oper');
+		let type = '${criteria.type}'
+		let keyword = '${criteria.keyword}'
+			
+		form.append($('<input/>',{type : 'hidden', name : 'pageNum', value : '${criteria.pageNum}'}))
+			.append($('<input/>',{type : 'hidden', name : 'amount', value : '${criteria.amount}'}))
+			.append($('<input/>',{type : 'hidden', name : 'boardType', value : '${boardType}'}))
+			.append($('<input/>',{type : 'hidden', name : '${_csrf.parameterName}', value : '${_csrf.token}'}))
+			.append($('<input/>',{type : 'hidden', name : 'bno', value : '${board.bno}'}))
+			.append($('<input/>',{type : 'hidden', name : 'writer', value : '${board.writer}'}))
+		.attr('method','get')
+		
+		if(type&&keyword){
+			form.append($('<input/>',{type : 'hidden', name : 'type', value : '${criteria.type}'}))
+				.append($('<input/>',{type : 'hidden', name : 'keyword', value : '${criteria.keyword}'}))
+		}
+		
+		if(operation=='back'){
+			history.back();
+		} 
+	});
+});
+</script>
 
 <script src="${ctxPath}/resources/js/checkExtension.js"></script>
 <script src="${ctxPath}/resources/js/register.js"></script>

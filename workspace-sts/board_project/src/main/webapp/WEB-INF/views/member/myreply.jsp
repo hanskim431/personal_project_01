@@ -11,34 +11,7 @@
 
 	<div class="row">
 		<div class="col-12">
-			<ul class="list-group chat">
-				<li class="list-group-item" data-rno="댓글번호">
-					<div class="d-flex justify-content-between">
-						<div class="d-flex">
-							<div class="user_image mr-3" style="width: 75px">
-								<img class="rounded-circle" alt="userImg"
-									src="${ctxPath}/resources/images/profile.bmp"
-									style="max-width: 70%">
-							</div>
-							<div class="comment_wrap">
-								<div class="comment_info">
-									<span class="userName badge badge-pill badge-info mr-2">홍길동</span>
-									<span class="badge badge-dark">작성시간</span>
-								</div>
-								<div class="comment_content py-2">댓글 내용입니다.</div>
-							</div>
-						</div>
-						<!-- d-flex-end -->
-							<div class="reply_modify">
-								<button type="button" class="btn btn-light dropdown-toggle"
-									data-toggle="dropdown">변경</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="modify">수정</a> 
-									<a class="dropdown-item" href="delete">삭제</a>
-								</div>
-							</div> <!-- reply_modify-end -->
-					</div> <!-- d-flex justify-content-between-end -->
-				</li>
+			<ul class="list-group chat"><li></li>
 			</ul>
 			<div class="card">
 				<div class="row mt-2">

@@ -5,6 +5,49 @@ $(function(){
 	let uploadResultList = []; // 업로드 파일 목록 
 	let toBeDelList = [] // 삭제 대상 파일 목록;  
 	
+    $.getJSON(
+	    `${ctxPath}/board/${boardType}/getAttachList`,
+	    {bno:bnoValue},
+	    function(attachList){
+			let fileList = '';
+			$(attachList).each(function(i,e){
+				fileList += `<div class="text-center" data-uuid="${e.uuid}">`
+				if(e.fileType){ // 이미지 파일인 경우 사진 표시
+					let filePath = e.uploadPath+"/m_"+e.uuid+"_"+e.fileName; 
+					let encodingFilePath = encodeURIComponent(filePath);
+					
+					$('.col-12 .textDiv').attr('class', 'col-6 textDiv')
+					$('.uploadcontentDiv').attr('class', 'col-6 uploadcontentDiv')
+					
+					fileList +=`
+						<div class="thumnail d-inline-block mr-3">
+							<img alt="" src="${ctxPath}/files/display?fileName=${encodingFilePath}">	
+						</div>				
+					`
+				} else {
+					fileList +=` 
+						<div class="thumnail d-inline-block mr-3" style="width:40px">
+							<img alt="" src="${ctxPath}/resources/images/attach.png" style="width: 100%">
+						</div>`
+				}
+				/*fileList +=		
+					`<div class="d-inline-block">
+						${e.fileName}
+					</div>
+					</div>
+					<div class="float-right">`
+				
+				if(e.fileType){
+					fileList += `<a href="${e.uploadPath+"/"+e.uuid+"_"+e.fileName}" class="showIamge">원본보기</a>`
+				}else{
+					fileList += `<a href="${e.uploadPath+"/"+e.uuid+"_"+e.fileName}" class="download">다운로드</a>`
+				} 
+				*/
+				fileList += `</div>`			
+			});
+		$('.uploadcontentDiv div').html(fileList);
+	});
+	
 	let showUploadResult = function(attachList){
 		let fileList = '';
 		$.each(attachList,function(i,e){

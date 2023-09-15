@@ -23,7 +23,7 @@ public class DataInsert extends AppTest{
 		String status;
 		
 		for(int j=0; j<8; j++) {
-			for(int i=1;i<=101;i++) {
+			for(int i=1;i<=200;i++) {
 				BoardVO vo = BoardVO.builder()
 						.title(boardTypeArr[j] + " 게시판 제목 테스트 데이터 " + i)
 						.content(boardTypeArr[j] + " 내용 : 테스트 데이터 " + i)

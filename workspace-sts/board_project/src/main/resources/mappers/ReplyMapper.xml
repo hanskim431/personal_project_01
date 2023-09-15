@@ -8,16 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- CREATE -->
 	<insert id="insert">
 		INSERT INTO TBL_REPLY
-   		(RNO,BNO,BOARDTYPE,REPLY,REPLYER,STATUS)
-    	VALUES(SEQ_REPLY.NEXTVAL,#{bno},#{boardType},#{reply},#{replyer},'VISIBLE')
+   		(RNO,BNO,REPLY,REPLYER,STATUS)
+    	VALUES(SEQ_REPLY.NEXTVAL,#{bno},#{reply},#{replyer},'VISIBLE')
 	</insert>  
   	
   <!-- READ -->
 
 	<select id="getList" resultType="com.jafa.domain.reply.ReplyVO">
 	<![CDATA[
-		SELECT * FROM
-		(SELECT ROWNUM AS RN,RNO,BNO,BOARDTYPE,REPLY,REPLYER,
+		SELECT * FROM 
+		(SELECT  /*INDEX_DESC(TBL_REPLY PK_REPLY)*/ 
+		ROWNUM AS RN,RNO,BNO,REPLY,REPLYER,
 		REGDATE,UPDATEDATE,STATUS,LIKEHIT
 		FROM TBL_REPLY WHERE BNO=#{bno} 
 		AND ROWNUM <= #{criteria.maxRow})
@@ -28,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByMemberId" resultType="com.jafa.domain.reply.ReplyVO">
 	<![CDATA[
 		SELECT * FROM
-		(SELECT ROWNUM AS RN,RNO,BNO,BOARDTYPE,REPLY,REPLYER,
+		(SELECT ROWNUM AS RN,RNO,BNO,REPLY,REPLYER,
 		REGDATE,UPDATEDATE,STATUS,LIKEHIT
 		FROM TBL_REPLY WHERE REPLYER=#{replyer} 
 		AND ROWNUM <= #{criteria.maxRow})

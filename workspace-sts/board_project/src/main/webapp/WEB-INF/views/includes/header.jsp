@@ -28,14 +28,14 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-	let csrfTokenValue = "${_csrf.token}"
+	let csrfTokenValue = "${_csrf.token}";
 	let csrfHeaderName = "${_csrf.headerName}";
 
-	var ctxPath = '${ctxPath}'
-	var duplicateLogin = '${duplicateLogin}'
+	var ctxPath = '${ctxPath}';
+	var duplicateLogin = '${duplicateLogin}';
 
-	let memberId = "${authInfo.memberId}"
-	let auth = "${authList}" 
+	let memberId = '${authInfo.memberId}';
+	let auth = '${authList}';
 
 	let boardType = '${boardType}';
 	

@@ -83,11 +83,6 @@ $(function(){
 				replyList += `<li class="list-group-item" data-rno="${elem.rno}">
 					<div class="d-flex justify-content-between">
 						<div class="d-flex">
-							<div class="mr-3">
-								<a href="${ctxPath}/board/${boardType}/get/${elem.bno}">
-									게시글 보기
-								</a>
-							</div>
 							<div class="comment_wrap">
 								<div class="comment_info">
 									<span class="userName badge badge-pill badge-info mr-2">${elem.replyer}</span>

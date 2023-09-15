@@ -125,72 +125,51 @@
 			</div><!-- card END -->
 		</div><!-- col END  -->
 	</div><!-- row END -->
-	
+</div><!-- container END -->
+
 <!-- 댓글 -->
 <div class="container reply collapse">
-	<div class="replyWriterForm my-3">
-		<sec:authorize access="isAnonymous()"> 
-			<div class="text-right">
-				<div class="submit p-2">
-					<a class="btn btn-outline-primary col-3" href="${ctxPath}/login">로그인</a>
-				</div>
-			</div><!-- text-right-end -->
-			<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." 
-				onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'"
-			maxlength="400" class="replyContent form-control" readonly="readonly"></textarea>
-		</sec:authorize>
-		<sec:authorize access="isAuthenticated()"> 
-			<div class="text-right">
-				<div class="submit p-2">
-					<span class="btn btn-outline-info col-2 replyer">admin1</span>
-					<button class="btn btn-outline-primary col-3">등록</button>
-				</div>
-			</div><!-- text-right-end -->
-			<textarea rows="2" placeholder="댓글을 작성해 주세요." maxlength="400" class="replyContent form-control"></textarea>
-		</sec:authorize>
-	</div><!-- replyWriterForm-end -->
-
-	<div class="row">
-		<div class="col-12">
-			<ul class="list-group chat">
-				<li class="list-group-item" data-rno="댓글번호">
-					<div class="d-flex justify-content-between">
-						<div class="d-flex">
-							<div class="user_image mr-3" style="width: 75px">
-								<img class="rounded-circle" alt="userImg"
-									src="${ctxPath}/resources/images/profile.bmp"
-									style="max-width: 70%">
-							</div>
-							<div class="comment_wrap">
-								<div class="comment_info">
-									<span class="userName badge badge-pill badge-info mr-2">홍길동</span>
-									<span class="badge badge-dark">작성시간</span>
+	
+	<div class="row"> 
+		<div class="col-12"> 
+			<div class="card"> 
+				<div class="card-body"> 
+					<div class="replyWriterForm my-3">
+						<sec:authorize access="isAnonymous()"> 
+							<div class="text-right">
+								<div class="submit p-2">
+									<a class="btn btn-outline-primary col-3" href="${ctxPath}/login">로그인</a>
 								</div>
-								<div class="comment_content py-2">댓글 내용입니다.</div>
-							</div>
-						</div>
-						<!-- d-flex-end -->
-							<div class="reply_modify">
-								<button type="button" class="btn btn-light dropdown-toggle"
-									data-toggle="dropdown">변경</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="modify">수정</a> 
-									<a class="dropdown-item" href="delete">삭제</a>
+							</div><!-- text-right-end -->
+							<textarea rows="2" placeholder="로그인한 사용자만 댓글을 쓸 수 있습니다.." 
+								onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'"
+							maxlength="400" class="replyContent form-control" readonly="readonly"></textarea>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()"> 
+							<div class="text-right">
+								<div class="submit p-2">
+									<span class="btn btn-outline-info col-2 replyer">${authInfo.memberId}</span>
+									<button class="btn btn-outline-primary col-3">등록</button>
 								</div>
-							</div> <!-- reply_modify-end -->
-					</div> <!-- d-flex justify-content-between-end -->
-				</li>
-			</ul>
-			<div class="card">
-				<div class="row mt-2">
-					<div class="col-12 pagination_wrap d-flex justify-content-center"></div>
-				</div>
-			</div>
-		</div> <!-- col-12-end -->
-	</div> <!-- row-end -->
-
-
-</div><!-- container-end -->
+							</div><!-- text-right-end -->
+							<textarea rows="2" placeholder="댓글을 작성해 주세요." maxlength="400" class="replyContent form-control"></textarea>
+						</sec:authorize>
+					</div><!-- replyWriterForm-end -->
+				
+					<div class="row">
+						<div class="col-12">
+							<ul class="list-group chat"><li></li>
+							</ul>
+								<div class="row mt-2">
+									<div class="col-12 pagination_wrap d-flex justify-content-center"></div>
+								</div>
+						</div> <!-- col-12-end -->
+					</div> <!-- row-end -->
+				</div> <!-- card-body END -->
+			</div> <!-- card END -->
+		</div> <!-- col-12 END -->
+	</div> <!-- row END -->
+</div><!-- container END -->
 
 
 <form>

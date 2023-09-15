@@ -104,7 +104,7 @@ CREATE TABLE TBL_BOARD_INFO( -- 게시글 좋아요 테이블
 --            댓글
 -----------------------------------
 CREATE TABLE TBL_REPLY( -- 댓글 테이블
-    RNO NUMBER(10) PRIMARY KEY, -- 댓글 번호
+    RNO NUMBER(10), -- 댓글 번호
     BNO NUMBER(10) REFERENCES TBL_BOARD(BNO) ON DELETE CASCADE, -- 글 번호
     REPLY VARCHAR2(1000), -- 댓글 내용
     REPLYER VARCHAR2(50) REFERENCES TBL_MEMBER(MEMBERID), -- 작성자
@@ -113,6 +113,8 @@ CREATE TABLE TBL_REPLY( -- 댓글 테이블
     STATUS VARCHAR2(100), -- 댓글 상태
     LIKEHIT NUMBER default 0 -- 좋아요 수
 );
+
+ALTER TABLE TBL_REPLY ADD CONSTRAINT PK_REPLY PRIMARY kEY (RNO);
 
 DROP SEQUENCE SEQ_REPLY; -- 게시글 번호 시퀀스
 CREATE SEQUENCE SEQ_REPLY; -- 게시글 번호 시퀀스
@@ -295,3 +297,5 @@ SELECT * FROM TBL_BOARD WHERE WRITER = 'admin1' ;
 SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0 ;
 
 select boardType from tbl_board where bno = 1;
+
+DELETE FROM TBL_BOARD WHERE bno = 8;
