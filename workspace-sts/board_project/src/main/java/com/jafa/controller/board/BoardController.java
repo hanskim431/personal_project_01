@@ -44,17 +44,10 @@ public class BoardController {
 	@GetMapping({"","/","/list"})
 	public String list(@PathVariable String boardType, Model model, Criteria criteria) {
 		boolean isBoard = false;
-		
-		if(boardType.equals("list")) {
-			return "home";
-		}
-		
+//		if(boardType.equals("list")) return "home";
 		if (!Arrays.asList(boardNames).contains(boardType)) {
 		    throw new IllegalArgumentException("유효하지 않은 게시판 종류입니다."); // 예외 던지기
 		}
-
-		
-		log.info(boardType);
 		model.addAttribute("boardType", boardType);
 		model.addAttribute("info", boardService.readBoardInfo(boardType));
 		model.addAttribute("list", boardService.getList(criteria, boardType));

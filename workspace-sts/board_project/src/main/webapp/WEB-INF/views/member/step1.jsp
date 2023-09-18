@@ -27,30 +27,30 @@
 					<h4>이용약관</h4>
 					<textarea rows="6" class="form-control my-2 bg-light border border-primary" readonly="readonly">
 <%
-					BufferedReader reader1 = null;
-					try{
-						String filePath = application.getRealPath("/resources/text/terms1.txt"); 
-						reader1 = new BufferedReader(new FileReader(filePath));
-						while(true){
-							String str = reader1.readLine();
-							if(str==null) break;
-							out.print(str+"\n");
-						}
-					}
-					catch(FileNotFoundException fnfe){
-						out.print("파일이 존재 하지 않습니다.");
-					}
-					catch(IOException ioe){
-						out.print("파일을 읽을수 없습니다.");
-					}
-					
-					finally{
-						try {
-							reader1.close();
-						}
-						catch(Exception e){
-						}
-					}
+BufferedReader reader1 = null;
+try{
+	String filePath = application.getRealPath("/resources/text/terms1.txt"); 
+	reader1 = new BufferedReader(new FileReader(filePath));
+	while(true){
+		String str = reader1.readLine();
+		if(str==null) break;
+		out.print(str+"\n");
+	}
+}
+catch(FileNotFoundException fnfe){
+	out.print("파일이 존재 하지 않습니다.");
+}
+catch(IOException ioe){
+	out.print("파일을 읽을수 없습니다.");
+}
+
+finally{
+	try {
+		reader1.close();
+	}
+	catch(Exception e){
+	}
+}
 %>					
 					</textarea>
 					<label class="mt-3">
@@ -62,30 +62,30 @@
 					<h4>개인정보 수집 및 이용에 대한 안내</h4>
 					<textarea rows="6" class="form-control my-2 bg-light border border-primary" readonly="readonly">
 <%
-					BufferedReader reader2 = null;
-					try{
-						String filePath = application.getRealPath("/resources/text/terms2.txt"); 
-						reader2 = new BufferedReader(new FileReader(filePath));
-						while(true){
-							String str = reader2.readLine();
-							if(str==null) break;
-							out.print(str+"\n");
-						}
-					}
-					catch(FileNotFoundException fnfe){
-						out.print("파일이 존재 하지 않습니다.");
-					}
-					catch(IOException ioe){
-						out.print("파일을 읽을수 없습니다.");
-					}
-					
-					finally{
-						try {
-							reader2.close();
-						}
-						catch(Exception e){
-						}
-					}
+BufferedReader reader2 = null;
+try{
+	String filePath = application.getRealPath("/resources/text/terms2.txt"); 
+	reader2 = new BufferedReader(new FileReader(filePath));
+	while(true){
+		String str = reader2.readLine();
+		if(str==null) break;
+		out.print(str+"\n");
+	}
+}
+catch(FileNotFoundException fnfe){
+	out.print("파일이 존재 하지 않습니다.");
+}
+catch(IOException ioe){
+	out.print("파일을 읽을수 없습니다.");
+}
+
+finally{
+	try {
+		reader2.close();
+	}
+	catch(Exception e){
+	}
+}
 %>
 					</textarea>
 					<label class="mt-3">
