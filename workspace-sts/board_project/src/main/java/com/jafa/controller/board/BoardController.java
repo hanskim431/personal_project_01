@@ -89,7 +89,6 @@ public class BoardController {
 		rttr.addFlashAttribute("result", vo.getBno()); // ${result}
 		rttr.addFlashAttribute("operation", "register");
 		return "redirect:/board/"+boardType;
-//		return "redirect:/board"+boardType+"/get?bno="+vo.getBno();
 	}
 	
 	// 게시글 수정 페이지
@@ -113,12 +112,10 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated() and principal.username== #vo.writer or hasRole('ROLE_ADMIN')")
 	@PostMapping("/modify")
 	public String modify(@PathVariable String boardType, BoardVO vo, RedirectAttributes rttr, Criteria criteria) {
-//		log.info(vo.getBno());
 		boardService.modify(vo);
 		rttr.addFlashAttribute("result",vo.getBno());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
-//		return "redirect:/board/list";
 		return "redirect:/board/"+boardType + "/get?bno=" + vo.getBno();
 	}
 

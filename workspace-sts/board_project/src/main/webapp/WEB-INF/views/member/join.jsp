@@ -137,37 +137,37 @@ $(function(){
 		
 	});
 	
-	let checkPwdExtensionMethod = function(){
-		let message = $(this).siblings('.message');
-		let memberPwd = $(this).val();
+// 	let checkPwdExtensionMethod = function(){
+// 		let message = $(this).siblings('.message');
+// 		let memberPwd = $(this).val();
 		
-		let extensionResult = checkPwdExtension(memberPwd);
+// 		let extensionResult = checkPwdExtension(memberPwd);
 		
-		if(extensionResult.every(result => result===true)){
-			message.html('');
-			message.css('color','');
-			$(this).removeClass('border-danger')
-					.addClass('border border-success')	
-					.css('box-shadow','0 0 0 0.2rem rgba(0,128,0,.25)');
-		} else {
-			message.html('비밀번호 생성 규칙에 위배됩니다.');
-			message.css('color','red');
-			$(this).addClass('border border-danger')
-				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)');
-			formCheckFlag = false;
-		}
+// 		if(extensionResult.every(result => result===true)){
+// 			message.html('');
+// 			message.css('color','');
+// 			$(this).removeClass('border-danger')
+// 					.addClass('border border-success')	
+// 					.css('box-shadow','0 0 0 0.2rem rgba(0,128,0,.25)');
+// 		} else {
+// 			message.html('비밀번호 생성 규칙에 위배됩니다.');
+// 			message.css('color','red');
+// 			$(this).addClass('border border-danger')
+// 				.css('box-shadow','0 0 0 0.2rem rgba(255,0,0,.25)');
+// 			formCheckFlag = false;
+// 		}
 		
-		extensionMessage = $('.passwordExtensionMessage li:first-child');
-		for(const result of extensionResult){
-			if(result){
-				extensionMessage.css('color','green');
-			} else {
-				extensionMessage.css('color','red');
-			}
-			extensionMessage = extensionMessage.next();
-		}
+// 		extensionMessage = $('.passwordExtensionMessage li:first-child');
+// 		for(const result of extensionResult){
+// 			if(result){
+// 				extensionMessage.css('color','green');
+// 			} else {
+// 				extensionMessage.css('color','red');
+// 			}
+// 			extensionMessage = extensionMessage.next();
+// 		}
 		
-	}
+// 	}
 	
 	
 	

@@ -105,12 +105,12 @@ public class FileUploadController {
 		}
 		return result; 
 	}	
-
+	
 	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/deleteFile")
+	@PostMapping("/deleteFile") // 파일 삭제
 	public ResponseEntity<String> deleteFile(BoardAttachVO vo){
-		File file = new File("C:/storage/"+vo.getUploadPath(),vo.getUuid() + "_" + vo.getFileName());
-		file.delete();
+		File file = new File("C:/storage/"+vo.getUploadPath(),vo.getUuid() + "_" + vo.getFileName()); 
+		file.delete(); // 파일 삭제
 		if(vo.isFileType()) {
 			file = new File("C:/storage/"+vo.getUploadPath(),"s_"+vo.getUuid() + "_" + vo.getFileName());
 			file.delete();

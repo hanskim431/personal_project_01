@@ -47,7 +47,8 @@
 						<div class="col-1 menu text-center" style="margin:auto; padding:0px">
 							<div class="dropdown">
 								<img alt="menu" src="${ctxPath}/resources/images/icon/menu-kebab.png" 
-									class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									class="btn dropdown-toggle" type="button" id="dropdownMenuButton" 
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<div class="dropdown-menu getBtns" aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item" href="#">
 										<img class="" alt="report" src="${ctxPath}/resources/images/icon/report.png">
@@ -73,7 +74,7 @@
 						<div class="uploadResultDiv"><!-- 파일업로드 결과 보여주기  -->
 							<div></div>
 						</div>
-						<div class="col-12 textDiv">
+						<div class="col-12 textDiv"><!-- 게시글 내용 -->
 							<div class="form-group">
 								<textarea class="form-control" rows="10" name="content" readonly="readonly">${board.content}</textarea>
 							</div>
@@ -94,7 +95,7 @@
 									<button class="btn btn-outline-basic like">
 										<div class="row">
 											<div class="col-6">
-												<img alt="댓글" src="${ctxPath}/resources/images/icon/like.png" style="width:40px">
+												<img alt="좋아요" src="${ctxPath}/resources/images/icon/like.png" style="width:40px">
 											</div>
 											<div class="col-6 likeCnt" style="margin:auto; font-size: 20px">
 												${board.likeHit}
@@ -108,7 +109,7 @@
 										onclick="alert('로그인이 필요한 서비스입니다.'); location.href='${ctxPath}/login'">
 										<div class="row">
 											<div class="col-6">
-												<img alt="댓글" src="${ctxPath}/resources/images/icon/like.png" style="width:40px">
+												<img alt="좋아요" src="${ctxPath}/resources/images/icon/like.png" style="width:40px">
 											</div>
 											<div class="col-6 likeCnt" style="margin:auto; font-size: 20px">
 												${board.likeHit}
@@ -129,7 +130,6 @@
 
 <!-- 댓글 -->
 <div class="container reply collapse">
-	
 	<div class="row"> 
 		<div class="col-12"> 
 			<div class="card"> 

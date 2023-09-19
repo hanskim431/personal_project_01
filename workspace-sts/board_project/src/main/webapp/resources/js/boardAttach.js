@@ -26,19 +26,6 @@ $(function(){
 							<img alt="" src="${ctxPath}/resources/images/attach.png" style="width: 100%">
 						</div>`
 				}
-				/*fileList +=		
-					`<div class="d-inline-block">
-						${e.fileName}
-					</div>
-					</div>
-					<div class="float-right">`
-				
-				if(e.fileType){
-					fileList += `<a href="${e.uploadPath+"/"+e.uuid+"_"+e.fileName}" class="showIamge">원본보기</a>`
-				}else{
-					fileList += `<a href="${e.uploadPath+"/"+e.uuid+"_"+e.fileName}" class="download">다운로드</a>`
-				} 
-				*/
 				fileList += `</div>`			
 			});
 		$('.uploadResultDiv div').html(fileList);
