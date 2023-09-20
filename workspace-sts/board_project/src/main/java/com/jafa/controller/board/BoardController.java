@@ -123,12 +123,10 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated() and principal.username== #writer or hasRole('ROLE_ADMIN')")
 	@PostMapping("/remove")
 	public String remove(@PathVariable String boardType, Long bno, String writer, RedirectAttributes rttr, Criteria criteria) {
-		if(boardService.remove(bno)) {
-			rttr.addFlashAttribute("result", "success");
-		}
+		if(boardService.remove(bno)) {rttr.addFlashAttribute("result", "success");}
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		rttr.addAttribute("amount",criteria.getAmount());
-		return "redirect:/board/"+boardType+"/list";
+		return "redirect:/board/"+boardType+"/list"; // 게시글 삭제 후 게시판으로 이동
 	}
 	
 	// 게시물 추천 처리
